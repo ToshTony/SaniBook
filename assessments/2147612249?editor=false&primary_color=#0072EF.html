@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="turbo-prefetch" content="false">
+    
+    <meta name="site_locale" content="en"></meta>
+    <title>Connective Impact</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/system-scoped-d78a0749.js" crossorigin="anonymous" type="module"></script><link rel="stylesheet" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/system-scoped-b989662a.css" media="screen" />
+    <link rel="stylesheet" href="https://kajabi-app-assets.kajabi-cdn.com/assets/assessment_embed-5a274e1d92302836eaf8c3ac5d3333a34e06c3a299fde60c9f325cbdd3721606.css" media="all" />
+    
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="zmapz5L52NruKTxBRMvYmvoHuDZxBzssO5xOlJw8F/mXZMUGPRd/NpHK2XuRnA2y+ibPZU2dzfy/4THUpDowbw==" />
+    
+    
+          <script type="text/javascript">
+        if (typeof (window.rudderanalytics) === "undefined") {
+          !function(){"use strict";window.RudderSnippetVersion="3.0.3";var sdkBaseUrl="https://cdn.rudderlabs.com/v3"
+          ;var sdkName="rsa.min.js";var asyncScript=true;window.rudderAnalyticsBuildType="legacy",window.rudderanalytics=[]
+          ;var e=["setDefaultInstanceKey","load","ready","page","track","identify","alias","group","reset","setAnonymousId","startSession","endSession","consent"]
+          ;for(var n=0;n<e.length;n++){var t=e[n];window.rudderanalytics[t]=function(e){return function(){
+          window.rudderanalytics.push([e].concat(Array.prototype.slice.call(arguments)))}}(t)}try{
+          new Function('return import("")'),window.rudderAnalyticsBuildType="modern"}catch(a){}
+          if(window.rudderAnalyticsMount=function(){
+          "undefined"==typeof globalThis&&(Object.defineProperty(Object.prototype,"__globalThis_magic__",{get:function get(){
+          return this},configurable:true}),__globalThis_magic__.globalThis=__globalThis_magic__,
+          delete Object.prototype.__globalThis_magic__);var e=document.createElement("script")
+          ;e.src="".concat(sdkBaseUrl,"/").concat(window.rudderAnalyticsBuildType,"/").concat(sdkName),e.async=asyncScript,
+          document.head?document.head.appendChild(e):document.body.appendChild(e)
+          },"undefined"==typeof Promise||"undefined"==typeof globalThis){var d=document.createElement("script")
+          ;d.src="https://polyfill-fastly.io/v3/polyfill.min.js?version=3.111.0&features=Symbol%2CPromise&callback=rudderAnalyticsMount",
+          d.async=asyncScript,document.head?document.head.appendChild(d):document.body.appendChild(d)}else{
+          window.rudderAnalyticsMount()}window.rudderanalytics.load("2apYBMHHHWpiGqicceKmzPebApa","https://kajabiaarnyhwq.dataplane.rudderstack.com",{})}();
+        }
+      </script>
+      <script type="text/javascript">
+        if (typeof (window.rudderanalytics) !== "undefined") {
+          rudderanalytics.page({"account_id":"47495","site_id":"47133"});
+        }
+      </script>
+      <script type="text/javascript">
+        if (typeof (window.rudderanalytics) !== "undefined") {
+          (function () {
+            function AnalyticsClickHandler (event) {
+              const targetEl = event.target.closest('a') || event.target.closest('button');
+              if (targetEl) {
+                rudderanalytics.track('Site Link Clicked', Object.assign(
+                  {"account_id":"47495","site_id":"47133"},
+                  {
+                    link_text: targetEl.textContent.trim(),
+                    link_href: targetEl.href,
+                    tag_name: targetEl.tagName,
+                  }
+                ));
+              }
+            };
+            document.addEventListener('click', AnalyticsClickHandler);
+          })();
+        }
+      </script>
+
+  </head>
+  <body class="assessments assessments-show sage-excluded">
+    <style id="assessment-primary-color" type="text/css">
+  .assessment a {
+    color: #0072ef;
+  }
+  .assessment .btn,
+  .assessment .progress__btn,
+  .assessment .progress__bar-percent {
+    color: #fff;
+    border-color: #0072ef;
+    background-color: #0072ef;
+  }
+
+  .assessment .btn--link {
+    background-color: transparent;
+    color: #0072ef;
+  }
+
+  .assessment .btn-primary:hover,
+  .assessment .progress__btn:hover {
+    border-color: #005abc;
+    background-color: #005abc;
+  }
+
+  .assessment .drop-zone__btn {
+    background-color: transparent;
+    color: #0072ef;
+  }
+
+  .answers .selected:not(.editing) .answers__choice {
+    border-color: #0072ef;
+    background-color: #0072ef;
+  }
+
+  .drop-zone--filled .drop-zone__frame,
+  .drop-zone--filled .drop-zone__icon,
+  .drop-zone--filled .drop-zone__text {
+    border-color: #0072ef;
+    color: #0072ef;
+  }
+</style>
+
+
+<div class="container">
+  <form class="simple_form new_assessment_result" id="new_assessment_result" data-parsley-validate="true" novalidate="novalidate" action="https://www.connectiveimpact.com/assessments/2147612249/assessment_results?primary_color=%230072EF" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" autocomplete="off" /><input type="hidden" name="authenticity_token" value="G8TuWdmvLQzqmn/Ns40mPfhRLsRCqv7Sn1f0cUAUGwFMxYP3+lMIbu4Kcu1C+JfKRJaKmQvU6HN3IaNOkhwOeg==" autocomplete="off" />
+
+    <div define="{ assessmentQuestions: new App.AssessmentQuestions(this, 11) }" context="assessmentQuestions" class="assessment">
+      <div class=" hide" bind-show="showQuestion(-1)">
+        
+<div class="state state--welcome" id="assessment_details">
+  <div class="state__sizer">
+    <div class="state__outer">
+      <div class="state__inner">
+        <span class="state__icon-container">
+          <i class="material-icons state__icon">check</i>
+        </span>
+        <h1 data-edit-id="assessment_title" kjb-settings-id="assessment_title" class="state__title">Connective Impact Funding Quick Start Assessment</h1>
+          <span data-edit-id="assessment_description" kjb-settings-id="assessment_description" class="heading--4 state__desc"><p>Fundraising is a marathon, not a sprint, and staying relevant to funders is critical. Do you have all the core elements in place, like programmatic priorities, funding needs by program, prospect list and outreach plan?&nbsp;</p>
+<p>Use this assessment to determine what pieces of your fundraising approach are solid, and which are still in need of some work.&nbsp;</p></span>
+          <h3 data-edit-id="assessment_start_text" kjb-settings-id="assessment_start_text" class="state__grade state__pass-fail"><p>Click the button below to start.&nbsp;</p></h3>
+            <a href="2147612249%3Feditor=false&amp;primary_color=%230072EF.html#" bind-event-click="$root.assessmentQuestions.nextQuestion(-1)" class="btn">Start</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+        <div define="{ assessment_question_2148538581: new App.AssessmentQuestion(this, &#39;multiple_choice_type&#39;) }" context="assessment_question_2148538581" bind-show="showQuestion(0)" class="hide assessment__container">
+            <div class="assessment__pusher">
+              
+                
+<div class="question">
+  
+  <p class="question__step">Question 1 of 11</p>
+
+<h1 class="question__text" data-edit-id="assessment_questions_attributes_2148538581_text"><p>Do you have an understanding of your organizational priorities for which you are responsible for raising money? If you choose "Yes", this means that you are confident in the programmatic direction of your organization, and have a clear sense of where funding will be allocated and how it will be spent.&nbsp;</p>
+<p>By choosing "No", it may mean you still have some work to do understanding programmatic priorities and paths for funding.</p></h1>
+
+</div>
+<div class="answers">
+  <div class="form-group hidden assessment_result_answers_assessment_question_id"><input class="form-control hidden" value="2148538581" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][0][assessment_question_id]" id="assessment_result_answers_attributes_0_assessment_question_id" /></div>
+      <div id="assessment_question_choice_2150064417" kjb-settings-id="assessment_questions_attributes_2148538581_choices_attributes_2150064417_text" class="answers__item" bind-event-click="choice = '2150064417'"
+        bind-class="{ selected: choice == '2150064417' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">A</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538581_choices_attributes_2150064417_text">Yes</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064418" kjb-settings-id="assessment_questions_attributes_2148538581_choices_attributes_2150064418_text" class="answers__item" bind-event-click="choice = '2150064418'"
+        bind-class="{ selected: choice == '2150064418' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">B</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538581_choices_attributes_2150064418_text">No</p>
+        </div>
+      </div>
+    </div>
+  <input bind="choice" class="hidden" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][0][choice_ids]" id="assessment_result_answers_attributes_0_choice_ids" />
+</div>
+
+            </div>
+            
+
+<div class="progress">
+  <div class="media">
+    <div class="media__body media--middle">
+      <div class="progress__bar">
+        <div class="progress__bar-percent" style="width: 0.000%"></div>
+      </div>
+    </div>
+    <div class="media__right media--middle">
+          <button type="button" href="#" bind-disabled="choice === ''"
+                                         bind-event-click="$root.assessmentQuestions.nextQuestion()" class="btn progress__btn">Next</button>
+    </div>
+  </div>
+</div>
+
+</div>        <div define="{ assessment_question_2148538590: new App.AssessmentQuestion(this, &#39;multiple_choice_type&#39;) }" context="assessment_question_2148538590" bind-show="showQuestion(1)" class="hide assessment__container">
+            <div class="assessment__pusher">
+              
+                
+<div class="question">
+  
+  <p class="question__step">Question 2 of 11</p>
+
+<h1 class="question__text" data-edit-id="assessment_questions_attributes_2148538590_text"><p>Do you have a clear numeric funding goal for the next 12 months? 2 years? 3-5 years?</p></h1>
+
+</div>
+<div class="answers">
+  <div class="form-group hidden assessment_result_answers_assessment_question_id"><input class="form-control hidden" value="2148538590" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][1][assessment_question_id]" id="assessment_result_answers_attributes_1_assessment_question_id" /></div>
+      <div id="assessment_question_choice_2150064442" kjb-settings-id="assessment_questions_attributes_2148538590_choices_attributes_2150064442_text" class="answers__item" bind-event-click="choice = '2150064442'"
+        bind-class="{ selected: choice == '2150064442' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">A</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538590_choices_attributes_2150064442_text">Only next 12 months</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064443" kjb-settings-id="assessment_questions_attributes_2148538590_choices_attributes_2150064443_text" class="answers__item" bind-event-click="choice = '2150064443'"
+        bind-class="{ selected: choice == '2150064443' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">B</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538590_choices_attributes_2150064443_text">Yes for the next 1-2 years</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064444" kjb-settings-id="assessment_questions_attributes_2148538590_choices_attributes_2150064444_text" class="answers__item" bind-event-click="choice = '2150064444'"
+        bind-class="{ selected: choice == '2150064444' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">C</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538590_choices_attributes_2150064444_text">Yes for the next 3-5 years</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064445" kjb-settings-id="assessment_questions_attributes_2148538590_choices_attributes_2150064445_text" class="answers__item" bind-event-click="choice = '2150064445'"
+        bind-class="{ selected: choice == '2150064445' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">D</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538590_choices_attributes_2150064445_text">Yes for more than 5 years</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064446" kjb-settings-id="assessment_questions_attributes_2148538590_choices_attributes_2150064446_text" class="answers__item" bind-event-click="choice = '2150064446'"
+        bind-class="{ selected: choice == '2150064446' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">E</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538590_choices_attributes_2150064446_text">No</p>
+        </div>
+      </div>
+    </div>
+  <input bind="choice" class="hidden" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][1][choice_ids]" id="assessment_result_answers_attributes_1_choice_ids" />
+</div>
+
+            </div>
+            
+
+<div class="progress">
+  <div class="media">
+    <div class="media__body media--middle">
+      <div class="progress__bar">
+        <div class="progress__bar-percent" style="width: 9.091%"></div>
+      </div>
+    </div>
+    <div class="media__right media--middle">
+          <button type="button" href="#" bind-disabled="choice === ''"
+                                         bind-event-click="$root.assessmentQuestions.nextQuestion()" class="btn progress__btn">Next</button>
+    </div>
+  </div>
+</div>
+
+</div>        <div define="{ assessment_question_2148538582: new App.AssessmentQuestion(this, &#39;multiple_choice_type&#39;) }" context="assessment_question_2148538582" bind-show="showQuestion(2)" class="hide assessment__container">
+            <div class="assessment__pusher">
+              
+                
+<div class="question">
+  
+  <p class="question__step">Question 3 of 11</p>
+
+<h1 class="question__text" data-edit-id="assessment_questions_attributes_2148538582_text"><p>If you were to bring in $250,000 of unrestricted funding tomorrow, do you know where it would be spent and how?</p></h1>
+
+</div>
+<div class="answers">
+  <div class="form-group hidden assessment_result_answers_assessment_question_id"><input class="form-control hidden" value="2148538582" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][2][assessment_question_id]" id="assessment_result_answers_attributes_2_assessment_question_id" /></div>
+      <div id="assessment_question_choice_2150064419" kjb-settings-id="assessment_questions_attributes_2148538582_choices_attributes_2150064419_text" class="answers__item" bind-event-click="choice = '2150064419'"
+        bind-class="{ selected: choice == '2150064419' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">A</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538582_choices_attributes_2150064419_text">Yes</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064420" kjb-settings-id="assessment_questions_attributes_2148538582_choices_attributes_2150064420_text" class="answers__item" bind-event-click="choice = '2150064420'"
+        bind-class="{ selected: choice == '2150064420' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">B</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538582_choices_attributes_2150064420_text">No</p>
+        </div>
+      </div>
+    </div>
+  <input bind="choice" class="hidden" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][2][choice_ids]" id="assessment_result_answers_attributes_2_choice_ids" />
+</div>
+
+            </div>
+            
+
+<div class="progress">
+  <div class="media">
+    <div class="media__body media--middle">
+      <div class="progress__bar">
+        <div class="progress__bar-percent" style="width: 18.182%"></div>
+      </div>
+    </div>
+    <div class="media__right media--middle">
+          <button type="button" href="#" bind-disabled="choice === ''"
+                                         bind-event-click="$root.assessmentQuestions.nextQuestion()" class="btn progress__btn">Next</button>
+    </div>
+  </div>
+</div>
+
+</div>        <div define="{ assessment_question_2148538583: new App.AssessmentQuestion(this, &#39;multiple_choice_type&#39;) }" context="assessment_question_2148538583" bind-show="showQuestion(3)" class="hide assessment__container">
+            <div class="assessment__pusher">
+              
+                
+<div class="question">
+  
+  <p class="question__step">Question 4 of 11</p>
+
+<h1 class="question__text" data-edit-id="assessment_questions_attributes_2148538583_text"><p>Do you know if the funds you are seeking as part of your role would go towards new and untested programs or projects, or are they meant for replication/scaling?</p></h1>
+
+</div>
+<div class="answers">
+  <div class="form-group hidden assessment_result_answers_assessment_question_id"><input class="form-control hidden" value="2148538583" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][3][assessment_question_id]" id="assessment_result_answers_attributes_3_assessment_question_id" /></div>
+      <div id="assessment_question_choice_2150064421" kjb-settings-id="assessment_questions_attributes_2148538583_choices_attributes_2150064421_text" class="answers__item" bind-event-click="choice = '2150064421'"
+        bind-class="{ selected: choice == '2150064421' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">A</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538583_choices_attributes_2150064421_text">New Projects/Programs</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064422" kjb-settings-id="assessment_questions_attributes_2148538583_choices_attributes_2150064422_text" class="answers__item" bind-event-click="choice = '2150064422'"
+        bind-class="{ selected: choice == '2150064422' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">B</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538583_choices_attributes_2150064422_text">Replication/Scaling</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064423" kjb-settings-id="assessment_questions_attributes_2148538583_choices_attributes_2150064423_text" class="answers__item" bind-event-click="choice = '2150064423'"
+        bind-class="{ selected: choice == '2150064423' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">C</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538583_choices_attributes_2150064423_text">Both</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064424" kjb-settings-id="assessment_questions_attributes_2148538583_choices_attributes_2150064424_text" class="answers__item" bind-event-click="choice = '2150064424'"
+        bind-class="{ selected: choice == '2150064424' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">D</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538583_choices_attributes_2150064424_text">Other</p>
+        </div>
+      </div>
+    </div>
+  <input bind="choice" class="hidden" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][3][choice_ids]" id="assessment_result_answers_attributes_3_choice_ids" />
+</div>
+
+            </div>
+            
+
+<div class="progress">
+  <div class="media">
+    <div class="media__body media--middle">
+      <div class="progress__bar">
+        <div class="progress__bar-percent" style="width: 27.273%"></div>
+      </div>
+    </div>
+    <div class="media__right media--middle">
+          <button type="button" href="#" bind-disabled="choice === ''"
+                                         bind-event-click="$root.assessmentQuestions.nextQuestion()" class="btn progress__btn">Next</button>
+    </div>
+  </div>
+</div>
+
+</div>        <div define="{ assessment_question_2148538584: new App.AssessmentQuestion(this, &#39;multiple_choice_type&#39;) }" context="assessment_question_2148538584" bind-show="showQuestion(4)" class="hide assessment__container">
+            <div class="assessment__pusher">
+              
+                
+<div class="question">
+  
+  <p class="question__step">Question 5 of 11</p>
+
+<h1 class="question__text" data-edit-id="assessment_questions_attributes_2148538584_text"><p>Do you have a sense of your organization's existing funders and how your relationships have progressed with them? Could you list them if you had to?</p></h1>
+
+</div>
+<div class="answers">
+  <div class="form-group hidden assessment_result_answers_assessment_question_id"><input class="form-control hidden" value="2148538584" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][4][assessment_question_id]" id="assessment_result_answers_attributes_4_assessment_question_id" /></div>
+      <div id="assessment_question_choice_2150064425" kjb-settings-id="assessment_questions_attributes_2148538584_choices_attributes_2150064425_text" class="answers__item" bind-event-click="choice = '2150064425'"
+        bind-class="{ selected: choice == '2150064425' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">A</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538584_choices_attributes_2150064425_text">Yes</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064427" kjb-settings-id="assessment_questions_attributes_2148538584_choices_attributes_2150064427_text" class="answers__item" bind-event-click="choice = '2150064427'"
+        bind-class="{ selected: choice == '2150064427' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">B</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538584_choices_attributes_2150064427_text">No</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064428" kjb-settings-id="assessment_questions_attributes_2148538584_choices_attributes_2150064428_text" class="answers__item" bind-event-click="choice = '2150064428'"
+        bind-class="{ selected: choice == '2150064428' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">C</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538584_choices_attributes_2150064428_text">Somewhat</p>
+        </div>
+      </div>
+    </div>
+  <input bind="choice" class="hidden" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][4][choice_ids]" id="assessment_result_answers_attributes_4_choice_ids" />
+</div>
+
+            </div>
+            
+
+<div class="progress">
+  <div class="media">
+    <div class="media__body media--middle">
+      <div class="progress__bar">
+        <div class="progress__bar-percent" style="width: 36.364%"></div>
+      </div>
+    </div>
+    <div class="media__right media--middle">
+          <button type="button" href="#" bind-disabled="choice === ''"
+                                         bind-event-click="$root.assessmentQuestions.nextQuestion()" class="btn progress__btn">Next</button>
+    </div>
+  </div>
+</div>
+
+</div>        <div define="{ assessment_question_2148538586: new App.AssessmentQuestion(this, &#39;multiple_choice_type&#39;) }" context="assessment_question_2148538586" bind-show="showQuestion(5)" class="hide assessment__container">
+            <div class="assessment__pusher">
+              
+                
+<div class="question">
+  
+  <p class="question__step">Question 6 of 11</p>
+
+<h1 class="question__text" data-edit-id="assessment_questions_attributes_2148538586_text"><p>Do you have a prospect list for new funders?</p></h1>
+
+</div>
+<div class="answers">
+  <div class="form-group hidden assessment_result_answers_assessment_question_id"><input class="form-control hidden" value="2148538586" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][5][assessment_question_id]" id="assessment_result_answers_attributes_5_assessment_question_id" /></div>
+      <div id="assessment_question_choice_2150064430" kjb-settings-id="assessment_questions_attributes_2148538586_choices_attributes_2150064430_text" class="answers__item" bind-event-click="choice = '2150064430'"
+        bind-class="{ selected: choice == '2150064430' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">A</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538586_choices_attributes_2150064430_text">Yes</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064431" kjb-settings-id="assessment_questions_attributes_2148538586_choices_attributes_2150064431_text" class="answers__item" bind-event-click="choice = '2150064431'"
+        bind-class="{ selected: choice == '2150064431' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">B</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538586_choices_attributes_2150064431_text">No</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064432" kjb-settings-id="assessment_questions_attributes_2148538586_choices_attributes_2150064432_text" class="answers__item" bind-event-click="choice = '2150064432'"
+        bind-class="{ selected: choice == '2150064432' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">C</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538586_choices_attributes_2150064432_text">Working on it</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064433" kjb-settings-id="assessment_questions_attributes_2148538586_choices_attributes_2150064433_text" class="answers__item" bind-event-click="choice = '2150064433'"
+        bind-class="{ selected: choice == '2150064433' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">D</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538586_choices_attributes_2150064433_text">What&#39;s a prospect list?</p>
+        </div>
+      </div>
+    </div>
+  <input bind="choice" class="hidden" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][5][choice_ids]" id="assessment_result_answers_attributes_5_choice_ids" />
+</div>
+
+            </div>
+            
+
+<div class="progress">
+  <div class="media">
+    <div class="media__body media--middle">
+      <div class="progress__bar">
+        <div class="progress__bar-percent" style="width: 45.455%"></div>
+      </div>
+    </div>
+    <div class="media__right media--middle">
+          <button type="button" href="#" bind-disabled="choice === ''"
+                                         bind-event-click="$root.assessmentQuestions.nextQuestion()" class="btn progress__btn">Next</button>
+    </div>
+  </div>
+</div>
+
+</div>        <div define="{ assessment_question_2148538587: new App.AssessmentQuestion(this, &#39;multiple_choice_type&#39;) }" context="assessment_question_2148538587" bind-show="showQuestion(6)" class="hide assessment__container">
+            <div class="assessment__pusher">
+              
+                
+<div class="question">
+  
+  <p class="question__step">Question 7 of 11</p>
+
+<h1 class="question__text" data-edit-id="assessment_questions_attributes_2148538587_text"><p>Whether you have a prospect list or not, do you have a sense of what type of funders you are looking to engage? Consider that there are multiple types (government/public sector, foundation/philanthropic, corporate, impact funder, innovation awards).</p></h1>
+
+</div>
+<div class="answers">
+  <div class="form-group hidden assessment_result_answers_assessment_question_id"><input class="form-control hidden" value="2148538587" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][6][assessment_question_id]" id="assessment_result_answers_attributes_6_assessment_question_id" /></div>
+      <div id="assessment_question_choice_2150064434" kjb-settings-id="assessment_questions_attributes_2148538587_choices_attributes_2150064434_text" class="answers__item" bind-event-click="choice = '2150064434'"
+        bind-class="{ selected: choice == '2150064434' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">A</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538587_choices_attributes_2150064434_text">Yes</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064435" kjb-settings-id="assessment_questions_attributes_2148538587_choices_attributes_2150064435_text" class="answers__item" bind-event-click="choice = '2150064435'"
+        bind-class="{ selected: choice == '2150064435' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">B</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538587_choices_attributes_2150064435_text">No</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064436" kjb-settings-id="assessment_questions_attributes_2148538587_choices_attributes_2150064436_text" class="answers__item" bind-event-click="choice = '2150064436'"
+        bind-class="{ selected: choice == '2150064436' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">C</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538587_choices_attributes_2150064436_text">Somewhat</p>
+        </div>
+      </div>
+    </div>
+  <input bind="choice" class="hidden" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][6][choice_ids]" id="assessment_result_answers_attributes_6_choice_ids" />
+</div>
+
+            </div>
+            
+
+<div class="progress">
+  <div class="media">
+    <div class="media__body media--middle">
+      <div class="progress__bar">
+        <div class="progress__bar-percent" style="width: 54.545%"></div>
+      </div>
+    </div>
+    <div class="media__right media--middle">
+          <button type="button" href="#" bind-disabled="choice === ''"
+                                         bind-event-click="$root.assessmentQuestions.nextQuestion()" class="btn progress__btn">Next</button>
+    </div>
+  </div>
+</div>
+
+</div>        <div define="{ assessment_question_2148538588: new App.AssessmentQuestion(this, &#39;multiple_choice_type&#39;) }" context="assessment_question_2148538588" bind-show="showQuestion(7)" class="hide assessment__container">
+            <div class="assessment__pusher">
+              
+                
+<div class="question">
+  
+  <p class="question__step">Question 8 of 11</p>
+
+<h1 class="question__text" data-edit-id="assessment_questions_attributes_2148538588_text"><p>Do you have an outreach strategy to engage funders (both to build on existing relationships and establish new ones?) This would include regular communication via emails, meetings (in person where possible), sharing project news, ensuring your leadership is engaged, etc.</p></h1>
+
+</div>
+<div class="answers">
+  <div class="form-group hidden assessment_result_answers_assessment_question_id"><input class="form-control hidden" value="2148538588" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][7][assessment_question_id]" id="assessment_result_answers_attributes_7_assessment_question_id" /></div>
+      <div id="assessment_question_choice_2150064437" kjb-settings-id="assessment_questions_attributes_2148538588_choices_attributes_2150064437_text" class="answers__item" bind-event-click="choice = '2150064437'"
+        bind-class="{ selected: choice == '2150064437' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">A</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538588_choices_attributes_2150064437_text">Yes</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064438" kjb-settings-id="assessment_questions_attributes_2148538588_choices_attributes_2150064438_text" class="answers__item" bind-event-click="choice = '2150064438'"
+        bind-class="{ selected: choice == '2150064438' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">B</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538588_choices_attributes_2150064438_text">No</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064439" kjb-settings-id="assessment_questions_attributes_2148538588_choices_attributes_2150064439_text" class="answers__item" bind-event-click="choice = '2150064439'"
+        bind-class="{ selected: choice == '2150064439' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">C</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538588_choices_attributes_2150064439_text">Somewhat</p>
+        </div>
+      </div>
+    </div>
+  <input bind="choice" class="hidden" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][7][choice_ids]" id="assessment_result_answers_attributes_7_choice_ids" />
+</div>
+
+            </div>
+            
+
+<div class="progress">
+  <div class="media">
+    <div class="media__body media--middle">
+      <div class="progress__bar">
+        <div class="progress__bar-percent" style="width: 63.636%"></div>
+      </div>
+    </div>
+    <div class="media__right media--middle">
+          <button type="button" href="#" bind-disabled="choice === ''"
+                                         bind-event-click="$root.assessmentQuestions.nextQuestion()" class="btn progress__btn">Next</button>
+    </div>
+  </div>
+</div>
+
+</div>        <div define="{ assessment_question_2148538591: new App.AssessmentQuestion(this, &#39;multiple_choice_type&#39;) }" context="assessment_question_2148538591" bind-show="showQuestion(8)" class="hide assessment__container">
+            <div class="assessment__pusher">
+              
+                
+<div class="question">
+  
+  <p class="question__step">Question 9 of 11</p>
+
+<h1 class="question__text" data-edit-id="assessment_questions_attributes_2148538591_text"><p>Do your technical teams, program staff, leadership and your fundraising colleagues know their roles and responsibilities as it relates to engaging funders?</p></h1>
+
+</div>
+<div class="answers">
+  <div class="form-group hidden assessment_result_answers_assessment_question_id"><input class="form-control hidden" value="2148538591" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][8][assessment_question_id]" id="assessment_result_answers_attributes_8_assessment_question_id" /></div>
+      <div id="assessment_question_choice_2150064447" kjb-settings-id="assessment_questions_attributes_2148538591_choices_attributes_2150064447_text" class="answers__item" bind-event-click="choice = '2150064447'"
+        bind-class="{ selected: choice == '2150064447' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">A</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538591_choices_attributes_2150064447_text">Yes, everyone is clear on their roles</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064448" kjb-settings-id="assessment_questions_attributes_2148538591_choices_attributes_2150064448_text" class="answers__item" bind-event-click="choice = '2150064448'"
+        bind-class="{ selected: choice == '2150064448' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">B</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538591_choices_attributes_2150064448_text">Some are, some are not</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064449" kjb-settings-id="assessment_questions_attributes_2148538591_choices_attributes_2150064449_text" class="answers__item" bind-event-click="choice = '2150064449'"
+        bind-class="{ selected: choice == '2150064449' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">C</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538591_choices_attributes_2150064449_text">No</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064450" kjb-settings-id="assessment_questions_attributes_2148538591_choices_attributes_2150064450_text" class="answers__item" bind-event-click="choice = '2150064450'"
+        bind-class="{ selected: choice == '2150064450' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">D</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538591_choices_attributes_2150064450_text">Other</p>
+        </div>
+      </div>
+    </div>
+  <input bind="choice" class="hidden" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][8][choice_ids]" id="assessment_result_answers_attributes_8_choice_ids" />
+</div>
+
+            </div>
+            
+
+<div class="progress">
+  <div class="media">
+    <div class="media__body media--middle">
+      <div class="progress__bar">
+        <div class="progress__bar-percent" style="width: 72.727%"></div>
+      </div>
+    </div>
+    <div class="media__right media--middle">
+          <button type="button" href="#" bind-disabled="choice === ''"
+                                         bind-event-click="$root.assessmentQuestions.nextQuestion()" class="btn progress__btn">Next</button>
+    </div>
+  </div>
+</div>
+
+</div>        <div define="{ assessment_question_2148538593: new App.AssessmentQuestion(this, &#39;multiple_choice_type&#39;) }" context="assessment_question_2148538593" bind-show="showQuestion(9)" class="hide assessment__container">
+            <div class="assessment__pusher">
+              
+                
+<div class="question">
+  
+  <p class="question__step">Question 10 of 11</p>
+
+<h1 class="question__text" data-edit-id="assessment_questions_attributes_2148538593_text"><p>Do you have a written fundraising strategy?</p></h1>
+
+</div>
+<div class="answers">
+  <div class="form-group hidden assessment_result_answers_assessment_question_id"><input class="form-control hidden" value="2148538593" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][9][assessment_question_id]" id="assessment_result_answers_attributes_9_assessment_question_id" /></div>
+      <div id="assessment_question_choice_2150064451" kjb-settings-id="assessment_questions_attributes_2148538593_choices_attributes_2150064451_text" class="answers__item" bind-event-click="choice = '2150064451'"
+        bind-class="{ selected: choice == '2150064451' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">A</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538593_choices_attributes_2150064451_text">Yes</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064452" kjb-settings-id="assessment_questions_attributes_2148538593_choices_attributes_2150064452_text" class="answers__item" bind-event-click="choice = '2150064452'"
+        bind-class="{ selected: choice == '2150064452' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">B</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538593_choices_attributes_2150064452_text">No</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064453" kjb-settings-id="assessment_questions_attributes_2148538593_choices_attributes_2150064453_text" class="answers__item" bind-event-click="choice = '2150064453'"
+        bind-class="{ selected: choice == '2150064453' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">C</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538593_choices_attributes_2150064453_text">We have elements of a strategy written down</p>
+        </div>
+      </div>
+    </div>
+      <div id="assessment_question_choice_2150064454" kjb-settings-id="assessment_questions_attributes_2148538593_choices_attributes_2150064454_text" class="answers__item" bind-event-click="choice = '2150064454'"
+        bind-class="{ selected: choice == '2150064454' }">
+      <div class="media">
+        <div class="media__left">
+          <div class="answers__choice">D</div>
+        </div>
+        <div class="media__body media--middle">
+          <p class="answers__text" data-edit-id="assessment_questions_attributes_2148538593_choices_attributes_2150064454_text">Other</p>
+        </div>
+      </div>
+    </div>
+  <input bind="choice" class="hidden" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][9][choice_ids]" id="assessment_result_answers_attributes_9_choice_ids" />
+</div>
+
+            </div>
+            
+
+<div class="progress">
+  <div class="media">
+    <div class="media__body media--middle">
+      <div class="progress__bar">
+        <div class="progress__bar-percent" style="width: 81.818%"></div>
+      </div>
+    </div>
+    <div class="media__right media--middle">
+          <button type="button" href="#" bind-disabled="choice === ''"
+                                         bind-event-click="$root.assessmentQuestions.nextQuestion()" class="btn progress__btn">Next</button>
+    </div>
+  </div>
+</div>
+
+</div>        <div define="{ assessment_question_2148538813: new App.AssessmentQuestion(this, &#39;paragraph_type&#39;) }" context="assessment_question_2148538813" bind-show="showQuestion(10)" class="hide assessment__container">
+            <div class="assessment__pusher">
+              
+                
+<div class="question">
+  
+  <p class="question__step">Question 11 of 11</p>
+
+<h1 class="question__text" data-edit-id="assessment_questions_attributes_2148538813_text"><p>This completes the assessment.&nbsp;On the next page,&nbsp;you'll be able to receive your results, plus a series of recommendations, via email. You are welcome to&nbsp;opt out at any time. If you want to provide any additional information for us to review, or if you want us to respond to you on a particular question we asked, please share more details below. <em>Otherwise you can type N/A.</em></p></h1>
+
+</div>
+<div class="text-field">
+  <div class="form-group hidden assessment_result_answers_assessment_question_id"><input class="form-control hidden" value="2148538813" autocomplete="off" type="hidden" name="assessment_result[answers_attributes][10][assessment_question_id]" id="assessment_result_answers_attributes_10_assessment_question_id" /></div>
+  <div class="form-group text optional assessment_result_answers_paragraph_answer"><label class="control-label text optional" for="assessment_result_answers_attributes_10_paragraph_answer">Paragraph answer</label><textarea class="form-control text optional" bind="choice" name="assessment_result[answers_attributes][10][paragraph_answer]" id="assessment_result_answers_attributes_10_paragraph_answer">
+</textarea></div>
+</div>
+
+            </div>
+            
+
+<div class="progress">
+  <div class="media">
+    <div class="media__body media--middle">
+      <div class="progress__bar">
+        <div class="progress__bar-percent" style="width: 90.909%"></div>
+      </div>
+    </div>
+    <div class="media__right media--middle">
+          <button type="button" href="#" bind-disabled="choice === ''"
+                                         bind-event-click="$root.assessmentQuestions.nextQuestion()" class="btn progress__btn">Next</button>
+    </div>
+  </div>
+</div>
+
+</div>
+        <div class=" hide" bind-show="showConfirmation()">
+          <div class="assessment__container">
+            <div class="assessment__pusher">
+  <div class="question">
+    <h1 class="question__text">Confirm and Submit</h1>
+  </div>
+  <div class="text-field text-field--email">
+    <div class="form-group string optional assessment_result_name"><label class="control-label string optional" for="assessment_result_name">Name</label><input class="form-control string optional" placeholder="Full Name" type="text" name="assessment_result[name]" id="assessment_result_name" /></div>
+    <div class="form-group email required assessment_result_email"><label class="control-label email required" for="assessment_result_email">Email</label><input class="form-control string email required" data-parsley-remote="true" data-parsley-remote-validator="kjb_email_validator" required="required" aria-required="true" placeholder="Email" type="email" name="assessment_result[email]" id="assessment_result_email" /></div>
+  </div>
+  <div class="check-box">
+    <div class="form-group boolean optional assessment_result_opt_in"><div class="checkbox"><input value="0" autocomplete="off" type="hidden" name="assessment_result[opt_in]" /><label class="boolean optional" for="assessment_result_opt_in"><input class="boolean optional" type="checkbox" value="1" name="assessment_result[opt_in]" id="assessment_result_opt_in" />Subscribe to our email list</label></div></div>
+  </div>
+</div>
+<div class="progress">
+  <div class="pull-right">
+    <input type="submit" name="commit" value="Submit" class="btn btn-primary btn-block-mobile pull-right" data-disable-with="Submitting" />
+  </div>
+</div>
+
+          </div>
+</div></div></form></div>
+
+    <script src="https://kajabi-app-assets.kajabi-cdn.com/assets/application-9c0a8c307f01f6ea62277c401d139bb1c41967fe2f069c726f6d77d0cb27f4f0.js"></script>
+    
+    <script type="text/javascript" src="https://js.stripe.com/basil/stripe.js"></script>
+
+      <script src="https://kajabi-app-assets.kajabi-cdn.com/assets/fingerprinter-8aeb0ee01d16e36ebf90c24b3e1d0f75aaa91cff5a353231248eef297b054fce.js"></script>
+
+<script src="https://static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script><script src="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/kj_uploader-0f226b2b.js" crossorigin="anonymous" type="module"></script><link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/index-ef3c7d47.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/index-ffb4245c.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/_commonjsHelpers-f17db62c.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/index-4d75239f.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/index-dd84ea2a.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/uuid-fbc100ee.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/main-c08db486.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/BrowserLogger-72a3c92b.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/index-48f72409.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/main-c975657b.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/clientInfo-16c2cd18.js" as="script" crossorigin="anonymous">
+<link rel="modulepreload" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/user-e7858bc6.js" as="script" crossorigin="anonymous"><link rel="stylesheet" href="https://kajabi-app-assets.kajabi-cdn.com/vite/assets/kj_uploader-faf69a0d.css" media="screen" />
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dompurify@2.2.3/dist/purify.min.js"></script>
+
+<script type="text/javascript">
+  +function(a,p,P,b,y){a.appboy={};a.appboyQueue=[];for(var s="DeviceProperties Card Card.prototype.dismissCard Card.prototype.removeAllSubscriptions Card.prototype.removeSubscription Card.prototype.subscribeToClickedEvent Card.prototype.subscribeToDismissedEvent Banner CaptionedImage ClassicCard ControlCard ContentCards ContentCards.prototype.getUnviewedCardCount Feed Feed.prototype.getUnreadCardCount ControlMessage InAppMessage InAppMessage.SlideFrom InAppMessage.ClickAction InAppMessage.DismissType InAppMessage.OpenTarget InAppMessage.ImageStyle InAppMessage.Orientation InAppMessage.TextAlignment InAppMessage.CropType InAppMessage.prototype.closeMessage InAppMessage.prototype.removeAllSubscriptions InAppMessage.prototype.removeSubscription InAppMessage.prototype.subscribeToClickedEvent InAppMessage.prototype.subscribeToDismissedEvent FullScreenMessage ModalMessage HtmlMessage SlideUpMessage User User.Genders User.NotificationSubscriptionTypes User.prototype.addAlias User.prototype.addToCustomAttributeArray User.prototype.getUserId User.prototype.incrementCustomUserAttribute User.prototype.removeFromCustomAttributeArray User.prototype.setAvatarImageUrl User.prototype.setCountry User.prototype.setCustomLocationAttribute User.prototype.setCustomUserAttribute User.prototype.setDateOfBirth User.prototype.setEmail User.prototype.setEmailNotificationSubscriptionType User.prototype.setFirstName User.prototype.setGender User.prototype.setHomeCity User.prototype.setLanguage User.prototype.setLastKnownLocation User.prototype.setLastName User.prototype.setPhoneNumber User.prototype.setPushNotificationSubscriptionType InAppMessageButton InAppMessageButton.prototype.removeAllSubscriptions InAppMessageButton.prototype.removeSubscription InAppMessageButton.prototype.subscribeToClickedEvent display display.automaticallyShowNewInAppMessages display.destroyFeed display.hideContentCards display.showContentCards display.showFeed display.showInAppMessage display.toggleContentCards display.toggleFeed changeUser destroy getDeviceId initialize isPushBlocked isPushGranted isPushPermissionGranted isPushSupported logCardClick logCardDismissal logCardImpressions logContentCardsDisplayed logCustomEvent logFeedDisplayed logInAppMessageButtonClick logInAppMessageClick logInAppMessageHtmlClick logInAppMessageImpression logPurchase openSession registerAppboyPushMessages removeAllSubscriptions removeSubscription requestContentCardsRefresh requestFeedRefresh requestImmediateDataFlush resumeWebTracking setLogger setSdkAuthenticationSignature stopWebTracking subscribeToContentCardsUpdates subscribeToFeedUpdates subscribeToInAppMessage subscribeToNewInAppMessages subscribeToSdkAuthenticationFailures toggleAppboyLogging trackLocation unregisterAppboyPushMessages wipeData".split(" "),i=0;i<s.length;i++){for(var m=s[i],k=a.appboy,l=m.split("."),j=0;j<l.length-1;j++)k=k[l[j]];k[l[j]]=(new Function("return function "+m.replace(/\./g,"_")+"(){window.appboyQueue.push(arguments); return true}"))()}window.appboy.getCachedContentCards=function(){return new window.appboy.ContentCards};window.appboy.getCachedFeed=function(){return new window.appboy.Feed};window.appboy.getUser=function(){return new window.appboy.User};(y=p.createElement(P)).type='text/javascript';
+    y.src='https://js.appboycdn.com/web-sdk/3.3/appboy.min.js';
+    y.async=1;(b=p.getElementsByTagName(P)[0]).parentNode.insertBefore(y,b)
+  }(window,document,'script');
+</script>
+
+    
+  </body>
+</html>
