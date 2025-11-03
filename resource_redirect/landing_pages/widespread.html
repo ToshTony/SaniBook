@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SaniBook | Limited Sanitation Access and Coverage Gaps</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { opacity: 0; animation: fadeInUp 1.2s ease-out forwards; }
+    .bg-grid {
+      background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900 text-white overflow-x-hidden">
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-24 bg-grid">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/50 via-blue-800/30 to-gray-900/80 blur-2xl"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight fade-up">
+        Limited Sanitation Access and Coverage Gaps  
+        <span class="block text-blue-400 mt-2">Is Kenya's Economic Growth Worth the Investment in Dignity?</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8 fade-up" style="animation-delay: 0.3s;">
+        <strong>Close the Sanitation Gap, Secure the Future:</strong> From systemic challenge to scalable solution.  
+        Turning the tide on the <em>“Unfinished Agenda”</em>: Invest in sanitation and unlock Kenya’s full human and economic potential.
+      </p>
+
+      <p class="text-gray-200 text-lg mb-10 fade-up" style="animation-delay: 0.5s;">
+        The time for fragmented progress is over. The future demands a unified, data-driven, and transformational investment strategy.  
+        Kenya’s journey toward <span class="text-blue-300 font-semibold">SDG 6.2 (Universal Sanitation Access)</span> is critically constrained by a  
+        <span class="text-blue-400 font-bold">Ksh 27 Billion annual economic loss</span> and fragmented interventions.  
+        The sanitation sector’s vital work often remains confined to unpublicized silos, preventing the shift from incremental progress to accelerated, equitable access.
+      </p>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="relative py-20 px-6 bg-gray-950 border-t border-gray-800">
+    <div class="max-w-6xl mx-auto relative z-10">
+      <h2 class="text-3xl md:text-5xl font-bold text-center text-blue-400 mb-12 fade-up">
+        The SaniBook: Turning Fragmentation into Focus
+      </h2>
+
+      <p class="text-lg text-gray-300 leading-relaxed mb-12 text-center fade-up" style="animation-delay: 0.3s;">
+        The <span class="font-semibold text-blue-300">SaniBook</span> is a strategic knowledge platform designed to dismantle barriers and unify action.  
+        We invite organizations across Kenya’s sanitation ecosystem to share their evidence-based interventions, innovative technologies,  
+        and financing models that are driving progress on the ground.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8 fade-up" style="animation-delay: 0.6s;">
+        <!-- Card 1 -->
+        <div class="bg-gray-800/60 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-blue-500/30 transition transform hover:-translate-y-1">
+          <img src="https://cdn-icons-png.flaticon.com/512/2910/2910791.png" alt="De-risk investment" class="w-16 mx-auto mb-4 opacity-90">
+          <h3 class="text-xl font-semibold text-blue-300 mb-2">De-Risk Investment</h3>
+          <p class="text-gray-400">
+            Transform your isolated success into validated, repeatable blueprints.  
+            Lower the cost and risk of scaling across the entire sector.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-gray-800/60 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-blue-500/30 transition transform hover:-translate-y-1">
+          <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="Systemic synergy" class="w-16 mx-auto mb-4 opacity-90">
+          <h3 class="text-xl font-semibold text-blue-300 mb-2">Generate Systemic Synergy</h3>
+          <p class="text-gray-400">
+            Break down silos. Foster multi-stakeholder coordination for measurable progress toward Kenya’s national sanitation targets.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-gray-800/60 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-blue-500/30 transition transform hover:-translate-y-1">
+          <img src="https://cdn-icons-png.flaticon.com/512/681/681392.png" alt="Thought leadership" class="w-16 mx-auto mb-4 opacity-90">
+          <h3 class="text-xl font-semibold text-blue-300 mb-2">Affirm Thought Leadership</h3>
+          <p class="text-gray-400">
+            Position your organization as a national innovator advancing the human right to sanitation and driving Kenya’s transformation.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center mt-16 fade-up" style="animation-delay: 0.9s;">
+        <h3 class="text-2xl font-semibold mb-4 text-blue-300">
+          Your Success is the Sector’s Blueprint for Scale
+        </h3>
+        <p class="text-gray-300 max-w-3xl mx-auto mb-8">
+          Stop operating in the shadow of local achievement.  
+          Contribute your success to the collective impact that will realize universal dignity and health for all Kenyans.
+        </p>
+        <a href="#join" class="inline-block bg-blue-500 hover:bg-blue-600 transition-all px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-blue-500/40">
+          🌍 Join the SaniBook Initiative
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Scroll-based fade-in animation
+    const elements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.style.opacity = 1;
+      });
+    });
+    elements.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
