@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The SaniBook — The Sanitation Nexus</title>
+  <meta name="description" content="The SaniBook: The Sanitation Nexus — unifying actors, evidence and action. First edition: Breaking the Chain: Unpacking Kenya's Seven Critical Sanitation Bottlenecks." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The SaniBook — The Sanitation Nexus" />
+  <meta property="og:description" content="Uniting actors, evidence & action. First edition: Breaking the Chain: Unpacking Kenya's Seven Critical Sanitation Bottlenecks." />
+  <meta property="og:image" content="/assets/cover.png" />
+
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+  <style>
+    /* Base */
+    :root{--bg:#ffffff;--muted:#6b7280;--text:#0b1220;--accent:#0b6b60;--accent-2:#136bde;--card:#f8fbfb;--glass:rgba(11,107,96,0.06);--radius:14px;--max:1100px}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    img{max-width:100%;height:auto;display:block}
+    .container{max-width:var(--max);margin:28px auto;padding:20px}
+
+    /* Header */
+    header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent-2),var(--accent));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;box-shadow:0 10px 30px rgba(19,107,222,0.08)}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{font-weight:600;color:var(--muted);text-decoration:none}
+    .cta-small{background:var(--accent);color:#fff;padding:8px 12px;border-radius:10px;border:0;cursor:pointer}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:18px}
+    .hero-card{padding:28px;background:linear-gradient(180deg,rgba(11,107,96,0.04),transparent);border-radius:var(--radius);box-shadow:0 10px 40px rgba(11,107,96,0.06)}
+    h1{font-size:2.1rem;margin:0 0 8px}
+    .sub{color:var(--muted);margin-bottom:18px}
+    .hero-btns{display:flex;gap:12px}
+    .btn{padding:12px 18px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn.primary{background:var(--accent);color:#fff}
+    .btn.ghost{background:transparent;color:var(--accent);border:2px solid rgba(11,107,96,0.08)}
+
+    /* cover */
+    .cover{background:linear-gradient(180deg,#fff,#f6fffd);padding:18px;border-radius:12px;border:1px solid var(--glass);box-shadow:0 14px 36px rgba(11,107,96,0.06)}
+    .cover .mock{height:460px;border-radius:10px;background:linear-gradient(180deg,#eafffb,#fff);display:flex;align-items:center;justify-content:center;border:1px dashed rgba(11,107,96,0.08)}
+
+    /* Sections */
+    section{margin-top:36px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--glass)}
+
+    /* challenges */
+    .challenges{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
+    .challenge{background:white;padding:16px;border-radius:10px;border:1px solid rgba(9,30,24,0.04);box-shadow:0 6px 18px rgba(9,30,24,0.03)}
+    .challenge h4{margin:0 0 6px}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(19,107,222,0.08);color:var(--accent-2);font-weight:700;font-size:13px}
+
+    /* features list */
+    ul.clean{padding-left:18px;color:var(--muted)}
+
+    /* participation + ads */
+    .ads{display:flex;gap:12px;flex-wrap:wrap}
+    .ad{flex:1 1 280px;padding:16px;background:linear-gradient(180deg,#fff,#f9fffe);border-radius:12px;border:1px solid var(--glass)}
+
+    /* form */
+    .form{background:#fff;padding:18px;border-radius:12px;border:1px solid var(--glass);box-shadow:0 12px 30px rgba(11,17,20,0.04)}
+    label{display:block;font-weight:700;font-size:13px;margin-bottom:6px}
+    input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #e7eef0;background:#fff}
+    textarea{min-height:120px}
+
+    /* footer */
+    footer{margin-top:36px;text-align:center;color:var(--muted);font-size:13px;padding:20px 0}
+
+    /* responsive */
+    @media (max-width:1000px){.hero{grid-template-columns:1fr;}.challenges{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}.cover .mock{height:360px}}
+    @media (max-width:560px){.challenges{grid-template-columns:1fr}.logo{width:44px;height:44px}}
+
+    /* animations */
+    .fade{opacity:0;transform:translateY(10px);animation:fadeIn .6s ease forwards}
+    @keyframes fadeIn{to{opacity:1;transform:none}}
+
+    /* subtle parallax hero bg */
+    .hero-bg{position:absolute;left:0;right:0;top:0;height:420px;background:linear-gradient(180deg,rgba(19,107,222,0.06),transparent);z-index:-1}
+
+    /* visual flourishes */
+    .highlight{color:var(--accent-2);font-weight:800}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="hero-bg"></div>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">SB</div>
+        <div>
+          <div style="font-weight:900">The SaniBook</div>
+          <div class="muted" style="font-size:13px">The Sanitation Nexus • Unifying Actors, Evidence & Action</div>
+        </div>
+      </div>
+
+      <nav aria-label="main navigation">
+        <a href="#why">Why the SaniBook</a>
+        <a href="#reality">Sanitation Reality</a>
+        <a href="#challenges">The 7 Challenges</a>
+        <a href="#participate">Participate</a>
+        <a href="#advertise">Advertise</a>
+        <a href="#contact" class="cta-small">Get Preview</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-card fade">
+          <div class="tag">First Edition • SanAccII special</div>
+          <h1>The SaniBook: <span class="highlight">The Sanitation Nexus</span></h1>
+          <p class="sub">Breaking the Chain: Unpacking Kenya's Seven Critical Sanitation Bottlenecks and the Frontline Organizations Driving Change. The definitive one-stop resource for policy makers, implementers, investors and community leaders.</p>
+
+          <div class="hero-btns">
+            <button class="btn primary" id="getBook">Get the Book</button>
+            <button class="btn ghost" id="advertiseBtn">Advertise with us</button>
+          </div>
+
+          <p style="margin-top:16px;color:var(--muted)"><strong>Born from SanAccII (May 2025) at the Kenya Water Institute</strong> — the SaniBook centralizes the symposium's insights and amplifies the voices and solutions shaping Kenya's sanitation future.</p>
+
+          <div style="margin-top:18px" class="card">
+            <strong>Why SaniBook exists</strong>
+            <p class="muted" style="margin:8px 0 0">Many organisations are acting to improve sanitation — but their work is often invisible, unconnected, and underfunded. SaniBook brings those actors together, preserves their stories, and builds a platform for collaboration, publicity and investment.</p>
+          </div>
+        </div>
+
+        <aside class="cover fade">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-weight:800">Breaking the Chain</div>
+            <div class="muted">2025 • 160 pages</div>
+          </div>
+
+          <div class="mock" style="margin-top:14px">
+            <!-- cover svg -->
+            <svg width="180" height="260" viewBox="0 0 180 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SaniBook cover">
+              <rect width="180" height="260" rx="12" fill="#e6fbfa" />
+              <g transform="translate(18,24)" fill="#0b6b60" font-family="sans-serif">
+                <text x="0" y="20" font-size="18" font-weight="800">Breaking the Chain</text>
+                <text x="0" y="40" font-size="10">Unpacking Kenya's</text>
+                <text x="0" y="52" font-size="10">Seven Critical Sanitation</text>
+                <rect x="0" y="70" width="136" height="8" rx="4" fill="#136bde" />
+                <g transform="translate(0,110)">
+                  <rect x="0" y="0" width="136" height="86" rx="8" fill="#ffffff" opacity="0.7" />
+                  <text x="8" y="18" font-size="10" fill="#0b6b60">Case studies</text>
+                  <text x="8" y="34" font-size="10" fill="#0b6b60">Tools & templates</text>
+                  <text x="8" y="50" font-size="10" fill="#0b6b60">Data & insights</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+            <div class="muted">PDF • ePub • Print</div>
+            <a id="downloadBtn" class="btn primary" href="/assets/SaniBook-sample.pdf" target="_blank" style="text-decoration:none">Download sample</a>
+          </div>
+        </aside>
+      </section>
+
+      <!-- WHY -->
+      <section id="why">
+        <div class="grid-2">
+          <div>
+            <h2>Introduction: Why Sanitation Matters</h2>
+            <p class="muted">Sanitation is a critical foundation for public health, environmental sustainability, and economic development. Beyond toilets and pipes, sanitation protects dignity and unlocks economic value. The SaniBook makes the case that addressing sanitation is one of Kenya's highest-return investments.</p>
+
+            <h3 style="margin-top:12px">A national imperative</h3>
+            <p class="muted">Millions lack safely managed sanitation — fueling disease, lost productivity, and environmental harm. The SaniBook reframes the problem as an opportunity: a bankable pipeline of high-impact projects that will create jobs, improve health outcomes and accelerate Kenya's Vision 2030.</p>
+          </div>
+
+          <div>
+            <div class="card">
+              <h4>The Unseen Current</h4>
+              <p class="muted">No neighbourhood is an island. The invisible bridge of contamination — vectors, water, air and economic strain — connects every community. SaniBook explains how poor sanitation in one area affects the whole region and why coordinated action is essential.</p>
+              <ul class="clean muted" style="margin-top:10px">
+                <li><strong>Vectors don't discriminate:</strong> flies and mosquitoes spread disease across boundaries.</li>
+                <li><strong>Water knows no boundaries:</strong> runoff and groundwater link communities.</li>
+                <li><strong>Economic ripple:</strong> outbreaks strain hospitals and livelihoods across regions.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHALLENGES -->
+      <section id="challenges">
+        <h2>The 7 Critical Sanitation Bottlenecks</h2>
+        <p class="muted">Identified at SanAccII (May 2025), these bottlenecks focus action on the highest-impact issues in Kenya's sanitation ecosystem.</p>
+
+        <div class="challenges">
+          <div class="challenge">
+            <h4>Limited Access & Coverage Gaps</h4>
+            <div class="muted">Millions remain underserved. SaniBook highlights partnership models that expand reach and de-risk investment.</div>
+          </div>
+
+          <div class="challenge">
+            <h4>Socio‑Cultural & Behavioural Barriers</h4>
+            <div class="muted">Behaviour change is central. Showcase proven NSS and community-driven approaches that scale.</div>
+          </div>
+
+          <div class="challenge">
+            <h4>Gaps in Technology Adoption</h4>
+            <div class="muted">Local innovation must be scaled — SaniBook documents winners and lessons to prevent costly mistakes.</div>
+          </div>
+
+          <div class="challenge">
+            <h4>Inappropriate Tech & Poor Maintenance</h4>
+            <div class="muted">Context matters. Learn how resilient design and O&M frameworks keep systems working.</div>
+          </div>
+
+          <div class="challenge">
+            <h4>Fragmented Governance & Coordination</h4>
+            <div class="muted">A chain is only as strong as its weakest link: examples of cross-agency collaboration are presented as models.</div>
+          </div>
+
+          <div class="challenge">
+            <h4>Sanitation Data Deficiencies</h4>
+            <div class="muted">You can't manage what you don't measure. SaniBook pushes for a unified data hub and shared monitoring.</div>
+          </div>
+
+          <div class="challenge">
+            <h4>Climate & Resilience Pressures</h4>
+            <div class="muted">Design for a changing climate: durable solutions that protect investments and public health.</div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn primary" onclick="document.getElementById('participate').scrollIntoView({behavior:'smooth'})">Submit your story</button>
+          <button class="btn ghost" onclick="document.getElementById('advertise').scrollIntoView({behavior:'smooth'})">Advertise with SaniBook</button>
+        </div>
+      </section>
+
+      <!-- PARTICIPATE -->
+      <section id="participate">
+        <h2>Participation & Partnership</h2>
+        <p class="muted">Be seen. Be counted. Be part of the solution. SaniBook invites NGOs, companies, researchers, and community champions to share case studies, data, and innovations — and to advertise their services to attract partners and funders.</p>
+
+        <div class="grid-2" style="margin-top:12px">
+          <div>
+            <div class="card">
+              <h4>Submit Your Story</h4>
+              <p class="muted">Share lessons learned, describe your project, and highlight barriers and successes. Contributions will be credited and may be featured in the book and on the website.</p>
+              <ul class="clean muted" style="margin-top:8px">
+                <li>Case studies</li>
+                <li>Project briefs</li>
+                <li>Data & monitoring examples</li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <h4>How You Benefit</h4>
+              <p class="muted">Participation positions your organisation as a sector leader, increases visibility for funding and partnerships, and helps build a coordinated response that benefits everyone.</p>
+              <div style="margin-top:8px"><strong>Marketing value:</strong> featured contributors get profile exposure and priority for advertising slots.</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ADVERTISE -->
+      <section id="advertise">
+        <h2>Advertising & Visibility</h2>
+        <p class="muted">Promote your organisation, your products, or your services in the SaniBook — reaching policy makers, donors, and sector leaders actively looking to invest and partner.</p>
+
+        <div class="ads" style="margin-top:12px">
+          <div class="ad">
+            <h4>Full-page feature</h4>
+            <p class="muted">Ideal for major donors, flagship projects, or organisations wanting an in-depth showcase.</p>
+            <div style="margin-top:8px"><strong>Includes:</strong> print + digital placement, logo spotlight, priority listing.</div>
+          </div>
+
+          <div class="ad">
+            <h4>Half-page advert</h4>
+            <p class="muted">Cost-effective visibility for providers and implementers.</p>
+            <div style="margin-top:8px"><strong>Includes:</strong> print ad, website feature.</div>
+          </div>
+
+          <div class="ad">
+            <h4>Digital sponsor banner</h4>
+            <p class="muted">Get long-term visibility on this website and our newsletters.</p>
+            <div style="margin-top:8px"><strong>Includes:</strong> rotating banner, link to your site.</div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request media kit</button>
+        </div>
+      </section>
+
+      <!-- THE SANITATION CHALLENGE DEEP DIVE -->
+      <section id="reality">
+        <h2>The Sanitation Challenge: Deep Dive</h2>
+        <p class="muted">A short primer explaining how sanitation impacts communities beyond immediate health — property values, environment, stigma, and shared resilience.</p>
+
+        <div style="margin-top:12px" class="card">
+          <h3>1. The Unseen Current</h3>
+          <p class="muted">Poor sanitation does not stay confined. Through vectors, water, and air, sanitation issues cross boundaries and threaten entire regions.</p>
+
+          <h4 style="margin-top:12px">1.1 Vectors & contamination</h4>
+          <p class="muted">Disease-carrying flies and other vectors easily move between communities, transporting pathogens from open waste to food and water.</p>
+
+          <h4 style="margin-top:12px">1.2 Water & shared resources</h4>
+          <p class="muted">Runoff and seepage contaminate groundwater and rivers, undermining water safety across regions.</p>
+
+          <h4 style="margin-top:12px">1.3 Ripple effects</h4>
+          <p class="muted">From property values to tourism and investor confidence, sanitation failures create wide economic and social costs.</p>
+        </div>
+      </section>
+
+      <!-- GET THE BOOK / CONTACT -->
+      <section id="contact">
+        <h2>Get the SaniBook / Contact</h2>
+        <p class="muted">Request a preview chapter, enquire about advertising, or submit your story. Complete the form and we'll follow up.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 420px;gap:18px;margin-top:12px;align-items:start">
+          <div>
+            <form id="leadForm" class="form">
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" placeholder="Your full name" required />
+
+              <label for="email" style="margin-top:10px">Email address</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+
+              <label for="interest" style="margin-top:10px">I am interested in</label>
+              <select id="interest" name="interest">
+                <option>Buy the book</option>
+                <option>Submit a story</option>
+                <option>Advertise / Sponsor</option>
+                <option>Partner</option>
+              </select>
+
+              <label for="message" style="margin-top:10px">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us how you'd like to participate"></textarea>
+
+              <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+                <button type="submit" class="btn primary">Send & get preview</button>
+                <div class="muted">We respect your privacy. This demo stores leads locally — replace with your backend.</div>
+              </div>
+
+              <div id="formFeedback" style="margin-top:12px;display:none"></div>
+            </form>
+
+            <div style="margin-top:12px;color:var(--muted);font-size:13px">
+              <strong>Note:</strong> For production, replace the demo handler with an API endpoint or Mailchimp/SendGrid integration. Upload the sample PDF to <code>/assets/SaniBook-sample.pdf</code> for direct downloads.
+            </div>
+          </div>
+
+          <aside class="card">
+            <h4>Quick links</h4>
+            <ul class="clean muted" style="margin-top:8px">
+              <li><a href="#challenges">Explore the 7 bottlenecks</a></li>
+              <li><a href="#participate">Submit a story</a></li>
+              <li><a href="#advertise">Request media kit</a></li>
+            </ul>
+
+            <hr style="margin:12px 0;border:none;border-top:1px solid var(--glass)" />
+
+            <h4>Featured benefits</h4>
+            <ul class="clean muted">
+              <li>High visibility to donors & partners</li>
+              <li>Credited case study publication</li>
+              <li>Advertising packages for all budgets</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © 2025 The SaniBook • Built for GitHub Pages • Replace placeholder images in <code>/assets</code>
+    </footer>
+  </div>
+
+  <script>
+    // Interactions
+    document.getElementById('getBook').addEventListener('click', ()=>{document.getElementById('contact').scrollIntoView({behavior:'smooth'})});
+    document.getElementById('advertiseBtn').addEventListener('click', ()=>{document.getElementById('advertise').scrollIntoView({behavior:'smooth'})});
+
+    // demo lead capture
+    const form = document.getElementById('leadForm');
+    const feedback = document.getElementById('formFeedback');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if(!name||!email){showMsg('Please fill name and email',true);return}
+      const interest = document.getElementById('interest').value;const msg = document.getElementById('message').value;
+      const leads = JSON.parse(localStorage.getItem('sanileads') || '[]');
+      leads.push({name,email,interest,msg,ts:new Date().toISOString()});
+      localStorage.setItem('sanileads', JSON.stringify(leads));
+      showMsg('Thanks — we saved your request and a sample is available via download.',false);
+      form.reset();
+      // show download
+      const dl = document.getElementById('downloadBtn'); if(dl) dl.style.visibility='visible';
+    });
+    function showMsg(txt,err){feedback.style.display='block';feedback.textContent=txt;feedback.style.color=err? '#b91c1c':'#0b6b60';setTimeout(()=>{feedback.style.opacity=1},10)}
+
+    // small reveal animations
+    window.addEventListener('load', ()=>{document.querySelectorAll('.fade').forEach((el,i)=>{el.style.animationDelay=(i*120)+'ms'})});
+  </script>
+</body>
+</html>

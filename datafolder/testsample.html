@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SaniBook — Practical Sanitation Solutions</title>
+  <meta name="description" content="SaniBook — clear, practical guidance on sanitation, policy, and implementation. Free preview available." />
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="SaniBook — Practical Sanitation Solutions" />
+  <meta property="og:description" content="Actionable sanitation guidance for practitioners, policy-makers and students. Get a free preview." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./assets/cover-placeholder.png" />
+
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+  <style>
+    /* --- Reset & base --- */
+    :root{
+      --bg: #ffffff;
+      --card: #f6fbf9;
+      --text: #0f1724;
+      --muted: #6b7280;
+      --accent: #0ea5a4; /* teal */
+      --accent-600: #0b9a98;
+      --glass: rgba(15,23,36,0.04);
+      --radius: 14px;
+      --max-width: 980px;
+      --shadow: 0 8px 30px rgba(15,23,36,0.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+    img{max-width:100%;height:auto;display:block}
+
+    /* --- Layout --- */
+    .container{max-width:var(--max-width);margin:32px auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-600));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;box-shadow:0 6px 18px rgba(14,165,164,0.18)}
+    .nav{display:flex;gap:12px;align-items:center}
+    .nav a{color:var(--muted);text-decoration:none;font-weight:600}
+
+    /* --- Hero --- */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin-top:24px}
+    .hero-card{background:linear-gradient(180deg,rgba(14,165,164,0.04),transparent);padding:28px;border-radius:var(--radius);box-shadow:var(--shadow)}
+
+    h1{font-size:2.1rem;margin:0 0 8px}
+    .lead{color:var(--muted);margin-bottom:18px}
+    .cta-row{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--accent);color:white;padding:12px 18px;border-radius:10px;border:0;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(14,165,164,0.14)}
+    .btn.ghost{background:transparent;color:var(--accent);border:2px solid var(--glass);box-shadow:none;font-weight:700}
+
+    /* cover mock */
+    .cover{
+      width:100%;max-width:300px;margin-left:auto;border-radius:12px;background:linear-gradient(180deg,#ffffff,#f2fbfa);padding:18px;border:1px solid var(--glass);box-shadow:0 14px 30px rgba(14,165,164,0.06);
+    }
+    .cover .mock{height:420px;border-radius:8px;background:linear-gradient(180deg,#e6fffd,#ffffff);display:flex;align-items:center;justify-content:center;border:1px dashed rgba(14,165,164,0.12)}
+
+    /* key features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .feature{background:var(--card);padding:14px;border-radius:10px}
+    .feature h4{margin:0 0 6px}
+    .muted{color:var(--muted)}
+
+    /* sections */
+    section{margin-top:36px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+
+    /* author + testimonials */
+    .author{display:flex;gap:14px;align-items:center}
+    .avatar{width:88px;height:88px;border-radius:14px;background:var(--glass);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+    .testimonials{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .testimonial{background:linear-gradient(180deg,#fff,#fbfffe);padding:12px;border-radius:10px;border:1px solid rgba(11,154,152,0.06)}
+
+    /* form */
+    .form-card{background:white;padding:18px;border-radius:12px;border:1px solid var(--glass);box-shadow:0 10px 30px rgba(15,23,36,0.04)}
+    label{display:block;font-weight:700;font-size:13px;margin-bottom:6px}
+    input[type="text"], input[type="email"], textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef0;background:#fff}
+    textarea{min-height:110px}
+    .small{font-size:13px;color:var(--muted)}
+
+    footer{margin-top:36px;padding:20px 0;color:var(--muted);font-size:13px;text-align:center}
+
+    /* responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr;}.features{grid-template-columns:repeat(2,1fr)}.testimonials{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}.cover .mock{height:320px}}
+    @media (max-width:560px){.features{grid-template-columns:1fr}.logo{width:40px;height:40px}.hero-card{padding:18px}.cover .mock{height:260px}}
+
+    /* micro animations */
+    .fade-in{opacity:0;transform:translateY(8px);animation:fadeIn 600ms ease forwards}
+    @keyframes fadeIn{to{opacity:1;transform:none}}
+
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(14,165,164,0.08);color:var(--accent);font-weight:700;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>SB</div>
+        <div>
+          <div style="font-weight:800">SaniBook</div>
+          <div class="muted" style="font-size:13px">Sanitation • Policy • Practice</div>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#inside">Inside</a>
+        <a href="#author">Author</a>
+        <a href="#download" class="pill">Get Preview</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-card fade-in">
+          <div class="pill">New release — practical guide</div>
+          <h1>SaniBook — Practical Sanitation Solutions for Cities</h1>
+          <p class="lead">Actionable strategies, real-world case studies, and a roadmap for implementers, policymakers and community leaders who want to make sanitation work—without wait‑and‑see politics.</p>
+
+          <div class="cta-row">
+            <button class="btn" id="scrollToForm">Get the free preview</button>
+            <button class="btn ghost" id="learnMore">Learn what’s inside</button>
+          </div>
+
+          <div class="features" style="margin-top:20px">
+            <div class="feature">
+              <h4>Practical steps</h4>
+              <div class="muted">Straightforward, implementable guidance to start projects today.</div>
+            </div>
+            <div class="feature">
+              <h4>Local case studies</h4>
+              <div class="muted">Real examples from Nairobi and other cities in Africa.</div>
+            </div>
+            <div class="feature">
+              <h4>Tools & templates</h4>
+              <div class="muted">Checklists, budgeting templates and monitoring indicators.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <aside aria-label="Book cover" class="cover fade-in">
+          <div style="display:flex;gap:10px;align-items:flex-start;justify-content:space-between">
+            <div style="font-weight:800">SaniBook</div>
+            <div style="font-size:12px;color:var(--muted)">2025 • 140 pages</div>
+          </div>
+
+          <div class="mock" style="margin-top:14px">
+            <!-- simple cover SVG placeholder -->
+            <svg width="160" height="220" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SaniBook cover placeholder">
+              <rect width="160" height="220" rx="8" fill="#e6fffd" />
+              <g transform="translate(16,20)" fill="#056b67" font-family="sans-serif">
+                <text x="0" y="18" font-size="18" font-weight="700">SaniBook</text>
+                <text x="0" y="40" font-size="10">Practical Sanitation</text>
+                <rect x="0" y="56" width="128" height="6" rx="3" fill="#0ea5a4" />
+                <rect x="0" y="74" width="88" height="6" rx="3" fill="#0ea5a4" />
+                <g transform="translate(0,110)">
+                  <rect x="0" y="0" width="128" height="64" rx="6" fill="#ffffff" opacity="0.6" />
+                  <text x="8" y="18" font-size="10" fill="#056b67">Checklists</text>
+                  <text x="8" y="34" font-size="10" fill="#056b67">Budget templates</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+
+          <div style="display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:14px">
+            <div class="small muted">PDF • ePub • Mobi</div>
+            <div style="font-weight:700;color:var(--accent)">Download sample</div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about">
+        <div class="grid-2">
+          <div>
+            <h2>Why SaniBook matters</h2>
+            <p class="muted">Sanitation is often treated as an afterthought. SaniBook reframes the problem as systems and people work — showing how small, well-directed interventions prevent disease, improve dignity, and unlock economic value for cities and communities.</p>
+
+            <h3 style="margin-top:12px">Who this book is for</h3>
+            <ul class="muted">
+              <li>City planners and local government officials</li>
+              <li>NGO implementers and field officers</li>
+              <li>Consultants, students and researchers working on WASH</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>What you'll get</h3>
+            <ul class="muted">
+              <li>Simple decision trees for choosing sanitation solutions</li>
+              <li>Budget templates and procurement checklists</li>
+              <li>Monitoring indicators and sample KPIs</li>
+              <li>Community engagement playbook</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="inside">
+        <h2>Inside the book</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px">
+          <div class="form-card">
+            <h4>Selected chapters</h4>
+            <ol class="muted">
+              <li>Understanding the sanitation value chain</li>
+              <li>Context-appropriate technologies</li>
+              <li>Financing and public-private partnerships</li>
+              <li>Community-driven implementation</li>
+              <li>M&E and adapting projects</li>
+            </ol>
+            <p class="small muted">Each chapter ends with an actionable checklist you can use in planning or proposals.</p>
+          </div>
+
+          <div class="form-card">
+            <h4>Tools & extras</h4>
+            <ul class="muted">
+              <li>Budget template (Excel)</li>
+              <li>Community survey template</li>
+              <li>Procurement checklist</li>
+              <li>Sample M&E dashboard</li>
+            </ul>
+            <p class="small muted">Placeholders are included in the repo — replace them with your real files when ready.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="author" style="margin-top:30px">
+        <div class="author">
+          <div class="avatar" aria-hidden>
+            <svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><rect width="56" height="56" rx="10" fill="#eefcfb"/><text x="28" y="34" font-size="20" font-weight="700" text-anchor="middle" fill="#056b67">A</text></svg>
+          </div>
+          <div>
+            <div style="font-weight:800">Alex Mwangi</div>
+            <div class="muted">Sanitation specialist, practitioner and author. Alex has 12 years' experience working on WASH programmes across East Africa and has led multi-stakeholder projects in urban and peri-urban settings.</div>
+            <div style="margin-top:8px"><button class="btn ghost" onclick="window.location='#download'">Contact author</button></div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px">
+          <h3>Endorsements</h3>
+          <div class="testimonials">
+            <div class="testimonial">
+              <strong>"A practical handbook every city planner should read."</strong>
+              <div class="muted" style="margin-top:6px">— Nairobi Urban Forum</div>
+            </div>
+            <div class="testimonial">
+              <strong>"Concise, actionable and full of real examples."</strong>
+              <div class="muted" style="margin-top:6px">— Field Lead, CleanWater NGO</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="download">
+        <h2>Get the free preview</h2>
+        <p class="muted">Enter your details and we will send a sample chapter to your inbox. (This demo uses a local placeholder — connect to your email service or backend to capture leads.)</p>
+
+        <div style="display:grid;grid-template-columns:1fr 420px;gap:18px;margin-top:12px;align-items:start">
+          <div>
+            <div class="form-card">
+              <form id="leadForm">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                  <div>
+                    <label for="name">Full name</label>
+                    <input id="name" name="name" type="text" placeholder="Your full name" required />
+                  </div>
+                  <div>
+                    <label for="email">Email address</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com" required />
+                  </div>
+                </div>
+
+                <div style="margin-top:10px">
+                  <label for="org">Organisation (optional)</label>
+                  <input id="org" name="org" type="text" placeholder="Organisation or role" />
+                </div>
+
+                <div style="margin-top:10px">
+                  <label for="message">Message (optional)</label>
+                  <textarea id="message" name="message" placeholder="Tell us what you're working on"></textarea>
+                </div>
+
+                <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+                  <button type="submit" class="btn" id="submitBtn">Send & get preview</button>
+                  <div class="small muted">No spam. Unsubscribe anytime.</div>
+                </div>
+
+                <div id="formFeedback" style="margin-top:12px;display:none"></div>
+              </form>
+            </div>
+
+            <div style="margin-top:12px;color:var(--muted);font-size:13px">
+              <strong>Privacy</strong>
+              <div>We will only use your email to send the sample. Replace this behaviour with your preferred email provider integration in production (Mailchimp, ConvertKit, SendGrid or a backend endpoint).</div>
+            </div>
+          </div>
+
+          <aside class="form-card">
+            <h4>Quick download</h4>
+            <p class="muted">If you already have a download link, replace the placeholder URL below with your real file. For GitHub Pages, upload <code>assets/SaniBook-sample.pdf</code> and link to it directly.</p>
+            <div style="margin-top:12px">
+              <a id="directDownload" href="./assets/SaniBook-sample.pdf" target="_blank" class="btn" style="display:inline-block;text-decoration:none">Direct download (placeholder)</a>
+            </div>
+
+            <hr style="margin:12px 0;border:none;border-top:1px solid var(--glass)" />
+
+            <h4>Pro tip</h4>
+            <p class="muted">Place your real cover image at <code>assets/cover.png</code> and update the meta tags at the top of the HTML so social shares show the cover image.</p>
+
+          </aside>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © SaniBook — <span id="year"></span> • Built for GitHub Pages. Replace placeholder assets in <code>assets/</code> and update the form handler.
+    </footer>
+  </div>
+
+  <script>
+    // small helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('learnMore').addEventListener('click', ()=>{document.getElementById('inside').scrollIntoView({behavior:'smooth'});});
+    document.getElementById('scrollToForm').addEventListener('click', ()=>{document.getElementById('download').scrollIntoView({behavior:'smooth'});});
+
+    // Lead capture (demo): validate and store locally, show success and a download link
+    const leadForm = document.getElementById('leadForm');
+    const formFeedback = document.getElementById('formFeedback');
+    leadForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if(!name || !email){
+        showFeedback('Please provide name and a valid email.', true);
+        return;
+      }
+
+      // Fake submit: store in localStorage (demo). Replace with real API call.
+      const leads = JSON.parse(localStorage.getItem('sani_leads')||'[]');
+      leads.push({name, email, org: document.getElementById('org').value||'', message: document.getElementById('message').value||'', ts: new Date().toISOString()});
+      localStorage.setItem('sani_leads', JSON.stringify(leads));
+
+      showFeedback('Thanks! A sample chapter has been queued for delivery. Check the direct download if you don\'t receive email.', false);
+
+      // reveal direct download button briefly
+      const dl = document.getElementById('directDownload');
+      dl.style.display = 'inline-block';
+
+      leadForm.reset();
+    });
+
+    function showFeedback(msg, isError){
+      formFeedback.style.display = 'block';
+      formFeedback.textContent = msg;
+      formFeedback.style.color = isError ? '#b91c1c' : 'green';
+      setTimeout(()=>{formFeedback.style.opacity = 1;}, 10);
+    }
+
+    // Small accessibility: focus styles
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Tab') document.body.classList.add('show-focus'); });
+  </script>
+</body>
+</html>
