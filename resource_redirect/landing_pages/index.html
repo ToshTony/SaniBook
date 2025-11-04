@@ -12,8 +12,20 @@
   <!-- Navbar -->
   <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <!-- Logo -->
       <h1 class="text-2xl font-bold text-blue-700">SaniBook</h1>
-      <ul class="hidden md:flex space-x-8 text-sm font-medium">
+  
+      <!-- Hamburger Icon (visible on small screens) -->
+      <div class="md:hidden">
+        <button id="navbar-toggle" class="text-blue-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+  
+      <!-- Navbar Links -->
+      <ul id="navbar-links" class="hidden md:flex space-x-8 text-sm font-medium">
         <li><a href="#why" class="hover:text-blue-600">Why the SaniBook</a></li>
         <li><a href="sanireality.html" class="hover:text-blue-600">Sanitation Reality</a></li>
         <li><a href="tellstory.html" class="hover:text-blue-600">Tell Your Story</a></li>
@@ -23,6 +35,25 @@
       </ul>
     </div>
   </nav>
+  
+  <!-- Mobile Menu (Hidden by default) -->
+  <div id="mobile-menu" class="fixed inset-0 bg-white bg-opacity-90 z-40 hidden md:hidden">
+    <div class="flex justify-end p-4">
+      <button id="close-mobile-menu" class="text-dark text-3xl">
+        &times;
+      </button>
+    </div>
+    <div class="flex justify-center items-center h-full">
+      <ul class="space-y-8 text-dark text-xl font-medium">
+        <li><a href="#why" class="hover:text-black-300">Why the SaniBook</a></li>
+        <li><a href="sanireality.html" class="hover:text-blue-300">Sanitation Reality</a></li>
+        <li><a href="tellstory.html" class="hover:text-blue-300">Tell Your Story</a></li>
+        <li><a href="joinsani.html" class="hover:text-blue-300">Join Sanitationists</a></li>
+        <li><a href="#contact" class="hover:text-blue-300">Contact Us</a></li>
+        <li><a href="#login" class="hover:text-blue-300">Login</a></li>
+      </ul>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section class="relative w-full h-screen flex items-center justify-center text-center text-white bg-cover bg-center" 
@@ -40,18 +71,34 @@
   </section>
 
   <!-- Intro Section -->
-  <section id="intro" class="max-w-6xl mx-auto px-6 py-16 bg-white/60 backdrop-blur-sm rounded-2xl mt-10">
-    <h2 class="text-3xl font-bold text-blue-700 mb-4">Sanibook: Your Compass for Kenya's Sanitation Future 🧭</h2>
+  <section
+  id="intro"
+  class="relative max-w-6xl mx-auto px-6 py-16 mt-10 rounded-2xl bg-[url('../../pic3.jpg')] bg-cover bg-center bg-no-repeat overflow-hidden"
+>
+  <!-- Background overlay for readability -->
+  <div class="absolute inset-0 bg-white/50 backdrop-blur-sm rounded-2xl"></div>
+  <!-- Content wrapper (on top of overlay) -->
+  <div class="relative z-10">
+    <h2 class="text-3xl font-bold text-blue-700 mb-4">
+      Sanibook: Your Compass for Kenya's Sanitation Future
+    </h2>
+
     <p class="text-lg leading-relaxed text-gray-700 mb-6">
-      Kenya's sanitation efforts are crippled by fragmented data and diluted accountability. This leads to duplicated work 
-      and missed national targets (SDG 6). We can't measure progress when vital info is scattered!
-    </p>
-    <p class="text-lg leading-relaxed text-gray-700 mb-6">
-      The SaniBook is the essential, collective resource that turns this liability into a powerful asset. It's a single, centralized 
-      platform for all sector interventions and data—linking Government, NGOs, WSPs, and the Private Sector.
+      Kenya's sanitation efforts are crippled by fragmented data and diluted accountability.
+      This leads to duplicated work and missed national targets (SDG 6).
+      We can't measure progress when vital info is scattered!
     </p>
 
-    <h3 class="text-xl font-semibold text-blue-600 mb-3">Why Join Us? (The Impact)</h3>
+    <p class="text-lg leading-relaxed text-gray-700 mb-6">
+      The SaniBook is the essential, collective resource that turns this liability into a powerful asset.
+      It's a single, centralized platform for all sector interventions and data—linking Government, NGOs,
+      WSPs, and the Private Sector.
+    </p>
+
+    <h3 class="text-xl font-semibold text-blue-600 mb-3">
+      Why Join Us? (The Impact)
+    </h3>
+
     <ul class="list-disc list-inside text-gray-700 space-y-2">
       <li><strong>Maximize Impact:</strong> Transform isolated efforts into coordinated action.</li>
       <li><strong>Amplify Your Voice:</strong> Ensure your work informs policy and national strategy.</li>
@@ -63,14 +110,26 @@
       <p class="text-lg text-gray-700 mb-4">
         <strong>Call to Action:</strong> Collective action is the single greatest multiplier for success.
       </p>
+
       <p class="italic text-blue-700 text-lg mb-4">
         Join us. Let's trade fragmentation for focus and transform Kenya’s sanitation future — together!
       </p>
+
       <p class="text-gray-700 text-lg">
         Sanitation is not just a cost; it’s a vital investment in our future and the engine of sustainable national prosperity.
       </p>
     </div>
-  </section>
+  </div>
+</section>
+
+<div class="w-full h-40 md:h-60 lg:h-60 mt-5 ">
+  <img
+    src="../../background1.jpg"
+    alt="Kenya Sanitation Landscape"
+    class="w-full h-full object-cover"
+  />
+</div>
+
 
   <!-- Why the SaniBook -->
   <section id="why" class="max-w-6xl mx-auto px-6 py-16">
@@ -85,6 +144,14 @@
     Explore why the SaniBook
   </a>
   </section>
+
+  <div class="w-full h-40 md:h-60 lg:h-60 mt-5 ">
+    <img
+      src="../../bbg5.jpg"
+      alt="Kenya Sanitation Landscape"
+      class="w-full h-full object-cover"
+    />
+  </div>
 
   <!-- Challenges Section -->
   <section id="reality" class="bg-[#fdfdfd] py-16">
@@ -160,7 +227,7 @@
   
     <div class="relative max-w-6xl mx-auto text-center mb-12">
       <h2 class="text-3xl md:text-4xl font-bold text-blue-700 mb-3">
-        Chapter 9: Participate in the Sanitation Portal!
+        Participate in the Sanitation Portal!
       </h2>
       <p class="text-gray-700 text-lg max-w-3xl mx-auto">
         In this context of unprecedented complexity, strategic alignment is the non-negotiable prerequisite 
@@ -171,7 +238,7 @@
     <div class="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
       <!-- Left Column: Text -->
       <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-md">
-        <h3 class="text-2xl font-semibold text-blue-700 mb-4">9.1 Elevate Your Impact: Join the Sanibook Ecosystem and Catalyze Sectoral Synergy</h3>
+        <h3 class="text-2xl font-semibold text-blue-700 mb-4">Elevate Your Impact: Join the Sanibook Ecosystem and Catalyze Sectoral Synergy</h3>
         <p class="text-gray-700 leading-relaxed mb-6">
           In an increasingly complex and interconnected global landscape, the fundamental challenge is no longer 
           <strong>what we do</strong>, but <strong>how effectively we collaborate</strong>. Your organization has already demonstrated 
@@ -182,7 +249,7 @@
           By contributing your operational data and expertise, you engage in a co-creative act that redefines resource mobilization and sectoral coordination.
         </p>
   
-        <h3 class="text-2xl font-semibold text-blue-700 mb-4">9.2 Participate and Realize the Triple-Win:</h3>
+        <h3 class="text-2xl font-semibold text-blue-700 mb-4">Participate and Realize the Triple-Win:</h3>
         <ul class="text-gray-700 list-disc list-inside space-y-3">
           <li><strong>Strategic Alignment:</strong> Move beyond anecdotal evidence. Identify complementary actors and eliminate duplication through true synergy.</li>
           <li><strong>Optimized Visibility:</strong> Position your organization at the forefront of innovation, attracting donors, policymakers, and investors.</li>
@@ -262,6 +329,23 @@
     <p class="text-sm">© 2025 SaniBook Kenya. All Rights Reserved.</p>
     <p class="text-xs mt-2">Built with ❤️ to accelerate Kenya’s sanitation transformation.</p>
   </footer>
+
+  <script>
+    const toggleButton = document.getElementById('navbar-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeButton = document.getElementById('close-mobile-menu');
+    const navbarLinks = document.getElementById('navbar-links');
+  
+    toggleButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden'; // Prevent body scroll when menu is open
+    });
+  
+    closeButton.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = 'auto'; // Restore body scroll when menu is closed
+    });
+  </script>
 
 </body>
 </html>
