@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | SaniBook Initiative</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+  <!-- Header -->
+  <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <!-- Logo -->
+      <a href="index.html" class="text-2xl font-bold text-blue-700">
+        <h1>SaniBook</h1>
+      </a>
+  
+      <!-- Hamburger Icon (visible on small screens) -->
+      <div class="md:hidden">
+        <button id="navbar-toggle" class="text-blue-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+  
+      <!-- Navbar Links -->
+      <ul id="navbar-links" class="hidden md:flex space-x-8 text-sm font-medium">
+        <li><a href="index.html" class="hover:text-blue-600">Home</a></li>
+        <li><a href="whysanibook.html" class="hover:text-blue-600">Why the SaniBook</a></li>
+        <li><a href="sanireality.html" class="hover:text-blue-600">Sanitation Reality</a></li>
+        <li><a href="tellstory.html" class="hover:text-blue-600">Tell Your Story</a></li>
+        <li><a href="joinsani.html" class="hover:text-blue-600">Join Sanitationists</a></li>
+        <li><a href="contact.html" class="hover:text-blue-600">Contact Us</a></li>
+        <li><a href="#login" class="hover:text-blue-600">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Mobile Menu (Hidden by default) -->
+  <div id="mobile-menu" class="fixed inset-0 bg-white bg-opacity-90 z-40 hidden md:hidden">
+    <div class="flex justify-end p-4">
+      <button id="close-mobile-menu" class="text-dark text-3xl">
+        &times;
+      </button>
+    </div>
+    <div class="flex justify-center items-center h-full">
+      <ul class="space-y-8 text-dark text-xl font-medium">
+        <li><a href="index.html" class="hover:text-blue-600">Home</a></li>
+        <li><a href="whysanibook.html" class="hover:text-black-300">Why the SaniBook</a></li>
+        <li><a href="sanireality.html" class="hover:text-blue-300">Sanitation Reality</a></li>
+        <li><a href="tellstory.html" class="hover:text-blue-300">Tell Your Story</a></li>
+        <li><a href="joinsani.html" class="hover:text-blue-300">Join Sanitationists</a></li>
+        <li><a href="contact.html" class="hover:text-blue-300">Contact Us</a></li>
+        <li><a href="#login" class="hover:text-blue-300">Login</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-600 text-white py-20 overflow-hidden">
+    <!-- Background Image with Opacity -->
+    <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('../../backg2.jpg');"></div>
+  
+    <!-- Content Section -->
+    <div class="max-w-5xl mx-auto text-center px-6 relative z-10">
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-4">
+        Contact Us
+      </h2>
+      <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto">
+        Have questions or feedback? We’d love to hear from you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="py-16 px-6 md:px-16 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-2xl md:text-3xl font-bold text-blue-900 mb-4">We'd Love to Hear From You!</h3>
+      <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
+        Whether you're a partner, a sanitation enthusiast, or just someone looking to connect, we're here for you. Drop us a message below and we'll get back to you as soon as we can.
+      </p>
+
+      <div class="max-w-3xl mx-auto bg-blue-50 p-6 rounded-lg shadow-sm mb-8">
+        <p class="text-blue-900 italic text-lg font-medium">
+          "Together, we can shape the future of sanitation in Kenya."
+        </p>
+      </div>
+
+      <!-- Contact Form -->
+      <form action="#" method="POST" class="grid md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Full Name</label>
+          <input type="text" name="name" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Email Address</label>
+          <input type="email" name="email" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="block text-gray-700 mb-2 font-medium">Phone Number</label>
+          <input type="text" name="phone" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="block text-gray-700 mb-2 font-medium">Message</label>
+          <textarea name="message" rows="6" placeholder="Let us know how we can assist you..." required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+        </div>
+
+        <div class="md:col-span-2 text-center mt-6">
+          <button type="submit" class="bg-blue-900 text-white font-semibold px-10 py-3 rounded-full shadow hover:bg-blue-800 transition-all duration-200">
+            Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact Information Section -->
+  <section class="py-16 px-6 md:px-16 bg-blue-50">
+    <div class="max-w-6xl mx-auto text-center">
+      <h3 class="text-2xl md:text-3xl font-bold text-blue-900 mb-4">Get in Touch</h3>
+      <p class="text-gray-700 text-lg mb-6">Feel free to reach out to us directly through the contact details below:</p>
+      
+      <div class="space-y-4">
+        <div>
+          <h4 class="text-xl font-semibold text-blue-900">Phone</h4>
+          <p class="text-gray-700 text-lg">+254 722 981370</p>
+        </div>
+
+        <div>
+          <h4 class="text-xl font-semibold text-blue-900">Email</h4>
+          <p class="text-gray-700 text-lg">contact@sanibook.org</p>
+        </div>
+
+        <div>
+          <h4 class="text-xl font-semibold text-blue-900">Address</h4>
+          <p class="text-gray-700 text-lg">Nairobi, Kenya</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 mt-10">
+    <div class="max-w-6xl mx-auto px-6 py-6 text-center text-gray-600 text-sm">
+      © 2025 SaniBook Initiative — Elevating Anecdote to Blueprint.
+    </div>
+  </footer>
+
+  <script>
+    const toggleButton = document.getElementById('navbar-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeButton = document.getElementById('close-mobile-menu');
+    const navbarLinks = document.getElementById('navbar-links');
+  
+    toggleButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden'; // Prevent body scroll when menu is open
+    });
+  
+    closeButton.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = 'auto'; // Restore body scroll when menu is closed
+    });
+  </script>
+
+</body>
+</html>
