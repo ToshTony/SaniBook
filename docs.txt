@@ -19,4 +19,19 @@ exit
 
 rsync
 rsync -avz example.txt username@remote-server:/home/username/
-rsync -avz /home/user/Downloads/SaniBook/datafolder/sani_book_landing.html/ root@185.252.234.222:/home/
+
+
+
+remote server
+cd /etc/apache2/sites-available/
+create conf file: /home/user/Downloads/SaniBook/datafolder/cosikenya.org.conf
+enable site: sudo a2ensite example.com.conf
+reload apache: sudo systemctl reload apache2
+config test: sudo apache2ctl configtest
+
+
+ssl config
+sudo apt update
+sudo apt install certbot python3-certbot-apache
+
+sudo certbot --apache -d cosikenya.org -d www.cosikenya.org
