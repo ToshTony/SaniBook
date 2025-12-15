@@ -1,0 +1,37 @@
+git config --global user.name "Tony"
+git config --global user.email "jayton006@gmail.com"
+
+
+scp upload.
+file
+scp example.txt username@remote-server:/home/username/
+
+folder
+scp -r /path/to/local_directory username@remote-server:/path/to/destination/
+
+sftp upload
+sftp username@remote-server
+cd /path/to/remote/directory
+put /path/to/local/file
+put -r /path/to/local/directory
+exit
+
+
+rsync
+rsync -avz example.txt username@remote-server:/home/username/
+
+
+
+remote server
+cd /etc/apache2/sites-available/
+create conf file: /home/user/Downloads/SaniBook/datafolder/cosikenya.org.conf
+enable site: sudo a2ensite example.com.conf
+reload apache: sudo systemctl reload apache2
+config test: sudo apache2ctl configtest
+
+
+ssl config
+sudo apt update
+sudo apt install certbot python3-certbot-apache
+
+sudo certbot --apache -d cosikenya.org -d www.cosikenya.org

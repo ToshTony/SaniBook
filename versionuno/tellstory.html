@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tell Your Story | SaniBook Initiative</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+  <!-- Header -->
+  <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <!-- Logo -->
+      <a href="index.html" class="text-2xl font-bold text-blue-700">
+        <h1>SaniBook</h1>
+      </a>
+  
+      <!-- Hamburger Icon (visible on small screens) -->
+      <div class="md:hidden">
+        <button id="navbar-toggle" class="text-blue-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+  
+      <!-- Navbar Links -->
+      <ul id="navbar-links" class="hidden md:flex space-x-8 text-sm font-medium">
+        <li><a href="index.html" class="hover:text-blue-600">Home</a></li>
+        <li><a href="whysanibook.html" class="hover:text-blue-600">Why the SaniBook</a></li>
+        <li><a href="sanireality.html" class="hover:text-blue-600">Sanitation Reality</a></li>
+        <li><a href="tellstory.html" class="hover:text-blue-600">Tell Your Story</a></li>
+        <li><a href="joinsani.html" class="hover:text-blue-600">Join Sanitationists</a></li>
+        <li><a href="contact.html" class="hover:text-blue-600">Contact Us</a></li>
+        <li><a href="#login" class="hover:text-blue-600">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Mobile Menu (Hidden by default) -->
+  <div id="mobile-menu" class="fixed inset-0 bg-white bg-opacity-90 z-40 hidden md:hidden">
+    <div class="flex justify-end p-4">
+      <button id="close-mobile-menu" class="text-dark text-3xl">
+        &times;
+      </button>
+    </div>
+    <div class="flex justify-center items-center h-full">
+      <ul class="space-y-8 text-dark text-xl font-medium">
+        <li><a href="index.html" class="hover:text-blue-600">Home</a></li>
+        <li><a href="whysanibook.html" class="hover:text-black-300">Why the SaniBook</a></li>
+        <li><a href="sanireality.html" class="hover:text-blue-300">Sanitation Reality</a></li>
+        <li><a href="tellstory.html" class="hover:text-blue-300">Tell Your Story</a></li>
+        <li><a href="joinsani.html" class="hover:text-blue-300">Join Sanitationists</a></li>
+        <li><a href="contact.html" class="hover:text-blue-600">Contact Us</a></li>
+        <li><a href="#login" class="hover:text-blue-300">Login</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-600 text-white py-20 overflow-hidden">
+    <!-- Background Image with Opacity -->
+    <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('images/backg2.jpg');"></div>
+  
+    <!-- Content Section -->
+    <div class="max-w-5xl mx-auto text-center px-6 relative z-10">
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-4">
+        Elevate Anecdote to Blueprint
+      </h2>
+      <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto">
+        Accelerate sector-wide transformation and systemically de-risk Kenya’s sanitation future.
+      </p>
+    </div>
+  </section>
+  
+
+  <!-- Intro -->
+  <section class="py-16 px-6 md:px-16 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-2xl md:text-3xl font-bold text-blue-900 mb-4">Transforming Local Success into Sectoral Blueprint</h3>
+      <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
+        To our esteemed partners — Pioneering Government Agencies, Visionary Development Partners, Groundbreaking Research Institutes, 
+        Innovative Private Sector Enterprises, and Essential Civil Society Organisations: your work sits at the intersection of 
+        innovation and resilience. You’ve overcome complex regulations, behavioral challenges, and structural inefficiencies to deliver 
+        impactful, scalable sanitation solutions.
+      </p>
+      <div class="bg-blue-50 border-l-4 border-blue-700 rounded-md p-6 shadow-sm mb-8">
+        <p class="text-blue-900 italic text-lg font-medium">
+          “Your victories are not just stories — they are blueprints for national transformation.”
+        </p>
+      </div>
+      <p class="text-gray-700 text-base md:text-lg leading-relaxed">
+        Yet, despite your success, these achievements often remain isolated — celebrated locally but disconnected from the national 
+        reform narrative. This fragmentation isn’t just inefficient; it’s a missed opportunity to create the sector-wide learning 
+        ecosystem Kenya urgently needs. The <strong>SaniBook Initiative</strong> bridges this gap — transforming anecdotal success 
+        into evidence-based strategy that drives systemic change.
+      </p>
+    </div>
+  </section>
+
+
+  <div class="w-full h-40 md:h-60 lg:h-60 mt-5 ">
+    <img
+      src="images/img3.jpg"
+      alt="Kenya Sanitation Landscape"
+      class="w-full h-full object-cover"
+    />
+  </div>
+
+  <!-- The Sanibook Proposition -->
+  <section class="py-16 px-6 md:px-16 bg-gradient-to-b from-blue-50 to-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h3 class="text-2xl md:text-3xl font-bold text-blue-900 mb-4">The SaniBook Advantage</h3>
+        <p class="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+          The SaniBook is more than a publication — it is a digital knowledge nexus and strategic catalyst. It systemically 
+          captures your tested approaches and transforms them into validated blueprints for replication and scaling. 
+        </p>
+        <p class="text-gray-700 leading-relaxed text-base md:text-lg">
+          By contributing, your organization helps shape the sector’s collective intelligence and future policy direction.
+        </p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6 border-l-4 border-blue-700">
+        <h4 class="text-lg font-semibold text-blue-800 mb-2">The Triple-Win for Partners</h4>
+        <ul class="list-disc list-inside text-gray-700 space-y-2">
+          <li><strong>De-risk and Scale:</strong> Reduce sector risk while amplifying adoption of proven models.</li>
+          <li><strong>Influence Policy:</strong> Provide evidence to secure sustained government investment and recognition.</li>
+          <li><strong>Elevate Visibility:</strong> Gain leadership exposure to donors, investors, and global sanitation networks.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-20 bg-blue-900 text-white text-center">
+    <div class="max-w-5xl mx-auto px-6">
+      <h3 class="text-2xl md:text-4xl font-bold mb-6">Transform Experience into National Impact</h3>
+      <p class="text-blue-100 text-base md:text-lg mb-10 max-w-4xl mx-auto">
+        Don’t let your hard-won expertise fade as anecdote. Join the SaniBook Initiative and be part of the collective story shaping Kenya’s sanitation revolution.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contribution Form -->
+  <section class="py-16 px-6 md:px-16 bg-gray-50">
+    <div class="max-w-5xl mx-auto bg-white p-10 rounded-2xl shadow-lg border border-gray-200">
+      <h3 class="text-2xl font-bold text-blue-900 mb-6 text-center">Submit Your Story</h3>
+      <form action="#" method="POST" class="grid md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Organization Name</label>
+          <input type="text" name="organization" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Organization Type</label>
+          <select name="type" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <option value="">Select Type</option>
+            <option>Government</option>
+            <option>Donor</option>
+            <option>NGO</option>
+            <option>CBO</option>
+            <option>Private Sector</option>
+            <option>Civil Society</option>
+            <option>Social Enterprise</option>
+            <option>Academic/Research</option>
+            <option>Individual</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="block text-gray-700 mb-2 font-medium">Actor Name</label>
+          <input type="text" name="contact" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Email Address</label>
+          <input type="email" name="email" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Phone Number</label>
+          <input type="text" name="phone" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Geographic Scope of Operation</label>
+          <input type="text" name="Scope" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Functional Areas/Services Provided</label>
+          <input type="text" name="Services" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Specific Services/Technologies Offered</label>
+          <input type="tech" name="Tech" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">Target Audience/Beneficiaries</label>
+          <input type="audience" name="Audience" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="block text-gray-700 mb-2 font-medium">Your Sanitation Success Story</label>
+          <textarea name="story" rows="6" placeholder="Describe your initiative, its impact, lessons, and scalability potential..." required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="block text-gray-700 mb-2 font-medium">Attach Supporting Documents (optional)</label>
+          <input type="file" name="attachments" class="w-full border border-gray-300 rounded-lg px-4 py-3 bg-gray-50">
+        </div>
+
+        <div class="md:col-span-2 text-center mt-6">
+          <button type="submit" class="bg-blue-900 text-white font-semibold px-10 py-3 rounded-full shadow hover:bg-blue-800 transition-all duration-200">
+            Submit Story
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 mt-10">
+    <div class="max-w-6xl mx-auto px-6 py-6 text-center text-gray-600 text-sm">
+      © 2025 SaniBook Initiative — Elevating Anecdote to Blueprint.
+    </div>
+  </footer>
+
+  <script>
+    const toggleButton = document.getElementById('navbar-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeButton = document.getElementById('close-mobile-menu');
+    const navbarLinks = document.getElementById('navbar-links');
+  
+    toggleButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden'; // Prevent body scroll when menu is open
+    });
+  
+    closeButton.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = 'auto'; // Restore body scroll when menu is closed
+    });
+  </script>
+
+</body>
+</html>
