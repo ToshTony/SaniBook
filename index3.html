@@ -23,12 +23,12 @@
                         sani: {
                             aqua: '#00f2fe',
                             blue: '#4facfe',
-                            lime: '#b8ff3e', // Bright Neon Lime
-                            red: '#ff0f39',  // Vibrant Red
-                            dark: '#050a14', // Deepest Navy/Black
-                            slate: '#0f172a',
+                            lime: '#b8ff3e', 
+                            red: '#ff0f39',
+                            dark: '#050a14', 
                             light: '#f8fcff',
-                            earth: '#5d4037',
+                            earth: '#8D6E63', // Warm Earthy Brown (Lighter for visibility)
+                            deepEarth: '#3E2723' // Dark Earth for gradient
                         }
                     },
                     fontFamily: {
@@ -38,38 +38,26 @@
                     backgroundImage: {
                         'water-gradient': "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)",
                         'impact-gradient': "linear-gradient(135deg, #ff0f39 0%, #ff6b00 100%)",
-                        'text-sheen': "linear-gradient(90deg, #050a14, #00f2fe, #050a14)",
                     },
                     animation: {
-                        'sway': 'sway 8s ease-in-out infinite',
                         'float': 'float 6s ease-in-out infinite',
                         'spin-slow': 'spin 12s linear infinite',
+                        'sway': 'sway 8s ease-in-out infinite',
                         'color-pulse': 'colorPulse 4s ease-in-out infinite',
-                        'gradient-x': 'gradient-x 4s ease infinite',
                     },
                     keyframes: {
-                        sway: {
-                            '0%, 100%': { transform: 'translateX(-2%) rotate(-2deg)' },
-                            '50%': { transform: 'translateX(2%) rotate(2deg)' },
-                        },
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-20px)' },
                         },
+                        sway: {
+                            '0%, 100%': { transform: 'rotate(-3deg) translateX(-10px)' },
+                            '50%': { transform: 'rotate(3deg) translateX(10px)' },
+                        },
                         colorPulse: {
-                            '0%, 100%': { color: '#ff0f39' }, // Red
-                            '50%': { color: '#4facfe' }, // Blue
-                        },
-                        'gradient-x': {
-                            '0%, 100%': {
-                                'background-size': '200% 200%',
-                                'background-position': 'left center'
-                            },
-                            '50%': {
-                                'background-size': '200% 200%',
-                                'background-position': 'right center'
-                            },
-                        },
+                            '0%, 100%': { color: '#ff0f39' }, /* Red */
+                            '50%': { color: '#4facfe' }, /* Blue */
+                        }
                     }
                 }
             }
@@ -77,48 +65,43 @@
     </script>
 
     <style>
-        body { background-color: #ffffff; color: #050a14; overflow-x: hidden; }
+        body { background-color: #ffffff; color: #050a14; overflow-x: hidden; cursor: none; }
         
-        /* 1. Water Caustics Effect Overlay */
+        /* 1. Custom Liquid Cursor */
+        .cursor-dot {
+            position: fixed; top: 0; left: 0; width: 20px; height: 20px;
+            background: rgba(0, 242, 254, 0.8); border-radius: 50%;
+            pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background 0.3s;
+            mix-blend-mode: multiply;
+        }
+        .cursor-dot.hovering { width: 50px; height: 50px; background: rgba(255, 15, 57, 0.5); filter: blur(5px); }
+
+        /* 2. Background Texture */
         .caustic-overlay {
             position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.4;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
             mix-blend-mode: overlay;
         }
+        
+        .topo-overlay {
+            position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.03;
+            background-image: url('https://www.transparenttextures.com/patterns/felt.png'); 
+            mix-blend-mode: multiply;
+        }
 
-        /* 2. Glass Cards */
+        /* 3. Glass Card Style */
         .glass-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
         }
 
-        /* 3. Liquid Text Gradient Animation */
-        .liquid-text {
-            background: linear-gradient(90deg, #050a14, #00f2fe, #4facfe, #050a14);
-            background-size: 300% auto;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
-        @keyframes shine { to { background-position: 200% center; } }
-
-        /* 4. Marquee */
-        .marquee-container { overflow: hidden; white-space: nowrap; }
-        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* 5. Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050a14; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #b8ff3e; }
-
-        /* Add this to your <style> block */
+        /* 4. Text Gradients */
         .earth-liquid-text {
-            /* Gradient: Dark Navy -> Earth Brown -> subtle Lime highlight -> Dark Navy */
+            /* Navy -> Earth Brown -> Lime Hint -> Navy */
             background: linear-gradient(90deg, #050a14, #5d4037, #8ba848, #050a14);
             background-size: 300% auto;
             background-clip: text;
@@ -126,74 +109,98 @@
             -webkit-text-fill-color: transparent;
             animation: shine 8s linear infinite;
         }
-        /* Ensure the existing shine animation is present */
+        
+        .liquid-text-blue {
+            background: linear-gradient(90deg, #050a14, #00f2fe, #4facfe, #050a14);
+            background-size: 300% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 6s linear infinite;
+        }
+
         @keyframes shine { to { background-position: 200% center; } }
+
+        /* 5. Marquee */
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* 6. Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050a14; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b8ff3e; }
     </style>
 </head>
 <body class="antialiased">
 
+    <div class="cursor-dot hidden md:block"></div>
+
     <nav class="fixed w-full z-50 top-0 px-4 py-4 transition-all duration-300">
-        <div class="glass-card rounded-full max-w-[1600px] mx-auto px-6 py-3 flex justify-between items-center shadow-lg">
-            <a href="#" class="font-display font-black text-2xl tracking-tighter text-sani-dark flex items-center gap-2 group">
-                <div class="w-10 h-10 rounded-full bg-sani-aqua flex items-center justify-center text-white group-hover:rotate-12 transition-transform">
-                    <i class="fa-solid fa-droplet"></i>
+        <div class="glass-card rounded-full max-w-[1600px] mx-auto px-4 md:px-6 py-3 flex justify-between items-center shadow-lg">
+            <a href="#" class="font-display font-black text-xl md:text-2xl tracking-tighter text-sani-dark flex items-center gap-2 group hover-trigger">
+                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-sani-aqua flex items-center justify-center text-white group-hover:rotate-12 transition-transform">
+                    <i class="fa-solid fa-droplet text-sm md:text-base"></i>
                 </div>
                 <span>SaniBook<span class="text-sani-red">.ke</span></span>
             </a>
 
             <div class="hidden md:flex gap-8 font-sans font-bold uppercase text-xs tracking-widest text-sani-dark/70">
-                <a href="#reality" class="hover:text-sani-aqua transition-colors py-2 relative group">
+                <a href="#reality" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">
                     The Reality <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sani-aqua transition-all group-hover:w-full"></span>
                 </a>
-                <a href="#solution" class="hover:text-sani-aqua transition-colors py-2 relative group">
+                <a href="#solution" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">
                     Solution <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sani-aqua transition-all group-hover:w-full"></span>
                 </a>
-                <a href="#act" class="hover:text-sani-aqua transition-colors py-2 relative group">
+                <a href="#act" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">
                     Impact <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sani-aqua transition-all group-hover:w-full"></span>
                 </a>
             </div>
 
-            <a href="#join" class="relative overflow-hidden px-8 py-3 rounded-full bg-sani-dark text-white font-bold text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(5,10,20,0.3)] transition-shadow group">
+            <button class="md:hidden text-2xl text-sani-dark"><i class="fa-solid fa-bars"></i></button>
+
+            <a href="#join" class="hidden md:flex relative overflow-hidden px-8 py-3 rounded-full bg-sani-dark text-white font-bold text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(5,10,20,0.3)] transition-shadow group hover-trigger">
                 <div class="absolute inset-0 bg-sani-red translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 <span class="relative z-10 flex items-center gap-2">Join Movement <i class="fa-solid fa-arrow-right"></i></span>
             </a>
         </div>
     </nav>
 
-    <header class="relative min-h-[110vh] flex items-center pt-20 overflow-hidden bg-sani-light">
-    
-        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-sani-aqua/20 rounded-full blur-[100px] animate-float pointer-events-none"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-sani-lime/20 rounded-full blur-[100px] animate-float pointer-events-none" style="animation-delay: -2s;"></div>
+    <header class="relative min-h-[100vh] lg:min-h-[110vh] flex items-center pt-24 pb-12 overflow-hidden bg-sani-light">
         
+        <div class="absolute inset-0 pointer-events-none opacity-[0.03]" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <div class="topo-overlay"></div>
+        <div class="caustic-overlay"></div>
+
+        <div class="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-sani-aqua/20 rounded-full blur-[100px] animate-float pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-sani-lime/20 rounded-full blur-[100px] animate-float pointer-events-none" style="animation-delay: -2s;"></div>
         <div class="absolute top-[20%] right-[20%] w-[60vw] h-[60vw] bg-sani-earth/10 rounded-full blur-[120px] animate-float pointer-events-none" style="animation-delay: -4s;"></div>
 
-        <div class="absolute inset-0 pointer-events-none opacity-[0.03] z-0 mix-blend-multiply" style="background-image: url('https://www.transparenttextures.com/patterns/felt.png');"></div>
-
-        <div class="caustic-overlay z-0"></div>
-        <div class="max-w-[1800px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10">
+        <div class="max-w-[1800px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
             
             <div class="flex flex-col justify-center order-2 lg:order-1 relative z-30">
                 
                 <div class="hero-reveal opacity-0 translate-y-10">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-sani-earth/20 shadow-sm mb-8">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-sani-earth/20 shadow-sm mb-6 lg:mb-8">
                         <span class="relative flex h-3 w-3">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sani-red opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-3 w-3 bg-sani-red"></span>
                         </span>
-                        <span class="text-xs font-bold uppercase tracking-widest text-sani-earth">Shaping Kenya's Future</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-sani-deepEarth">Shaping Kenya's Future</span>
                     </div>
                 </div>
 
-                <h1 class="hero-reveal opacity-0 translate-y-10 font-display font-black text-[8vw] lg:text-[3rem] xl:text-[3rem] 2xl:text-[3rem] leading-[0.9] tracking-tighter mb-6 whitespace-nowrap lg:whitespace-normal">
+                <h1 class="hero-reveal opacity-0 translate-y-10 font-display font-black text-[8vw] lg:text-[2rem] xl:text-[2rem] 2xl:text-[3rem] leading-[0.9] tracking-tighter mb-6 whitespace-nowrap lg:whitespace-normal">
                     <span class="earth-liquid-text">SANITATION</span>
                     <div class="flex items-center flex-wrap gap-2 lg:gap-4 mt-2">
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-sani-dark to-sani-earth">REV</span>
                         
                         <div class="relative w-[0.75em] h-[0.75em] inline-flex items-center justify-center">
                             <svg viewBox="0 0 24 24" fill="none" class="w-full h-full animate-spin-slow animate-color-pulse drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]">
-                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
-                                <path d="M2 12H22" stroke="currentColor" stroke-width="2"/>
-                                <path d="M12 2C14.5 4.7 16 8.3 16 12C16 15.7 14.5 19.3 12 22C9.5 19.3 8 15.7 8 12C8 8.3 9.5 4.7 12 2Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2.5"/>
+                                <path d="M2 12H22" stroke="currentColor" stroke-width="2.5"/>
+                                <path d="M12 2C14.5 4.7 16 8.3 16 12C16 15.7 14.5 19.3 12 22C9.5 19.3 8 15.7 8 12C8 8.3 9.5 4.7 12 2Z" stroke="currentColor" stroke-width="2.5"/>
                             </svg>
                         </div>
                         
@@ -201,18 +208,18 @@
                     </div>
                 </h1>
 
-                <p class="hero-reveal opacity-0 translate-y-10 text-xl lg:text-2xl text-sani-earth font-medium max-w-xl leading-relaxed mb-10 border-l-4 border-sani-lime pl-6">
-                    Fragmented data costs lives. <strong class="text-sani-dark">SaniBook</strong> is the unified authority converting chaos into <span class="bg-sani-aqua/20 px-1 font-bold text-sani-earth">National Excellence.</span>
+                <p class="hero-reveal opacity-0 translate-y-10 text-xl lg:text-2xl text-sani-deepEarth font-medium max-w-xl leading-relaxed mb-10 border-l-4 border-sani-lime pl-6">
+                    Fragmented data costs lives. <strong class="text-sani-dark">SaniBook</strong> is the unified authority converting chaos into <span class="bg-sani-aqua/20 px-1 font-bold text-sani-dark">National Excellence.</span>
                 </p>
 
                 <div class="hero-reveal opacity-0 translate-y-10 flex flex-wrap gap-4">
-                    <a href="#join" class="group relative px-10 py-4 lg:px-12 lg:py-5 bg-sani-red text-white rounded-full overflow-hidden shadow-[0_15px_40px_rgba(255,15,57,0.4)] hover:shadow-[0_20px_60px_rgba(255,15,57,0.6)] transition-all transform hover:-translate-y-1">
+                    <a href="#join" class="hover-trigger group relative px-10 py-4 lg:px-12 lg:py-5 bg-sani-red text-white rounded-full overflow-hidden shadow-[0_15px_40px_rgba(255,15,57,0.4)] hover:shadow-[0_20px_60px_rgba(255,15,57,0.6)] transition-all transform hover:-translate-y-1">
                         <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-500 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <span class="relative z-10 font-bold uppercase tracking-widest text-sm flex items-center gap-3">
                             Join Sanitationists <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
                         </span>
                     </a>
-                    <a href="#watch" class="px-10 py-4 lg:px-12 lg:py-5 bg-white text-sani-dark border border-sani-dark/10 rounded-full font-bold uppercase tracking-widest text-sm hover:border-sani-aqua hover:text-sani-aqua transition-colors flex items-center gap-3 shadow-lg">
+                    <a href="#watch" class="hover-trigger px-10 py-4 lg:px-12 lg:py-5 bg-white text-sani-dark border border-sani-dark/10 rounded-full font-bold uppercase tracking-widest text-sm hover:border-sani-aqua hover:text-sani-aqua transition-colors flex items-center gap-3 shadow-lg">
                         <i class="fa-solid fa-play"></i> Watch Vision
                     </a>
                 </div>
@@ -220,63 +227,69 @@
 
             <div class="relative h-[50vh] lg:h-[80vh] flex items-center justify-center order-1 lg:order-2 hero-img-reveal scale-90 opacity-0 z-10">
                 
-                <div class="relative w-full h-full max-w-[650px] max-h-[750px] rounded-[4rem] animate-sway overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,242,254,0.4)] border-[8px] border-white z-10 bg-white group">
+                <div class="relative w-full h-full max-w-[650px] max-h-[750px] rounded-[3rem] md:rounded-[4rem] animate-sway overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,242,254,0.4)] border-[6px] md:border-[8px] border-white z-10 bg-white group">
                     <img src="assets/imgs/new/syec.jpg" 
                          alt="Happy Child Clean Water" 
                          class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[2s]">
                     
                     <div class="absolute inset-0 bg-gradient-to-t from-sani-dark/70 via-transparent to-transparent"></div>
+                    
+                    <div class="absolute bottom-12 left-12 text-white hidden md:block">
+                        <p class="font-display font-bold text-4xl lg:text-5xl mb-2">Clean Water.</p>
+                        <p class="font-sans text-lg lg:text-xl opacity-90 tracking-wide">Dignified Lives.</p>
+                    </div>
                 </div>
 
-                <div class="absolute top-[10%] right-[0%] lg:right-[-5%] glass-card p-5 rounded-2xl animate-float z-20 hover:scale-105 transition-transform cursor-default">
+                <div class="absolute top-[10%] right-[0%] lg:right-[-5%] glass-card p-4 md:p-5 rounded-2xl animate-float z-20 hover:scale-105 transition-transform cursor-default hover-trigger">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-sani-lime flex items-center justify-center text-sani-dark font-bold text-xl"><i class="fa-solid fa-check"></i></div>
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-sani-lime flex items-center justify-center text-sani-dark font-bold text-xl"><i class="fa-solid fa-check"></i></div>
                         <div>
-                            <p class="text-xs font-bold uppercase text-sani-earth tracking-widest">Target Goal</p>
-                            <p class="font-display font-bold text-2xl text-sani-dark">SDG 6.2</p>
+                            <p class="text-xs font-bold uppercase text-sani-deepEarth tracking-widest">Target Goal</p>
+                            <p class="font-display font-bold text-xl md:text-2xl text-sani-dark">SDG 6.2</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="absolute bottom-[5%] left-[0%] lg:left-[-5%] glass-card p-5 rounded-2xl animate-float z-20 hover:scale-105 transition-transform cursor-default" style="animation-delay: -2s;">
+                <div class="absolute bottom-[5%] left-[0%] lg:left-[-5%] glass-card p-4 md:p-5 rounded-2xl animate-float z-20 hover:scale-105 transition-transform cursor-default hover-trigger" style="animation-delay: -2s;">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-sani-aqua flex items-center justify-center text-sani-dark font-bold text-xl"><i class="fa-solid fa-users"></i></div>
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-sani-aqua flex items-center justify-center text-sani-dark font-bold text-xl"><i class="fa-solid fa-users"></i></div>
                         <div>
-                            <p class="text-xs font-bold uppercase text-sani-earth tracking-widest">Status</p>
-                            <p class="font-display font-bold text-2xl text-sani-dark">Active</p>
+                            <p class="text-xs font-bold uppercase text-sani-deepEarth tracking-widest">Status</p>
+                            <p class="font-display font-bold text-xl md:text-2xl text-sani-dark">Active</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="absolute bottom-0 w-full bg-sani-dark py-6 rotate-1 scale-105 border-y-4 border-sani-lime z-20">
+        <div class="absolute bottom-0 w-full bg-sani-dark py-4 md:py-6 rotate-1 scale-105 border-y-4 border-sani-lime z-20">
             <div class="marquee-container">
                 <div class="marquee-content">
-                    <span class="text-4xl font-display font-bold text-white uppercase mx-8">Mapping Actors <span class="text-sani-lime">•</span></span>
-                    <span class="text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 uppercase mx-8">Innovation Market <span class="text-sani-lime">•</span></span>
-                    <span class="text-4xl font-display font-bold text-white uppercase mx-8">Unified Authority <span class="text-sani-lime">•</span></span>
-                    <span class="text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 uppercase mx-8">Future Proof <span class="text-sani-lime">•</span></span>
-                    <span class="text-4xl font-display font-bold text-white uppercase mx-8">Mapping Actors <span class="text-sani-lime">•</span></span>
-                    <span class="text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 uppercase mx-8">Innovation Market <span class="text-sani-lime">•</span></span>
+                    <span class="text-2xl md:text-4xl font-display font-bold text-white uppercase mx-8">Mapping Actors <span class="text-sani-lime">•</span></span>
+                    <span class="text-2xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 uppercase mx-8">Innovation Market <span class="text-sani-lime">•</span></span>
+                    <span class="text-2xl md:text-4xl font-display font-bold text-white uppercase mx-8">Unified Authority <span class="text-sani-lime">•</span></span>
+                    <span class="text-2xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 uppercase mx-8">Future Proof <span class="text-sani-lime">•</span></span>
+                    <span class="text-2xl md:text-4xl font-display font-bold text-white uppercase mx-8">Mapping Actors <span class="text-sani-lime">•</span></span>
+                    <span class="text-2xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 uppercase mx-8">Innovation Market <span class="text-sani-lime">•</span></span>
                 </div>
             </div>
         </div>
     </header>
+
     <section id="reality" class="py-32 bg-white relative z-10">
         <div class="max-w-[1800px] mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 
                 <div class="lg:col-span-4 relative">
-                    <div class="sticky top-32">
+                    <div class="lg:sticky lg:top-32">
                         <span class="text-sani-red font-bold uppercase tracking-widest text-sm mb-4 block">The Context</span>
                         <h2 class="text-4xl md:text-6xl font-display font-black text-sani-dark leading-[0.9] mb-8">
                             THE HARD <br> <span class="text-transparent bg-clip-text bg-impact-gradient">TRUTH.</span>
                         </h2>
-                        <p class="text-xl text-sani-dark/70 font-medium leading-relaxed mb-8 border-l-4 border-sani-red pl-6">
+                        <p class="text-xl text-sani-deepEarth font-medium leading-relaxed mb-8 border-l-4 border-sani-red pl-6">
                             The cost of inaction isn't just numbers. It's potential lost. This is why we exist.
                         </p>
-                        <a href="#solution" class="group inline-flex items-center gap-2 text-sani-dark font-bold hover:text-sani-red transition-colors">
+                        <a href="#solution" class="group inline-flex items-center gap-2 text-sani-dark font-bold hover:text-sani-red transition-colors hover-trigger">
                             <span class="border-b-2 border-sani-dark group-hover:border-sani-red pb-1">Discover the Solution</span>
                             <i class="fa-solid fa-arrow-down-long group-hover:translate-y-1 transition-transform"></i>
                         </a>
@@ -285,32 +298,32 @@
 
                 <div class="lg:col-span-8 space-y-8">
                     
-                    <div class="group bg-sani-light p-12 rounded-[3rem] border border-sani-dark/5 hover:border-sani-red transition-all duration-500 hover:shadow-[0_20px_60px_rgba(255,15,57,0.15)] intro-card opacity-0 translate-y-10 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="group bg-sani-light p-8 md:p-12 rounded-[3rem] border border-sani-dark/5 hover:border-sani-red transition-all duration-500 hover:shadow-[0_20px_60px_rgba(255,15,57,0.15)] intro-card opacity-0 translate-y-10 flex flex-col md:flex-row gap-8 items-center hover-trigger">
                         <div class="w-32 h-32 bg-white rounded-full flex-shrink-0 flex items-center justify-center text-5xl text-sani-red shadow-lg group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                         </div>
                         <div>
                             <h3 class="text-7xl lg:text-9xl font-display font-black text-sani-dark mb-2">$324M</h3>
                             <p class="text-sani-red font-bold uppercase tracking-widest text-sm mb-2">Annual Economic Loss</p>
-                            <p class="text-sani-dark/70 font-medium text-lg max-w-lg">
+                            <p class="text-sani-deepEarth font-medium text-lg max-w-lg">
                                 Money drained from the economy annually due to poor sanitation health costs. A national crisis requiring immediate intervention.
                             </p>
                         </div>
                     </div>
 
-                    <div class="relative h-[400px] rounded-[3rem] overflow-hidden group intro-card opacity-0 translate-y-10">
+                    <div class="relative h-[400px] rounded-[3rem] overflow-hidden group intro-card opacity-0 translate-y-10 hover-trigger">
                         <div class="absolute top-6 right-6 bg-black/70 backdrop-blur text-sani-lime border border-sani-lime px-4 py-2 rounded-full text-xs font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                            IMG: Infrastructure / Construction Site
+                            IMG: Infrastructure / Construction
                         </div>
                         <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-r from-sani-dark/90 to-transparent"></div>
                         <div class="absolute bottom-12 left-12 max-w-md">
                             <h3 class="text-5xl font-display font-bold text-white mb-2">$4.4 Billion Gap</h3>
-                            <p class="text-sani-light/80 text-lg">The funding gap is massive, but it represents an unprecedented investment opportunity for the private sector.</p>
+                            <p class="text-sani-light/80 text-lg">The funding gap is massive, but it represents an unprecedented investment opportunity.</p>
                         </div>
                     </div>
 
-                    <div class="group bg-sani-dark p-12 rounded-[3rem] border border-sani-lime/20 hover:border-sani-lime transition-all duration-500 hover:shadow-[0_20px_60px_rgba(184,255,62,0.15)] intro-card opacity-0 translate-y-10 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="group bg-sani-dark p-8 md:p-12 rounded-[3rem] border border-sani-lime/20 hover:border-sani-lime transition-all duration-500 hover:shadow-[0_20px_60px_rgba(184,255,62,0.15)] intro-card opacity-0 translate-y-10 flex flex-col md:flex-row gap-8 items-center hover-trigger">
                         <div class="w-32 h-32 bg-white/10 rounded-full flex-shrink-0 flex items-center justify-center text-5xl text-sani-lime shadow-lg group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-brain"></i>
                         </div>
@@ -340,40 +353,40 @@
 
         <div class="horizontal-scroll-container flex gap-8 px-6 pb-12 overflow-x-auto snap-x snap-mandatory">
             
-            <div class="snap-center shrink-0 w-[90vw] md:w-[600px] bg-sani-slate p-12 rounded-[3rem] border border-white/5 relative group hover:border-sani-aqua/50 transition-colors">
+            <div class="snap-center shrink-0 w-[85vw] md:w-[600px] bg-sani-slate p-10 rounded-[3rem] border border-white/5 relative group hover:border-sani-aqua/50 transition-colors hover-trigger">
                 <div class="absolute top-10 right-10 text-8xl font-display font-black text-white/5 group-hover:text-sani-aqua/10 transition-colors">01</div>
                 <div class="w-20 h-20 bg-water-gradient rounded-2xl flex items-center justify-center text-3xl text-white mb-8 shadow-lg"><i class="fa-solid fa-map-location-dot"></i></div>
                 <h3 class="text-4xl font-display font-bold text-white mb-4">Mapping Actors</h3>
                 <p class="text-gray-400 text-lg mb-8 h-20">Identifying stakeholders across the nation. We convert fragmented efforts into a visible, connected network.</p>
                 <div class="h-[250px] w-full rounded-3xl overflow-hidden relative">
                     <div class="absolute top-4 right-4 bg-black/70 backdrop-blur text-sani-aqua border border-sani-aqua px-3 py-1 rounded-full text-xs font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                        IMG: Data Visualization / Map
+                        IMG: Data Map
                     </div>
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 </div>
             </div>
 
-            <div class="snap-center shrink-0 w-[90vw] md:w-[600px] bg-sani-slate p-12 rounded-[3rem] border border-white/5 relative group hover:border-sani-lime/50 transition-colors">
+            <div class="snap-center shrink-0 w-[85vw] md:w-[600px] bg-sani-slate p-10 rounded-[3rem] border border-white/5 relative group hover:border-sani-lime/50 transition-colors hover-trigger">
                 <div class="absolute top-10 right-10 text-8xl font-display font-black text-white/5 group-hover:text-sani-lime/10 transition-colors">02</div>
                 <div class="w-20 h-20 bg-sani-lime rounded-2xl flex items-center justify-center text-3xl text-sani-dark mb-8 shadow-lg"><i class="fa-solid fa-lightbulb"></i></div>
                 <h3 class="text-4xl font-display font-bold text-white mb-4">Innovation Market</h3>
                 <p class="text-gray-400 text-lg mb-8 h-20">A digital marketplace where cutting-edge sanitation technologies meet the communities that need them most.</p>
                 <div class="h-[250px] w-full rounded-3xl overflow-hidden relative">
                     <div class="absolute top-4 right-4 bg-black/70 backdrop-blur text-sani-lime border border-sani-lime px-3 py-1 rounded-full text-xs font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                        IMG: Modern Toilet Tech / Filtration
+                        IMG: Modern Toilet Tech
                     </div>
                     <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 </div>
             </div>
 
-            <div class="snap-center shrink-0 w-[90vw] md:w-[600px] bg-sani-slate p-12 rounded-[3rem] border border-white/5 relative group hover:border-sani-red/50 transition-colors">
+            <div class="snap-center shrink-0 w-[85vw] md:w-[600px] bg-sani-slate p-10 rounded-[3rem] border border-white/5 relative group hover:border-sani-red/50 transition-colors hover-trigger">
                 <div class="absolute top-10 right-10 text-8xl font-display font-black text-white/5 group-hover:text-sani-red/10 transition-colors">03</div>
                 <div class="w-20 h-20 bg-impact-gradient rounded-2xl flex items-center justify-center text-3xl text-white mb-8 shadow-lg"><i class="fa-solid fa-handshake"></i></div>
                 <h3 class="text-4xl font-display font-bold text-white mb-4">Unified Action</h3>
                 <p class="text-gray-400 text-lg mb-8 h-20">One pipeline. Total accountability. Delivering SDG 6.2 through collective, data-driven action.</p>
                 <div class="h-[250px] w-full rounded-3xl overflow-hidden relative">
                     <div class="absolute top-4 right-4 bg-black/70 backdrop-blur text-sani-red border border-sani-red px-3 py-1 rounded-full text-xs font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                        IMG: Diverse Leaders Collaborating
+                        IMG: Leadership
                     </div>
                     <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 </div>
@@ -390,15 +403,15 @@
             <h2 class="text-[10vw] leading-[0.8] font-display font-black text-sani-dark mb-10 mix-blend-multiply">
                 FUTURE PROOF <br> YOUR IMPACT.
             </h2>
-            <p class="text-2xl md:text-3xl text-sani-dark/70 font-medium mb-12 max-w-3xl mx-auto">
+            <p class="text-2xl md:text-3xl text-sani-deepEarth font-medium mb-12 max-w-3xl mx-auto">
                 Don't just watch the conversation. <span class="bg-sani-dark text-white px-3 py-1 font-bold transform -rotate-1 inline-block">Own the revolution.</span>
             </p>
             
             <div class="flex flex-col md:flex-row gap-6 justify-center">
-                <a href="#" class="px-12 py-6 bg-sani-red text-white font-bold text-xl uppercase tracking-widest rounded-full hover:scale-105 transition-transform shadow-[0_20px_50px_rgba(255,15,57,0.4)] flex items-center justify-center gap-3">
+                <a href="#" class="hover-trigger px-12 py-6 bg-sani-red text-white font-bold text-xl uppercase tracking-widest rounded-full hover:scale-105 transition-transform shadow-[0_20px_50px_rgba(255,15,57,0.4)] flex items-center justify-center gap-3">
                     Tell Your Story <i class="fa-solid fa-bullhorn"></i>
                 </a>
-                <a href="#" class="px-12 py-6 border-4 border-sani-dark text-sani-dark font-bold text-xl uppercase tracking-widest rounded-full hover:bg-sani-dark hover:text-white transition-colors flex items-center justify-center gap-3">
+                <a href="#" class="hover-trigger px-12 py-6 border-4 border-sani-dark text-sani-dark font-bold text-xl uppercase tracking-widest rounded-full hover:bg-sani-dark hover:text-white transition-colors flex items-center justify-center gap-3">
                     Sponsor SaniBook <i class="fa-solid fa-rocket"></i>
                 </a>
             </div>
@@ -408,31 +421,31 @@
     <footer class="bg-sani-dark text-white pt-24 pb-12 border-t border-white/10">
         <div class="max-w-[1800px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
             <div class="col-span-1 md:col-span-2">
-                <a href="#" class="font-display font-black text-4xl mb-6 block">SaniBook<span class="text-sani-red">.ke</span></a>
+                <a href="#" class="font-display font-black text-4xl mb-6 block hover-trigger">SaniBook<span class="text-sani-red">.ke</span></a>
                 <p class="text-gray-400 text-lg max-w-md">The definitive platform unlocking synergy and maximizing impact by transforming fragmented data into unified action.</p>
                 <div class="flex gap-4 mt-8">
-                    <a href="#" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-sani-aqua hover:text-black transition-colors"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-sani-blue hover:text-white transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-sani-red hover:text-white transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-sani-aqua hover:text-black transition-colors hover-trigger"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-sani-blue hover:text-white transition-colors hover-trigger"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center hover:bg-sani-red hover:text-white transition-colors hover-trigger"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
             
             <div>
                 <h4 class="font-bold uppercase text-sani-lime tracking-widest mb-6">Explore</h4>
                 <ul class="space-y-4 text-gray-400">
-                    <li><a href="#" class="hover:text-white transition-colors">The Reality</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Our Solution</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Impact Stories</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Partner With Us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors hover-trigger">The Reality</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors hover-trigger">Our Solution</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors hover-trigger">Impact Stories</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors hover-trigger">Partner With Us</a></li>
                 </ul>
             </div>
 
             <div>
                 <h4 class="font-bold uppercase text-sani-lime tracking-widest mb-6">Contact</h4>
                 <ul class="space-y-4 text-gray-400">
-                    <li><a href="mailto:sales@sanibook.ke" class="hover:text-white transition-colors">sales@sanibook.ke</a></li>
-                    <li><a href="mailto:marketing@sanibook.ke" class="hover:text-white transition-colors">marketing@sanibook.ke</a></li>
-                    <li class="pt-4"><a href="#" class="text-white border-b border-sani-red pb-1">Media Kit</a></li>
+                    <li><a href="mailto:sales@sanibook.ke" class="hover:text-white transition-colors hover-trigger">sales@sanibook.ke</a></li>
+                    <li><a href="mailto:marketing@sanibook.ke" class="hover:text-white transition-colors hover-trigger">marketing@sanibook.ke</a></li>
+                    <li class="pt-4"><a href="#" class="text-white border-b border-sani-red pb-1 hover-trigger">Media Kit</a></li>
                 </ul>
             </div>
         </div>
@@ -440,21 +453,49 @@
         <div class="max-w-[1800px] mx-auto px-6 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
             <p>&copy; 2025 SaniBook Kenya. All rights reserved.</p>
             <div class="flex gap-6 mt-4 md:mt-0">
-                <a href="#" class="hover:text-white">Privacy Policy</a>
-                <a href="#" class="hover:text-white">Terms of Service</a>
+                <a href="#" class="hover:text-white hover-trigger">Privacy Policy</a>
+                <a href="#" class="hover:text-white hover-trigger">Terms of Service</a>
             </div>
         </div>
     </footer>
 
     <script>
+        // Initialize GSAP
         gsap.registerPlugin(ScrollTrigger);
 
-        // 1. Hero Reveal Animations
+        // 1. Custom Liquid Cursor Script
+        const cursor = document.querySelector('.cursor-dot');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            // Smooth easing for cursor
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Cursor Hover Effects
+        const triggers = document.querySelectorAll('.hover-trigger, a, button');
+        triggers.forEach(trigger => {
+            trigger.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+            trigger.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+        });
+
+        // 2. Hero Reveal Animations
         const tl = gsap.timeline();
         tl.to(".hero-reveal", { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out", delay: 0.2 })
           .to(".hero-img-reveal", { scale: 1, opacity: 1, duration: 1.5, ease: "elastic.out(1, 0.7)" }, "-=0.8");
 
-        // 2. Intro Cards Stagger
+        // 3. Scroll Reveal for Cards
         gsap.utils.toArray('.intro-card').forEach((card, i) => {
             gsap.to(card, {
                 scrollTrigger: {
@@ -469,7 +510,7 @@
             });
         });
 
-        // 3. Stats Counter
+        // 4. Number Counters
         const statCards = document.querySelectorAll('.counter');
         statCards.forEach(counter => {
             gsap.to(counter, {
@@ -484,12 +525,12 @@
             });
         });
 
-        // 4. Navbar Scroll Effect
+        // 5. Navbar Frost Effect
         window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav div'); // Targeting the inner container
+            const nav = document.querySelector('nav div'); 
             if (window.scrollY > 50) {
                 nav.classList.add('bg-white/90', 'shadow-xl');
-                nav.classList.remove('bg-white/60', 'shadow-lg'); // Adjust as needed based on glass-card class
+                nav.classList.remove('bg-white/60', 'shadow-lg'); 
             } 
         });
     </script>
