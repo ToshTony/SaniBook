@@ -111,66 +111,94 @@
         </div>
     </nav>
     
-    <header class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-sani-light">
-        <div class="blob bg-sani-lime w-96 h-96 top-0 right-0 translate-x-1/3 -translate-y-1/3"></div>
-        <div class="blob bg-sani-blue w-96 h-96 bottom-0 left-0 -translate-x-1/3 translate-y-1/3"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid md:grid-cols-2 gap-12 items-center z-10">
-            <div class="text-left">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-sani-lime/30 mb-6 hero-anim opacity-0 translate-y-10">
-                    <span class="w-3 h-3 bg-sani-red rounded-full animate-pulse"></span>
-                    <span class="text-sani-dark font-semibold text-sm uppercase tracking-wider">Shaping Kenya's Future</span>
-                </div>
-                
-                <h1 class="text-5xl lg:text-7xl font-display font-extrabold text-sani-dark mb-6 leading-tight hero-anim opacity-0 translate-y-10">
-                    Sanitation <br>
-                    <span class="relative z-10">
-                        Revolutionized.
-                        <svg class="absolute bottom-0 left-0 w-full h-4 -z-10 text-sani-lime" viewBox="0 0 100 20" fill="currentColor" preserveAspectRatio="none">
-                            <path d="M0 15 Q 25 5, 50 15 T 100 15" stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
-                        </svg>
-                    </span>
-                </h1>
-
-                <p class="text-xl text-gray-600 mb-8 max-w-lg leading-relaxed hero-anim opacity-0 translate-y-10">
-                    Stop following the conversation. Own the revolution. SaniBook is the definitive platform unifying data and action for national excellence.
-                </p>
-
-                <div class="flex flex-wrap gap-4 hero-anim opacity-0 translate-y-10">
-                    <a href="#act" class="px-8 py-4 bg-sani-red text-white font-bold rounded-full shadow-lg hover:shadow-glow-red hover:-translate-y-1 transition-all flex items-center gap-3">
-                        Write Your Chapter <i class="fa-solid fa-arrow-right-long"></i>
-                    </a>
-                    <a href="#video" class="px-8 py-4 bg-white text-sani-dark border-2 border-sani-lime font-bold rounded-full hover:bg-sani-lime/20 transition-all flex items-center gap-3">
-                        <i class="fa-regular fa-circle-play text-xl text-sani-red"></i> Watch the Vision
-                    </a>
-                </div>
-            </div>
-
-            <div class="relative hero-anim opacity-0 scale-95 hidden md:block">
-                <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white rotate-2 hover:rotate-0 transition-transform duration-700">
-                    <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=2070&auto=format&fit=crop" alt="Clean Water and Happy Child" class="w-full object-cover h-[600px]">
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-sani-dark/80 to-transparent p-8 text-white">
-                        <p class="font-bold text-xl">Clean Water. Dignified Lives.</p>
-                    </div>
-                </div>
-                <div class="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-xl z-20 animate-bounce-slow">
-                   <div class="flex items-center gap-4">
-                       <div class="h-16 w-16 bg-sani-lime/20 rounded-full flex items-center justify-center">
-                           <i class="fa-solid fa-droplet text-3xl text-sani-blue"></i>
-                       </div>
-                       <div>
-                           <p class="text-sani-dark font-bold text-2xl">SDG 6.2</p>
-                           <p class="text-gray-500 text-sm">Target Goal</p>
-                       </div>
-                   </div>
-                </div>
-            </div>
+    <header class="relative min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden bg-white">
+        
+        <div class="absolute inset-0 z-0 opacity-[0.03]" 
+             style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 40px 40px;">
         </div>
         
-        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-0">
-            <svg class="relative block w-[calc(100%+1.3px)] h-[100px] text-white" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="currentColor"></path>
-            </svg>
+        <div class="blob bg-sani-lime w-[600px] h-[600px] top-0 right-0 translate-x-1/2 -translate-y-1/2 blur-[120px] opacity-20"></div>
+        <div class="blob bg-sani-blue w-[400px] h-[400px] bottom-0 left-0 -translate-x-1/3 translate-y-1/3 blur-[100px] opacity-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid lg:grid-cols-2 gap-16 items-center z-10">
+            
+            <div class="text-left relative z-20 flex flex-col justify-center">
+                
+                <div class="hero-anim opacity-0 translate-y-10">
+                    
+                    <h1 class="font-display font-black text-sani-dark leading-[0.8] tracking-tight relative">
+                        <span class="relative block w-fit">
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[180%] -z-10 opacity-10 pointer-events-none">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-sani-red animate-[spin_60s_linear_infinite]">
+                                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="0.5"/>
+                                    <path d="M2 12H22" stroke="currentColor" stroke-width="0.5"/>
+                                    <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" stroke="currentColor" stroke-width="0.5"/>
+                                </svg>
+                            </div>
+                            
+                            <span class="text-[5vw] lg:text-[5rem] xl:text-[5rem] uppercase relative z-10">
+                                Sanitation
+                            </span>
+                        </span>
+                        
+                        <div class="flex items-baseline flex-wrap gap-x-[0.5vw] md:gap-x-2 mt-2 md:mt-4 text-[7vw] lg:text-[4rem] xl:text-[5rem] text-sani-dark uppercase leading-none">
+                            <span>REV</span>
+                            
+                            <span class="inline-flex items-center self-center h-[0.72em] w-auto mx-1">
+                                <svg viewBox="0 0 310 105" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-auto text-sani-dark">
+                                    <path d="M52.5 12.5H257.5C279.591 12.5 297.5 30.4086 297.5 52.5C297.5 74.5914 279.591 92.5 257.5 92.5H52.5C30.4086 92.5 12.5 74.5914 12.5 52.5C12.5 30.4086 30.4086 12.5 52.5 12.5Z" 
+                                          stroke="currentColor" stroke-width="25"/>
+                                </svg>
+                            </span>
+                            
+                            <span>LUTIONALIZED</span>
+                        </div>
+                    </h1>
+
+                    <p class="mt-8 text-xl md:text-2xl font-light text-gray-500 tracking-wide border-l-4 border-sani-lime pl-6">
+                        The definitive path to <span class="text-sani-dark font-bold">National Excellence</span>
+                    </p>
+                </div>
+
+                <div class="mt-12 hero-anim opacity-0 translate-y-10">
+                    <div class="relative group max-w-lg">
+                        <div class="absolute inset-0 bg-[#0f172a] rounded-[2rem] shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"></div>
+                        
+                        <div class="relative p-10 z-10">
+                            <p class="text-xl md:text-2xl text-white font-light leading-relaxed">
+                                <strong class="text-sani-lime font-bold">SaniBook</strong> is the revolutionary platform that unlocks synergy and maximizes impact by transforming fragmented data into unified action.
+                            </p>
+                            
+                            <div class="mt-8 flex items-center gap-6">
+                                <a href="#act" class="text-white font-bold uppercase tracking-widest text-sm border-b-2 border-sani-red pb-1 hover:text-sani-lime hover:border-sani-lime transition-colors">
+                                    Read More
+                                </a>
+                                <div class="w-10 h-10 rounded-full bg-sani-red flex items-center justify-center text-white animate-pulse">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative h-full flex items-center justify-center hero-anim opacity-0 scale-95 hidden lg:flex">
+                <div class="relative w-full max-w-[600px] aspect-[3/4]">
+                    <div class="absolute inset-0 bg-sani-lime rounded-[3rem] transform translate-x-4 translate-y-4"></div>
+                    <div class="absolute inset-0 rounded-[3rem] overflow-hidden shadow-2xl border-[6px] border-white z-10">
+                        <img src="assets/imgs/new/syec.jpg" 
+                             alt="Clean Water and Happy Child" 
+                             class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-[1.5s]">
+                        
+                        <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        
+                        <div class="absolute bottom-10 left-10 text-white z-20">
+                            <div class="bg-sani-red text-white text-xs font-bold px-4 py-1.5 rounded-full inline-block mb-3 tracking-wider uppercase">Impact</div>
+                            <p class="text-4xl font-bold font-display leading-tight">Clean Water.<br>Dignified Lives.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
