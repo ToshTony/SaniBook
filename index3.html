@@ -115,6 +115,19 @@
         ::-webkit-scrollbar-track { background: #050a14; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #b8ff3e; }
+
+        /* Add this to your <style> block */
+        .earth-liquid-text {
+            /* Gradient: Dark Navy -> Earth Brown -> subtle Lime highlight -> Dark Navy */
+            background: linear-gradient(90deg, #050a14, #5d4037, #8ba848, #050a14);
+            background-size: 300% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 8s linear infinite;
+        }
+        /* Ensure the existing shine animation is present */
+        @keyframes shine { to { background-position: 200% center; } }
     </style>
 </head>
 <body class="antialiased">
@@ -148,29 +161,33 @@
     </nav>
 
     <header class="relative min-h-[110vh] flex items-center pt-20 overflow-hidden bg-sani-light">
-        
+    
         <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-sani-aqua/20 rounded-full blur-[100px] animate-float pointer-events-none"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-sani-lime/20 rounded-full blur-[100px] animate-float pointer-events-none" style="animation-delay: -2s;"></div>
-        <div class="caustic-overlay"></div>
+        
+        <div class="absolute top-[20%] right-[20%] w-[60vw] h-[60vw] bg-sani-earth/10 rounded-full blur-[120px] animate-float pointer-events-none" style="animation-delay: -4s;"></div>
 
+        <div class="absolute inset-0 pointer-events-none opacity-[0.03] z-0 mix-blend-multiply" style="background-image: url('https://www.transparenttextures.com/patterns/felt.png');"></div>
+
+        <div class="caustic-overlay z-0"></div>
         <div class="max-w-[1800px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10">
             
             <div class="flex flex-col justify-center order-2 lg:order-1 relative z-30">
                 
                 <div class="hero-reveal opacity-0 translate-y-10">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-sani-aqua/30 shadow-sm mb-8">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-sani-earth/20 shadow-sm mb-8">
                         <span class="relative flex h-3 w-3">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sani-red opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-3 w-3 bg-sani-red"></span>
                         </span>
-                        <span class="text-xs font-bold uppercase tracking-widest text-sani-dark">Shaping Kenya's Future</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-sani-earth">Shaping Kenya's Future</span>
                     </div>
                 </div>
 
                 <h1 class="hero-reveal opacity-0 translate-y-10 font-display font-black text-[8vw] lg:text-[3rem] xl:text-[3rem] 2xl:text-[3rem] leading-[0.9] tracking-tighter mb-6 whitespace-nowrap lg:whitespace-normal">
-                    <span class="liquid-text">SANITATION</span>
+                    <span class="earth-liquid-text">SANITATION</span>
                     <div class="flex items-center flex-wrap gap-2 lg:gap-4 mt-2">
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sani-dark to-sani-dark/50">REV</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sani-dark to-sani-earth">REV</span>
                         
                         <div class="relative w-[0.75em] h-[0.75em] inline-flex items-center justify-center">
                             <svg viewBox="0 0 24 24" fill="none" class="w-full h-full animate-spin-slow animate-color-pulse drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]">
@@ -180,12 +197,12 @@
                             </svg>
                         </div>
                         
-                        <span class="liquid-text">LUTIONIZED</span>
+                        <span class="earth-liquid-text">LUTIONIZED</span>
                     </div>
                 </h1>
 
                 <p class="hero-reveal opacity-0 translate-y-10 text-xl lg:text-2xl text-sani-earth font-medium max-w-xl leading-relaxed mb-10 border-l-4 border-sani-lime pl-6">
-                    Fragmented data costs lives. <strong class="text-sani-earth">SaniBook</strong> is the unified authority converting chaos into <span class="bg-sani-aqua/20 px-1 font-bold text-sani-earth">National Excellence.</span>
+                    Fragmented data costs lives. <strong class="text-sani-dark">SaniBook</strong> is the unified authority converting chaos into <span class="bg-sani-aqua/20 px-1 font-bold text-sani-earth">National Excellence.</span>
                 </p>
 
                 <div class="hero-reveal opacity-0 translate-y-10 flex flex-wrap gap-4">
@@ -209,18 +226,13 @@
                          class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[2s]">
                     
                     <div class="absolute inset-0 bg-gradient-to-t from-sani-dark/70 via-transparent to-transparent"></div>
-                    
-                    <div class="absolute bottom-12 left-12 text-white">
-                        <!-- <p class="font-display font-bold text-4xl lg:text-5xl mb-2">Clean Water.</p> -->
-                        <!-- <p class="font-sans text-lg lg:text-xl opacity-90 tracking-wide">Dignified Lives.</p> -->
-                    </div>
                 </div>
 
                 <div class="absolute top-[10%] right-[0%] lg:right-[-5%] glass-card p-5 rounded-2xl animate-float z-20 hover:scale-105 transition-transform cursor-default">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-full bg-sani-lime flex items-center justify-center text-sani-dark font-bold text-xl"><i class="fa-solid fa-check"></i></div>
                         <div>
-                            <p class="text-xs font-bold uppercase text-sani-dark/60 tracking-widest">Target Goal</p>
+                            <p class="text-xs font-bold uppercase text-sani-earth tracking-widest">Target Goal</p>
                             <p class="font-display font-bold text-2xl text-sani-dark">SDG 6.2</p>
                         </div>
                     </div>
@@ -230,7 +242,7 @@
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-full bg-sani-aqua flex items-center justify-center text-sani-dark font-bold text-xl"><i class="fa-solid fa-users"></i></div>
                         <div>
-                            <p class="text-xs font-bold uppercase text-sani-dark/60 tracking-widest">Status</p>
+                            <p class="text-xs font-bold uppercase text-sani-earth tracking-widest">Status</p>
                             <p class="font-display font-bold text-2xl text-sani-dark">Active</p>
                         </div>
                     </div>
@@ -251,7 +263,6 @@
             </div>
         </div>
     </header>
-
     <section id="reality" class="py-32 bg-white relative z-10">
         <div class="max-w-[1800px] mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
