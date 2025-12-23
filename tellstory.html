@@ -1,829 +1,574 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tell Your Story | SaniBook Initiative</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <style>
-    @keyframes shimmer {
-      0% { transform: translateX(-150%) skewX(-12deg); }
-      100% { transform: translateX(150%) skewX(-12deg); }
-    }
-    .animate-shimmer {
-      animation: shimmer 2.5s infinite linear;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tell Your Story | SaniBook Initiative</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sani: {
+                            aqua: '#00f2fe',
+                            blue: '#4facfe',
+                            lime: '#b8ff3e', 
+                            red: '#ff0f39',
+                            dark: '#050a14', 
+                            light: '#f0f7ff',
+                            deepEarth: '#3E2723'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'shimmer': 'shimmer 2.5s infinite linear',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-150%) skewX(-12deg)' },
+                            '100%': { transform: 'translateX(150%) skewX(-12deg)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #f8fafc; color: #050a14; overflow-x: hidden; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+        }
+
+        .caustic-overlay {
+            position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.6;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+        }
+
+        /* Mobile Menu Transitions */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .mobile-menu.open { transform: translateX(0); }
+        .menu-link { opacity: 0; transform: translateY(20px); transition: all 0.4s ease-out; }
+        .mobile-menu.open .menu-link { opacity: 1; transform: translateY(0); }
+
+        /* Form Controls */
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #4facfe;
+            box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.1);
+        }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4facfe; }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased pt-20 md:pt-24">
-  <nav class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm shadow-md z-50">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-      <a href="index.html" class="text-2xl font-bold text-blue-700">
-        <h1>SaniBook</h1>
-      </a>
+<body class="antialiased">
 
-      <div class="md:hidden">
-        <button id="navbar-toggle" class="text-blue-700 p-2 rounded-md hover:bg-gray-100 transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-              d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
+    <nav class="fixed w-full z-50 top-0 px-4 pt-4 transition-all duration-300">
+        <div class="glass-card rounded-full max-w-[1600px] mx-auto px-4 md:px-6 py-3 flex justify-between items-center shadow-lg relative z-50">
+            <a href="index.html" class="font-display font-black text-xl md:text-2xl tracking-tighter text-sani-dark flex items-center gap-2 group">
+                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-sani-aqua flex items-center justify-center text-white group-hover:rotate-12 transition-transform">
+                    <i class="fa-solid fa-droplet text-sm md:text-base"></i>
+                </div>
+                <span>SaniBook<span class="text-sani-red">.ke</span></span>
+            </a>
 
-      <ul id="navbar-links" class="hidden md:flex space-x-8 text-sm font-medium">
-        <li><a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a></li>
-        <li><a href="whythesanibook.html" class="text-gray-700 hover:text-blue-600 transition-colors">Why the SaniBook</a></li>
-        <li><a href="sanitationreality.html" class="text-gray-700 hover:text-blue-600 transition-colors">Sanitation Reality</a></li>
-        <li><a href="tellstory.html" class="text-blue-700 font-semibold border-b-2 border-blue-700">Tell Your Story</a></li>
-        <li><a href="joinsani.html" class="text-gray-700 hover:text-blue-600 transition-colors">Join Sanitationists</a></li>
-        <li><a href="contactus.html" class="text-gray-700 hover:text-blue-600 transition-colors">Contact Us</a></li>
-        <li><a href="#login" class="text-blue-700 font-semibold bg-blue-50 px-3 py-1 rounded-full hover:bg-blue-100 transition-colors">Login</a></li>
-      </ul>
-    </div>
-  </nav>
+            <div class="hidden lg:flex gap-6 font-sans font-bold uppercase text-[11px] tracking-widest text-sani-dark/70">
+                <a href="index.html" class="hover:text-sani-aqua transition-colors py-2">Home</a>
+                <a href="whythesanibook.html" class="hover:text-sani-aqua transition-colors py-2">Why SaniBook</a>
+                <a href="sanitationreality.html" class="hover:text-sani-aqua transition-colors py-2">Reality</a>
+                <a href="tellstory.html" class="text-sani-aqua py-2 border-b-2 border-sani-aqua">Tell Story</a>
+                <a href="joinsani.html" class="hover:text-sani-aqua transition-colors py-2">Join</a>
+                <a href="contactus.html" class="hover:text-sani-aqua transition-colors py-2">Contact</a>
+            </div>
 
-  <div id="mobile-menu" class="fixed inset-0 bg-white bg-opacity-95 z-40 hidden transition-opacity duration-300 ease-in-out">
-    <div class="flex justify-end p-4">
-      <button id="close-mobile-menu" class="text-gray-800 text-3xl p-2 rounded-md hover:bg-gray-100">&times;</button>
-    </div>
-    <div class="flex flex-col justify-start items-center h-full pt-10">
-      <ul class="space-y-6 text-xl font-medium text-center">
-        <li><a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">Home</a></li>
-        <li><a href="whythesanibook.html" class="text-gray-700 hover:text-blue-600 transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">Why the SaniBook</a></li>
-        <li><a href="sanitationreality.html" class="text-gray-700 hover:text-blue-600 transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">Sanitation Reality</a></li>
-        <li><a href="tellstory.html" class="text-blue-700 font-semibold" onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">Tell Your Story</a></li>
-        <li><a href="joinsani.html" class="text-gray-700 hover:text-blue-600 transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">Join Sanitationists</a></li>
-        <li><a href="contactus.html" class="text-gray-700 hover:text-blue-600 transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">Contact Us</a></li>
-        <li><a href="#login" class="text-blue-700 mt-4 inline-block font-semibold bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-100 transition-colors" onclick="document.getElementById('mobile-menu').classList.add('hidden'); document.body.style.overflow = 'auto';">Login</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <section class="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-600 text-white py-20 overflow-hidden">
-    <div class="absolute inset-0 opacity-50 bg-cover bg-center" style="background-image: url('assets/imgs/new/sanispace.jpg');"></div>
-    <div class="max-w-5xl mx-auto text-center px-6 relative z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold mb-4">
-        Elevate Anecdote to Blueprint
-      </h2>
-      <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto">
-        Accelerate sector-wide transformation and systemically de-risk Kenya’s sanitation future.
-      </p>
-    </div>
-  </section>
-
-
-  <div class="w-full h-90 md:h-70 lg:h-65 mt-5">
-    <img src="assets/imgs/new/last.jpg" alt="Kenya Sanitation Landscape" class="w-full h-full object-cover" />
-  </div>
-
-  <section class="py-16 px-6 md:px-16 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <h3 class="text-2xl md:text-3xl font-bold text-blue-900 mb-4">Transforming Local Success into Sectoral Blueprint</h3>
-      <p class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
-        To our esteemed partners — Pioneering Government Agencies, Visionary Development Partners, Groundbreaking Research Institutes,
-        Innovative Private Sector Enterprises, and Essential Civil Society Organisations: your work sits at the intersection of 
-        innovation and resilience.
-      </p>
-
-      <div class="bg-blue-50 border-l-4 border-blue-700 rounded-md p-6 shadow-sm mb-8">
-        <p class="text-blue-900 italic text-lg font-medium">
-          “Your victories are not just stories — they are blueprints for national transformation.”
-        </p>
-      </div>
-
-      <p class="text-gray-700 text-base md:text-lg leading-relaxed">
-        The <strong>SaniBook Initiative</strong> bridges this gap — transforming anecdotal success 
-        into evidence-based strategy that drives systemic change.
-      </p>
-    </div>
-  </section>
-
-  <div class="w-full h-40 md:h-60 lg:h-60 mt-5">
-    <img src="assets/imgs/new/sanitatiion-edit.jpg" alt="Kenya Sanitation Landscape" class="w-full h-full object-cover" />
-  </div>
-
-  <section class="py-16 px-6 md:px-16 bg-gradient-to-b from-blue-50 to-white">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h3 class="text-2xl md:text-3xl font-bold text-blue-900 mb-4">The SaniBook Advantage</h3>
-        <p class="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
-          The SaniBook is more than a publication — it is a digital knowledge nexus and strategic catalyst.
-        </p>
-        <p class="text-gray-700 leading-relaxed text-base md:text-lg">
-          By contributing, your organization helps shape the sector’s collective intelligence and policy direction.
-        </p>
-      </div>
-
-      <div class="bg-white rounded-xl shadow p-6 border-l-4 border-blue-700">
-        <h4 class="text-lg font-semibold text-blue-800 mb-2">The Triple-Win for Partners</h4>
-        <ul class="list-disc list-inside text-gray-700 space-y-2">
-          <li><strong>De-risk and Scale:</strong> Reduce sector risk while amplifying adoption of proven models.</li>
-          <li><strong>Influence Policy:</strong> Provide evidence to secure sustained government investment.</li>
-          <li><strong>Elevate Visibility:</strong> Gain leadership exposure to donors and global networks.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 bg-blue-900 text-white text-center">
-    <div class="max-w-5xl mx-auto px-6">
-      <h3 class="text-2xl md:text-4xl font-bold mb-6">Transform Experience into National Impact</h3>
-      <p class="text-blue-100 text-base md:text-lg mb-10 max-w-4xl mx-auto">
-        Don’t let your hard-won expertise fade as anecdote. Join the SaniBook Initiative.
-      </p>
-    </div>
-  </section>
-
-  <section class="py-16 px-6 md:px-16 bg-gray-50">
-    <div class="max-w-5xl mx-auto bg-white p-10 rounded-2xl shadow-lg border border-gray-200">
-
-      <h3 class="text-2xl font-bold text-blue-900 mb-2 text-center">Tell Your Story</h3>
-      <p class="text-center text-gray-600 mb-8">
-        Secure your position — let your story roar. Transform your experience into a blueprint for national reform.
-      </p>
-
-      <form action="#" method="POST" class="grid md:grid-cols-2 gap-6">
-
-        <div class="md:col-span-2">
-          <label for="challenge_area" class="block text-gray-700 mb-2 font-medium">Select Your Challenge Area</label>
-          <select id="challenge_area" name="challenge_area" required
-            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700">
-            <option value="">Choose One</option>
-            <option>Limited Sanitation Access and Coverage Gaps</option>
-            <option>Socio-Cultural, Behavioral Barriers and Conceptual Myopia</option>
-            <option>Systemic Bottlenecks in Technology Adoption</option>
-            <option>Underfunding and Low Prioritization of Sanitation</option>
-            <option>Fragmented Governance and Poor Coordination</option>
-            <option>Data Deficiencies and Lack of Unified Monitoring</option>
-            <option>Unmet Aspirations in Service Delivery</option>
-          </select>
-        </div>
-
-        <div class="md:col-span-2">
-          <label class="block text-gray-700 mb-3 font-medium">Area of Intervention</label>
-
-          <div class="relative">
-            <button type="button" id="dropdownButton" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700 text-left bg-white">
-              Select Areas of Intervention
+            <button id="menu-btn" class="lg:hidden text-2xl text-sani-dark hover:text-sani-red transition-colors focus:outline-none z-50">
+                <i class="fa-solid fa-bars"></i>
             </button>
 
-            <div id="dropdownMenu" class="hidden absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-auto">
-              <div class="p-3">
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="provision" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Provision of Facilities
-                </label>
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="consultancy" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Consultancy
-                </label>
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="training" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Training
-                </label>
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="policy" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Policy and Regulations
-                </label>
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="hygiene" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Hygiene Promotion
-                </label>
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="waste_management" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Waste Management
-                </label>
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="financing" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Financing
-                </label>
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="community_mobilization" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Community Mobilization
-                </label>
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="institutional_capacity" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Institutional Capacity
-                </label>
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="vector_control" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Vector Control
-                </label>
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="menstrual_hygiene" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Menstrual Hygiene Management
-                </label>
-                <label class="block p-2 cursor-pointer hover:bg-blue-50 rounded-md">
-                  <input type="checkbox" name="intervention_area[]" value="other" class="mr-2 text-blue-700 focus:ring-blue-700">
-                  Other
-                </label>
-              </div>
-            </div>
-          </div>
+            <a href="tellstory.html" class="hidden lg:flex relative overflow-hidden px-6 py-3 rounded-full bg-sani-dark text-white font-bold text-xs uppercase tracking-widest hover:shadow-lg transition-shadow group">
+                <div class="absolute inset-0 bg-sani-red translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                <span class="relative z-10 flex items-center gap-2">Portal <i class="fa-solid fa-lock"></i></span>
+            </a>
         </div>
+    </nav>
 
-        <div class="md:col-span-2">
-          <label for="brief-description" class="block text-gray-700 mb-2 font-medium">Brief Description (Max 50 words)</label>
-
-          <textarea id="brief-description" name="brief_description" rows="3" 
-            placeholder="Summarize your intervention briefly (max 50 words)..."
-            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700"></textarea>
-
-          <p class="text-sm text-gray-500 mt-1">
-            <span id="word-count">0</span> / 50 words
-          </p>
-        </div>
-
-        <div class="md:col-span-2 mb-2 transform hover:scale-[1.01] transition-transform duration-300">
-            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-900 via-indigo-800 to-blue-900 p-1 shadow-xl">
-              <div class="absolute top-0 left-0 -inset-full w-full h-full block bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
-              
-              <div class="relative bg-gray-900/40 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                  <div class="flex items-center gap-4">
-                    <div class="bg-yellow-400 text-blue-900 p-3 rounded-full shadow-lg shadow-yellow-400/20">
-                      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <div>
-                      <h4 class="text-xl font-bold text-white">Founding Partner Offer</h4>
-                      <p class="text-blue-200 text-sm">Secure your legacy at half the cost.</p>
-                    </div>
-                  </div>
-                  <div class="text-center md:text-right">
-                    <span class="block text-3xl font-black text-yellow-400 tracking-tight">50% OFF</span>
-                    <span class="text-xs text-white bg-white/20 px-2 py-1 rounded-full uppercase tracking-wider font-semibold">Valid until April 2026</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="md:col-span-2 mt-4">
-          <h4 class="text-lg font-semibold text-blue-800 mb-4 flex items-center gap-2">
-            Intervention Depth
-            <span class="text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full border border-red-200">Sale Active</span>
-          </h4>
-          
-          <div class="grid md:grid-cols-3 gap-4">
-            <label class="relative group cursor-pointer">
-              <input type="radio" name="page_count" value="half-page" class="peer sr-only">
-              <div class="h-full p-4 rounded-xl border-2 border-gray-200 bg-white hover:border-blue-400 hover:shadow-md transition-all duration-200 peer-checked:border-blue-700 peer-checked:bg-blue-50 peer-checked:shadow-lg peer-checked:ring-1 peer-checked:ring-blue-700">
-                <div class="flex justify-between items-start mb-2">
-                  <span class="font-bold text-gray-700 group-hover:text-blue-700">½ Page</span>
-                  <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full">-50%</span>
-                </div>
-                <div class="space-y-1">
-                  <p class="text-gray-400 text-sm line-through decoration-red-400 decoration-2">Ksh. 80,000</p>
-                  <p class="text-2xl font-bold text-blue-900">Ksh. 40,000</p>
-                </div>
-                <div class="mt-3 text-xs text-gray-500 flex items-center gap-1">
-                  <svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                  Ideal for concise impact stories
-                </div>
-              </div>
-            </label>
-
-            <label class="relative group cursor-pointer">
-              <input type="radio" name="page_count" value="one-page" class="peer sr-only">
-              <div class="h-full p-4 rounded-xl border-2 border-gray-200 bg-white hover:border-blue-400 hover:shadow-md transition-all duration-200 peer-checked:border-blue-700 peer-checked:bg-blue-50 peer-checked:shadow-lg peer-checked:ring-1 peer-checked:ring-blue-700">
-                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full shadow-sm">
-                  Best Value
-                </div>
-                <div class="flex justify-between items-start mb-2 mt-1">
-                  <span class="font-bold text-gray-700 group-hover:text-blue-700">1 Page</span>
-                  <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full">-50%</span>
-                </div>
-                <div class="space-y-1">
-                  <p class="text-gray-400 text-sm line-through decoration-red-400 decoration-2">Ksh. 140,000</p>
-                  <p class="text-2xl font-bold text-blue-900">Ksh. 70,000</p>
-                </div>
-                <div class="mt-3 text-xs text-gray-500 flex items-center gap-1">
-                  <svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                  Full feature narrative
-                </div>
-              </div>
-            </label>
-
-            <label class="relative group cursor-pointer">
-              <input type="radio" name="page_count" value="two-page" class="peer sr-only">
-              <div class="h-full p-4 rounded-xl border-2 border-gray-200 bg-white hover:border-blue-400 hover:shadow-md transition-all duration-200 peer-checked:border-blue-700 peer-checked:bg-blue-50 peer-checked:shadow-lg peer-checked:ring-1 peer-checked:ring-blue-700">
-                <div class="flex justify-between items-start mb-2">
-                  <span class="font-bold text-gray-700 group-hover:text-blue-700">2 Pages</span>
-                  <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full">-50%</span>
-                </div>
-                <div class="space-y-1">
-                  <p class="text-gray-400 text-sm line-through decoration-red-400 decoration-2">Ksh. 220,000</p>
-                  <p class="text-2xl font-bold text-blue-900">Ksh. 110,000</p>
-                </div>
-                <div class="mt-3 text-xs text-gray-500 flex items-center gap-1">
-                  <svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                  Deep-dive case study
-                </div>
-              </div>
-            </label>
-          </div>
-        </div>
-        <div class="md:col-span-2">
-          <label for="story" class="block text-gray-700 mb-2 font-medium">Your Sanitation Story</label>
-          <textarea id="story" name="story" rows="6" required placeholder="Describe your experience, solutions, impact, and lessons..."
-            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700"></textarea>
-        </div>
-
-        <div class="md:col-span-2 mt-6">
-          <h4 class="text-lg font-semibold text-blue-800 mb-3">Upload Image for Your Story</h4>
-
-          <label for="story_image" class="block text-gray-700 mb-2 font-medium">Upload Image (Optional)</label>
-          <input type="file" id="story_image" name="story_image" accept="image/*"
-            class="w-full border border-gray-300 rounded-lg px-4 py-3 bg-white focus:ring-2 focus:ring-blue-700">
-
-          <p class="text-xs text-gray-500 mt-1">
-            Accepted: JPG, PNG, WEBP • Max size recommended: 5MB
-          </p>
-        </div>
-
-        <div id="image-size-section" class="md:col-span-2 mt-6 hidden">
-          <h4 class="text-lg font-semibold text-blue-800 mb-3">Image Coverage on the Page</h4>
-
-          <p class="text-gray-600 text-sm mb-3">
-            Select how much of your chosen page space this image should cover.
-          </p>
-
-          <div class="grid md:grid-cols-4 gap-4">
-
-            <label class="flex flex-col items-center justify-center space-y-2 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-              <input type="radio" name="image_coverage" value="quarter"
-                    class="w-5 h-5 text-blue-700 focus:ring-blue-700">
-              <span>¼ Page</span>
-            </label>
-
-            <label class="flex flex-col items-center justify-center space-y-2 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-              <input type="radio" name="image_coverage" value="half"
-                    class="w-5 h-5 text-blue-700 focus:ring-blue-700">
-              <span>½ Page</span>
-            </label>
-
-            <label class="flex flex-col items-center justify-center space-y-2 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-              <input type="radio" name="image_coverage" value="three-quarter"
-                    class="w-5 h-5 text-blue-700 focus:ring-blue-700">
-              <span>¾ Page</span>
-            </label>
-
-            <label class="flex flex-col items-center justify-center space-y-2 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
-              <input type="radio" name="image_coverage" value="full"
-                    class="w-5 h-5 text-blue-700 focus:ring-blue-700">
-              <span>Full Page (Only for 2-page slot)</span>
-            </label>
-
-          </div>
-        </div>
-
-        <div class="md:col-span-2 mt-8">
-          <label for="impact-field" class="block text-gray-700 mb-2 font-medium">Impact</label>
-
-          <textarea id="impact-field" name="impact" rows="4" required
-            placeholder="Describe the measurable or visible impact of your intervention..."
-            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700"></textarea>
-
-          <p class="text-sm text-gray-500 mt-1">
-            <span id="impact-count">0</span> words
-          </p>
-        </div>
-
-        <div class="md:col-span-2 mt-6">
-          <label for="lessons-field" class="block text-gray-700 mb-2 font-medium">Lessons & Challenges</label>
-
-          <textarea id="lessons-field" name="lessons_challenges" rows="4" required
-            placeholder="Share insights, lessons learned, and challenges encountered during implementation..."
-            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700"></textarea>
-
-          <p class="text-sm text-gray-500 mt-1">
-            <span id="lessons-count">0</span> words
-          </p>
-        </div>
-
-        <div class="md:col-span-2 mt-10">
-          <h4 class="text-lg font-semibold text-blue-800 mb-4">Strategic Partnerships (Optional)</h4>
-          <p class="text-gray-600 text-sm mb-4">Select all partnership types that apply, then choose relevant sub-areas.</p>
-
-          <div class="space-y-6">
-
-            <div class="border rounded-lg p-4 bg-white shadow-sm">
-              <label class="flex items-center space-x-3 cursor-pointer">
-                <input type="checkbox" class="w-5 h-5 text-blue-700 focus:ring-blue-700 partnership-toggle"
-                      data-target="gov-options">
-                <span class="font-medium text-gray-800">Government & Public Sector</span>
-              </label>
-
-              <div id="gov-options" class="ml-7 mt-3 hidden space-y-2 border-t border-gray-200 pt-2">
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_government[]" value="national-government"
-                        class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>National Ministries</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_government[]" value="county-government"
-                        class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>County Government</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_government[]" value="regulatory-bodies"
-                        class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Regulatory Bodies</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_government[]" value="other-government"
-                        class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Other</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="border rounded-lg p-4 bg-white shadow-sm">
-              <label class="flex items-center space-x-3 cursor-pointer">
-                <input type="checkbox" class="w-5 h-5 text-blue-700 focus:ring-blue-700 partnership-toggle"
-                      data-target="civil-options">
-                <span class="font-medium text-gray-800">Civil Society & Communities</span>
-              </label>
-
-              <div id="civil-options" class="ml-7 mt-3 hidden space-y-2 border-t border-gray-200 pt-2">
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_cso[]" value="ngos" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>NGO's</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_cso[]" value="cbos" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>CBO's</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_cso[]" value="community" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Community</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_cso[]" value="other-cso" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Other</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="border rounded-lg p-4 bg-white shadow-sm">
-              <label class="flex items-center space-x-3 cursor-pointer">
-                <input type="checkbox" class="w-5 h-5 text-blue-700 focus:ring-blue-700 partnership-toggle"
-                      data-target="research-options">
-                <span class="font-medium text-gray-800">Academic & Research Institutes</span>
-              </label>
-
-              <div id="research-options" class="ml-7 mt-3 hidden space-y-2 border-t border-gray-200 pt-2">
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_research[]" value="universities" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Universities</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_research[]" value="technical-institutes" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Technical Institutes</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_research[]" value="research-institutes" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Research Institutes</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_research[]" value="other-academic" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Other</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="border rounded-lg p-4 bg-white shadow-sm">
-              <label class="flex items-center space-x-3 cursor-pointer">
-                <input type="checkbox" class="w-5 h-5 text-blue-700 focus:ring-blue-700 partnership-toggle"
-                      data-target="donor-options">
-                <span class="font-medium text-gray-800">International and Financial Partners</span>
-              </label>
-
-              <div id="donor-options" class="ml-7 mt-3 hidden space-y-2 border-t border-gray-200 pt-2">
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_donors[]" value="development-banks" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Development Banks</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_donors[]" value="foundations" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Foundations and Private Philanthropists</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_donors[]" value="global-partnerships" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Global Partnerships</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_donors[]" value="other-intl" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Other</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="border rounded-lg p-4 bg-white shadow-sm">
-              <label class="flex items-center space-x-3 cursor-pointer">
-                <input type="checkbox" class="w-5 h-5 text-blue-700 focus:ring-blue-700 partnership-toggle"
-                      data-target="private-options">
-                <span class="font-medium text-gray-800">Private Sector</span>
-              </label>
-
-              <div id="private-options" class="ml-7 mt-3 hidden space-y-2 border-t border-gray-200 pt-2">
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_private[]" value="local-smes" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Local SME's</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_private[]" value="large-corporations" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Large Corporations</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_private[]" value="financial-institutions" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Financial Institutions</span>
-                </label>
-                <label class="flex items-center space-x-3">
-                  <input type="checkbox" name="partnership_private[]" value="other-private" class="w-4 h-4 text-blue-700 focus:ring-blue-700">
-                  <span>Other</span>
-                </label>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div>
-          <label for="first_name" class="block text-gray-700 mb-2 font-medium">First Name</label>
-          <input type="text" id="first_name" name="first_name" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700">
-        </div>
-
-        <div>
-          <label for="last_name" class="block text-gray-700 mb-2 font-medium">Last Name</label>
-          <input type="text" id="last_name" name="last_name" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700">
-        </div>
-
-        <div>
-          <label for="job_title" class="block text-gray-700 mb-2 font-medium">Job Title</label>
-          <input type="text" id="job_title" name="job_title" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700">
-        </div>
-
-        <div>
-          <label for="organisation" class="block text-gray-700 mb-2 font-medium">Organisation</label>
-          <input type="text" id="organisation" name="organisation" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700">
-        </div>
-
-        <div>
-          <label for="website" class="block text-gray-700 mb-2 font-medium">Company Website</label>
-          <input type="url" id="website" name="website" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700">
-        </div>
-
-        <div>
-          <label for="email" class="block text-gray-700 mb-2 font-medium">Email Address</label>
-          <input type="email" id="email" name="email" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700">
-        </div>
-
-        <div>
-          <label for="phone" class="block text-gray-700 mb-2 font-medium">Mobile Phone</label>
-          <input type="text" id="phone" name="phone" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700">
-        </div>
-
-        <div>
-          <label for="county" class="block text-gray-700 mb-2 font-medium">County</label>
-          <input type="text" id="county" name="county" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700">
-        </div>
-
-
-        <div class="md:col-span-2 mt-6">
-          <div class="flex items-end justify-between mb-4">
-            <h4 class="text-lg font-semibold text-blue-800">Sponsorship Level (Optional)</h4>
-            <span class="text-sm font-medium text-amber-600 animate-pulse">Offers expire April 2026</span>
-          </div>
-          
-          <div class="grid md:grid-cols-3 gap-6">
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 bg-white/95 backdrop-blur-xl flex flex-col justify-center items-center">
+        <div class="flex flex-col gap-6 text-center">
+            <a href="index.html" class="menu-link font-display font-bold text-2xl text-sani-dark hover:text-sani-red transition-colors" style="transition-delay: 0.05s;">Home</a>
+            <a href="whythesanibook.html" class="menu-link font-display font-bold text-2xl text-sani-dark hover:text-sani-red transition-colors" style="transition-delay: 0.1s;">Why the SaniBook</a>
+            <a href="sanitationreality.html" class="menu-link font-display font-bold text-2xl text-sani-dark hover:text-sani-red transition-colors" style="transition-delay: 0.2s;">Sanitation Reality</a>
+            <a href="tellstory.html" class="menu-link font-display font-bold text-2xl text-sani-red transition-colors" style="transition-delay: 0.3s;">Tell your Story</a>
+            <a href="joinsani.html" class="menu-link font-display font-bold text-2xl text-sani-dark hover:text-sani-red transition-colors" style="transition-delay: 0.4s;">Join Sanitationists</a>
+            <a href="contactus.html" class="menu-link font-display font-bold text-2xl text-sani-dark hover:text-sani-red transition-colors" style="transition-delay: 0.45s;">Contact Us</a>
             
-            <label class="relative group cursor-pointer">
-              <input type="radio" name="sponsorship" value="gold" class="peer sr-only">
-              <div class="absolute -inset-0.5 bg-gradient-to-br from-yellow-300 via-yellow-500 to-yellow-200 rounded-xl opacity-30 group-hover:opacity-100 peer-checked:opacity-100 transition duration-300 blur-[2px]"></div>
-              
-              <div class="relative h-full bg-white p-5 rounded-xl border border-yellow-200 shadow-sm peer-checked:bg-yellow-50">
-                <div class="flex justify-between items-start">
-                  <span class="uppercase tracking-widest text-xs font-bold text-yellow-700">Gold Tier</span>
-                  <span class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">1 Slot Left</span>
-                </div>
-                
-                <div class="my-3">
-                  <p class="text-gray-400 text-sm line-through">Ksh. 1,000,000</p>
-                  <p class="text-2xl font-black text-gray-900">Ksh. 500k</p>
-                </div>
-                
-                <ul class="text-xs text-gray-600 space-y-1">
-                  <li class="flex items-center">✓ Premium Logo Placement</li>
-                  <li class="flex items-center">✓ Full Page Feature</li>
-                </ul>
-              </div>
-            </label>
+            <a href="tellstory.html" class="menu-link inline-block px-8 py-4 mt-4 rounded-full bg-sani-dark text-white font-bold text-sm uppercase tracking-widest hover:bg-sani-red transition-colors" style="transition-delay: 0.5s;">
+                Contributors Portal
+            </a>
+        </div>
+    </div>
 
-            <label class="relative group cursor-pointer">
-              <input type="radio" name="sponsorship" value="silver" class="peer sr-only">
-              <div class="absolute -inset-0.5 bg-gradient-to-br from-gray-300 via-gray-400 to-gray-200 rounded-xl opacity-30 group-hover:opacity-100 peer-checked:opacity-100 transition duration-300 blur-[2px]"></div>
-              
-              <div class="relative h-full bg-white p-5 rounded-xl border border-gray-200 shadow-sm peer-checked:bg-gray-50">
-                <div class="flex justify-between items-start">
-                  <span class="uppercase tracking-widest text-xs font-bold text-gray-500">Silver Tier</span>
-                  <span class="text-gray-400 text-[10px] font-bold px-2 py-0.5 border border-gray-200 rounded">2 Slots</span>
-                </div>
-                
-                <div class="my-3">
-                  <p class="text-gray-400 text-sm line-through">Ksh. 500,000</p>
-                  <p class="text-2xl font-black text-gray-900">Ksh. 250k</p>
-                </div>
-                
-                <ul class="text-xs text-gray-600 space-y-1">
-                  <li class="flex items-center">✓ Standard Logo Placement</li>
-                  <li class="flex items-center">✓ Half Page Feature</li>
-                </ul>
-              </div>
-            </label>
+    <header class="relative pt-24 pb-12 lg:pt-32 lg:pb-20 overflow-hidden">
+        
+        <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:32px_32px] opacity-60 pointer-events-none"></div>
+        <div class="absolute top-0 right-0 w-[400px] lg:w-[600px] h-[400px] lg:h-[600px] bg-sani-blue/10 rounded-full blur-[100px] -translate-y-1/3 translate-x-1/3 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] lg:w-[600px] h-[400px] lg:h-[600px] bg-sani-lime/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+        <div class="caustic-overlay"></div>
 
-            <label class="relative group cursor-pointer">
-              <input type="radio" name="sponsorship" value="bronze" class="peer sr-only">
-              <div class="absolute -inset-0.5 bg-gradient-to-br from-orange-200 via-orange-400 to-orange-200 rounded-xl opacity-30 group-hover:opacity-100 peer-checked:opacity-100 transition duration-300 blur-[2px]"></div>
-              
-              <div class="relative h-full bg-white p-5 rounded-xl border border-orange-200 shadow-sm peer-checked:bg-orange-50">
-                <div class="flex justify-between items-start">
-                  <span class="uppercase tracking-widest text-xs font-bold text-orange-700">Bronze Tier</span>
-                  <span class="text-gray-400 text-[10px] font-bold px-2 py-0.5 border border-gray-200 rounded">4 Slots</span>
-                </div>
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 
-                <div class="my-3">
-                  <p class="text-gray-400 text-sm line-through">Ksh. 250,000</p>
-                  <p class="text-2xl font-black text-gray-900">Ksh. 125k</p>
+                <div class="hero-reveal opacity-0 translate-y-10 order-2 lg:order-1 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 mb-4 lg:mb-6 px-4 py-2 bg-white border border-slate-200 rounded-full shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-sani-red animate-pulse"></span>
+                        <span class="text-[10px] lg:text-xs font-black uppercase tracking-widest text-slate-800">The SaniBook Initiative</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-2xl lg:text-3xl font-display font-black text-sani-dark leading-[0.95] mb-4 lg:mb-6 tracking-tight">
+                        ELEVATE <br>
+                        ANECDOTE TO <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sani-blue to-sani-aqua">BLUEPRINT.</span>
+                    </h1>
+                    
+                    <p class="text-base md:text-lg lg:text-xl text-slate-600 font-medium mb-6 lg:mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0 lg:border-l-4 lg:border-sani-lime lg:pl-6">
+                        Your victories are not just stories—they are the blueprints for national transformation. Join the unified intelligence hub de-risking Kenya’s sanitation future.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start">
+                        <a href="#portal-switch" class="px-8 py-4 bg-sani-dark text-white rounded-full font-bold uppercase tracking-widest hover:bg-sani-red transition-colors shadow-xl flex items-center justify-center gap-3">
+                            Start Submission <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <div class="flex items-center gap-4 px-6 justify-center">
+                            <div class="flex -space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-slate-200 border-2 border-white"></div>
+                                <div class="w-10 h-10 rounded-full bg-slate-300 border-2 border-white"></div>
+                                <div class="w-10 h-10 rounded-full bg-sani-aqua text-white flex items-center justify-center font-bold text-xs border-2 border-white">+40</div>
+                            </div>
+                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Partners Joined</span>
+                        </div>
+                    </div>
                 </div>
-                
-                <ul class="text-xs text-gray-600 space-y-1">
-                  <li class="flex items-center">✓ Shared Mention</li>
-                  <li class="flex items-center">✓ Quarter Page Feature</li>
-                </ul>
-              </div>
-            </label>
+
+                <div class="relative h-[300px] lg:h-[500px] w-full hidden md:block hero-img-reveal opacity-0 scale-90 order-1 lg:order-2">
+                    <div class="absolute top-0 right-0 lg:right-0 w-full lg:w-[80%] h-full lg:h-[90%] bg-white p-2 rounded-[2.5rem] shadow-2xl rotate-2 lg:rotate-3 hover:rotate-0 transition-transform duration-700 z-10 border border-slate-100">
+                        <div class="w-full h-full rounded-[2rem] overflow-hidden relative">
+                            <img src="assets/imgs/new/sanispace.jpg" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-sani-dark/80 to-transparent"></div>
+                            <div class="absolute bottom-8 left-8 text-white">
+                                <p class="font-display font-bold text-2xl lg:text-3xl">Volume 01</p>
+                                <p class="text-sani-lime text-xs lg:text-sm uppercase tracking-widest font-bold">Open for Submissions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 lg:py-20 bg-white border-y border-slate-200 relative">
+        <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
-          </div>
+            <div class="relative h-[300px] lg:h-[400px] rounded-[3rem] overflow-hidden group">
+                <img src="assets/imgs/new/last.jpg" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-sani-blue/20 mix-blend-multiply"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8 bg-white/90 backdrop-blur-xl border-t border-white/50">
+                    <h3 class="font-display font-black text-xl lg:text-2xl text-sani-dark mb-2">The SaniBook Advantage</h3>
+                    <p class="text-slate-600 text-xs lg:text-sm font-medium leading-relaxed">
+                        By contributing, your organization helps shape the sector’s collective intelligence.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-3xl lg:text-4xl font-display font-black text-sani-dark mb-6">
+                    TRANSFORMING LOCAL SUCCESS <br>
+                    INTO <span class="text-sani-blue">SECTORAL BLUEPRINTS.</span>
+                </h2>
+                
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-sani-light text-sani-blue flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-layer-group"></i></div>
+                        <div>
+                            <h4 class="font-bold text-sani-dark text-lg">De-risk and Scale</h4>
+                            <p class="text-slate-500 text-sm">Reduce sector risk while amplifying adoption of proven models.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-sani-light text-sani-red flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-gavel"></i></div>
+                        <div>
+                            <h4 class="font-bold text-sani-dark text-lg">Influence Policy</h4>
+                            <p class="text-slate-500 text-sm">Provide evidence to secure sustained government investment.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-sani-light text-sani-lime flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-globe"></i></div>
+                        <div>
+                            <h4 class="font-bold text-sani-dark text-lg">Elevate Visibility</h4>
+                            <p class="text-slate-500 text-sm">Gain leadership exposure to donors and global networks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="md:col-span-2 mt-8 bg-blue-50 border-l-4 border-blue-700 p-6 rounded-lg text-gray-700 space-y-3 text-sm">
-          <h4 class="text-blue-900 font-semibold text-lg">Data Consent & Affirmation</h4>
-          <p><strong>i. Public Visibility:</strong> Your data will be permanently visible to all users globally.</p>
-          <p><strong>ii. Authenticity:</strong> You affirm all data submitted is genuine and accurate.</p>
-          <p><strong>iii. Integrity:</strong> The data reflects true and factual information.</p>
-          <p><strong>iv. Accuracy:</strong> Information is correct to the best of your knowledge.</p>
-          <p><strong>v. Rights:</strong> You possess full rights to share the data and materials.</p>
+    </section>
+
+    <section id="portal-switch" class="py-16 lg:py-24 bg-slate-50 relative overflow-hidden">
+        
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gradient-to-b from-white to-transparent opacity-80 pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            
+            <div class="text-center mb-10 lg:mb-12">
+                <h2 class="text-3xl lg:text-4xl font-display font-black text-sani-dark mb-4">CHOOSE YOUR PATH</h2>
+                <p class="text-slate-600 mb-8 text-sm lg:text-base">Are you submitting an organizational project or joining as an individual contributor?</p>
+
+                <div class="inline-flex bg-white p-1.5 rounded-full border border-slate-200 shadow-lg relative max-w-full">
+                    <div id="switch-bg" class="absolute top-1.5 left-1.5 bottom-1.5 w-[calc(50%-6px)] bg-sani-dark rounded-full transition-all duration-300 ease-out"></div>
+                    
+                    <button onclick="switchForm('org')" id="btn-org" class="relative z-10 px-4 lg:px-8 py-3 rounded-full text-xs lg:text-sm font-bold uppercase tracking-widest text-white transition-colors duration-300">
+                        Organization Story
+                    </button>
+                    <button onclick="switchForm('ind')" id="btn-ind" class="relative z-10 px-4 lg:px-8 py-3 rounded-full text-xs lg:text-sm font-bold uppercase tracking-widest text-slate-500 hover:text-sani-dark transition-colors duration-300">
+                        Individual Contributor
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[2rem] lg:rounded-[3rem] shadow-2xl border border-slate-200 overflow-hidden relative min-h-[600px]">
+                
+                <div id="form-org" class="p-6 md:p-12 transition-all duration-500 opacity-100 translate-x-0">
+                    
+                    <div class="flex items-center gap-3 mb-8 pb-8 border-b border-slate-100">
+                        <div class="w-10 h-10 lg:w-12 lg:h-12 bg-blue-50 text-sani-blue rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-building"></i></div>
+                        <div>
+                            <h3 class="text-xl lg:text-2xl font-bold text-sani-dark">Organizational Submission</h3>
+                            <p class="text-slate-500 text-xs lg:text-sm">Transform your project data into a national blueprint.</p>
+                        </div>
+                    </div>
+
+                    <form action="#" method="POST" class="grid md:grid-cols-2 gap-6">
+                        
+                        <div class="md:col-span-2">
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-2">Challenge Area</label>
+                            <div class="relative">
+                                <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 appearance-none focus:bg-white transition-colors text-sm">
+                                    <option value="">Select the primary challenge addressed...</option>
+                                    <option>Limited Sanitation Access and Coverage Gaps</option>
+                                    <option>Socio-Cultural Barriers & Conceptual Myopia</option>
+                                    <option>Systemic Bottlenecks in Tech Adoption</option>
+                                    <option>Underfunding & Low Prioritization</option>
+                                    <option>Data Deficiencies</option>
+                                </select>
+                                <div class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"><i class="fa-solid fa-chevron-down"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 relative group" tabindex="0">
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-2">Areas of Intervention</label>
+                            <div class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 cursor-pointer flex justify-between items-center group-focus-within:border-sani-blue transition-colors text-sm">
+                                <span class="text-slate-500">Select applicable areas...</span>
+                                <i class="fa-solid fa-plus text-sani-blue"></i>
+                            </div>
+                            <div class="absolute top-full left-0 w-full bg-white border border-slate-200 shadow-xl rounded-xl mt-2 p-4 hidden group-focus-within:grid grid-cols-1 lg:grid-cols-2 gap-2 z-20 max-h-60 overflow-y-auto">
+                                <label class="flex items-center gap-2 text-sm text-slate-600 hover:bg-slate-50 p-2 rounded cursor-pointer"><input type="checkbox" class="text-sani-blue rounded"> Provision of Facilities</label>
+                                <label class="flex items-center gap-2 text-sm text-slate-600 hover:bg-slate-50 p-2 rounded cursor-pointer"><input type="checkbox" class="text-sani-blue rounded"> Consultancy & Training</label>
+                                <label class="flex items-center gap-2 text-sm text-slate-600 hover:bg-slate-50 p-2 rounded cursor-pointer"><input type="checkbox" class="text-sani-blue rounded"> Policy & Regulations</label>
+                                <label class="flex items-center gap-2 text-sm text-slate-600 hover:bg-slate-50 p-2 rounded cursor-pointer"><input type="checkbox" class="text-sani-blue rounded"> Waste Management</label>
+                                <label class="flex items-center gap-2 text-sm text-slate-600 hover:bg-slate-50 p-2 rounded cursor-pointer"><input type="checkbox" class="text-sani-blue rounded"> Community Mobilization</label>
+                                <label class="flex items-center gap-2 text-sm text-slate-600 hover:bg-slate-50 p-2 rounded cursor-pointer"><input type="checkbox" class="text-sani-blue rounded"> Financing</label>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-2">Brief Description</label>
+                            <textarea rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:bg-white transition-colors text-sm" placeholder="Max 50 words summary..."></textarea>
+                        </div>
+
+                        <div class="md:col-span-2 mt-4">
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-4">Intervention Depth <span class="bg-sani-lime text-sani-dark text-[10px] px-2 py-0.5 rounded ml-2">50% OFF</span></label>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <label class="cursor-pointer relative">
+                                    <input type="radio" name="page_size" class="peer sr-only">
+                                    <div class="p-4 border-2 border-slate-100 rounded-2xl hover:border-sani-blue peer-checked:border-sani-blue peer-checked:bg-blue-50/50 transition-all">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="font-bold text-sani-dark">½ Page</span>
+                                            <span class="text-xs font-bold text-green-600">-50%</span>
+                                        </div>
+                                        <div class="text-2xl font-black text-sani-dark">40K <span class="text-xs font-medium text-slate-400 line-through">80K</span></div>
+                                        <div class="text-xs text-slate-500 mt-2">Concise impact stories</div>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer relative">
+                                    <input type="radio" name="page_size" class="peer sr-only" checked>
+                                    <div class="p-4 border-2 border-sani-blue rounded-2xl bg-white relative shadow-lg peer-checked:bg-blue-50/50 transition-all">
+                                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-sani-blue text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Best Value</div>
+                                        <div class="flex justify-between items-center mb-2 pt-1">
+                                            <span class="font-bold text-sani-dark">1 Page</span>
+                                            <span class="text-xs font-bold text-green-600">-50%</span>
+                                        </div>
+                                        <div class="text-2xl font-black text-sani-dark">70K <span class="text-xs font-medium text-slate-400 line-through">140K</span></div>
+                                        <div class="text-xs text-slate-500 mt-2">Full feature narrative</div>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer relative">
+                                    <input type="radio" name="page_size" class="peer sr-only">
+                                    <div class="p-4 border-2 border-slate-100 rounded-2xl hover:border-sani-blue peer-checked:border-sani-blue peer-checked:bg-blue-50/50 transition-all">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="font-bold text-sani-dark">2 Pages</span>
+                                            <span class="text-xs font-bold text-green-600">-50%</span>
+                                        </div>
+                                        <div class="text-2xl font-black text-sani-dark">110K <span class="text-xs font-medium text-slate-400 line-through">220K</span></div>
+                                        <div class="text-xs text-slate-500 mt-2">Deep-dive case study</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-2">Contact Name</label>
+                            <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:bg-white text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-2">Organization</label>
+                            <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:bg-white text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-2">Email</label>
+                            <input type="email" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:bg-white text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-2">Phone</label>
+                            <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:bg-white text-sm">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-2">Upload Visuals</label>
+                            <div class="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center hover:border-sani-blue hover:bg-blue-50/30 transition-colors cursor-pointer">
+                                <i class="fa-solid fa-cloud-arrow-up text-3xl text-slate-400 mb-2"></i>
+                                <p class="text-sm text-slate-600 font-medium">Click to upload image (JPG, PNG)</p>
+                                <p class="text-xs text-slate-400">Max 5MB</p>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 pt-6">
+                            <button class="w-full py-4 bg-sani-dark text-white rounded-xl font-bold uppercase tracking-widest hover:bg-sani-blue transition-colors shadow-lg flex justify-center items-center gap-3 text-sm">
+                                Submit Organization Story <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div id="form-ind" class="absolute inset-0 p-6 md:p-12 bg-white transition-all duration-500 opacity-0 translate-x-full pointer-events-none overflow-y-auto">
+                    
+                    <div class="flex items-center gap-3 mb-8 pb-8 border-b border-slate-100">
+                        <div class="w-10 h-10 lg:w-12 lg:h-12 bg-lime-100 text-sani-deepEarth rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-user-astronaut"></i></div>
+                        <div>
+                            <h3 class="text-xl lg:text-2xl font-bold text-sani-dark">Contributors Portal</h3>
+                            <p class="text-slate-500 text-xs lg:text-sm">Join the cause as an individual expert, volunteer, or donor.</p>
+                        </div>
+                    </div>
+
+                    <form action="#" method="POST" class="grid md:grid-cols-2 gap-6">
+                        
+                        <div>
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-2">Full Name</label>
+                            <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:bg-white text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-2">Profession / Role</label>
+                            <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:bg-white text-sm">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-4">How would you like to contribute?</label>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" class="peer sr-only">
+                                    <div class="p-4 border border-slate-200 rounded-xl hover:bg-lime-50 peer-checked:bg-lime-100 peer-checked:border-sani-lime transition-all text-center">
+                                        <i class="fa-solid fa-brain text-xl mb-2 text-sani-deepEarth"></i>
+                                        <p class="font-bold text-sm">Expertise / Data</p>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" class="peer sr-only">
+                                    <div class="p-4 border border-slate-200 rounded-xl hover:bg-lime-50 peer-checked:bg-lime-100 peer-checked:border-sani-lime transition-all text-center">
+                                        <i class="fa-solid fa-hand-holding-dollar text-xl mb-2 text-sani-deepEarth"></i>
+                                        <p class="font-bold text-sm">Donation</p>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" class="peer sr-only">
+                                    <div class="p-4 border border-slate-200 rounded-xl hover:bg-lime-50 peer-checked:bg-lime-100 peer-checked:border-sani-lime transition-all text-center">
+                                        <i class="fa-solid fa-hand-fist text-xl mb-2 text-sani-deepEarth"></i>
+                                        <p class="font-bold text-sm">Advocacy</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-slate-700 text-xs lg:text-sm font-bold uppercase tracking-wide mb-2">Motivation</label>
+                            <textarea rows="4" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:bg-white text-sm" placeholder="Why does the sanitation revolution matter to you?"></textarea>
+                        </div>
+
+                        <div class="md:col-span-2 pt-6">
+                            <button class="w-full py-4 bg-sani-dark text-white rounded-xl font-bold uppercase tracking-widest hover:bg-sani-lime hover:text-sani-dark transition-colors shadow-lg flex justify-center items-center gap-3 text-sm">
+                                Join the Movement <i class="fa-solid fa-check"></i>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <div>
-          <label for="signature" class="block text-gray-700 mb-2 font-medium">Signature</label>
-          <input type="text" id="signature" name="signature" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700">
+    <footer class="bg-sani-dark text-white pt-24 pb-12 border-t border-white/10 mt-0">
+        <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div class="col-span-1 md:col-span-2">
+                <a href="index.html" class="font-display font-black text-3xl mb-6 block">SaniBook<span class="text-sani-red">.ke</span></a>
+                <p class="text-gray-400 text-sm max-w-md leading-relaxed">The definitive platform unlocking synergy and maximizing impact by transforming fragmented data into unified action.</p>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase text-sani-lime tracking-widest text-xs mb-6">Explore</h4>
+                <ul class="space-y-3 text-gray-400 text-sm">
+                    <li><a href="sanitationreality.html" class="hover:text-white transition-colors">The Reality</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Our Solution</a></li>
+                    <li><a href="tellstory.html" class="hover:text-white transition-colors">Tell Your Story</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase text-sani-lime tracking-widest text-xs mb-6">Contact</h4>
+                <ul class="space-y-3 text-gray-400 text-sm">
+                    <li><a href="mailto:sales@sanibook.ke" class="hover:text-white transition-colors">sales@sanibook.ke</a></li>
+                    <li><a href="mailto:marketing@sanibook.ke" class="hover:text-white transition-colors">marketing@sanibook.ke</a></li>
+                </ul>
+            </div>
         </div>
-
-        <div>
-          <label for="date" class="block text-gray-700 mb-2 font-medium">Date</label>
-          <input type="date" id="date" name="date" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-700">
+        <div class="max-w-[1400px] mx-auto px-6 pt-8 border-t border-white/10 text-center text-gray-500 text-xs">
+            <p>&copy; 2025 SaniBook Kenya. All rights reserved.</p>
         </div>
+    </footer>
 
-        <div class="md:col-span-2 text-center mt-8">
-          <button type="submit"
-            class="bg-blue-900 text-white font-semibold px-10 py-3 rounded-full shadow-lg hover:bg-blue-800 transition-all">
-            Submit Story
-          </button>
-        </div>
+    <script>
+        // === 1. Mobile Menu Logic ===
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+        let isMenuOpen = false;
 
-      </form>
-    </div>
-  </section>
-
-  <footer class="bg-white border-t border-gray-200 mt-10">
-    <div class="max-w-6xl mx-auto px-6 py-6 text-center text-gray-600 text-sm">
-      © 2025 SaniBook Initiative — Elevating Anecdote to Blueprint.
-    </div>
-  </footer>
-
-  <script>
-    const toggleButton = document.getElementById('navbar-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const closeButton = document.getElementById('close-mobile-menu');
-
-    toggleButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden';
-    });
-
-    closeButton.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    });
-  </script>
-
-  <script>
-    /* --- Word Count for Description --- */
-    const briefDescription = document.getElementById('brief-description');
-    const wordCountDisplay = document.getElementById('word-count');
-
-    function countWords(str) {
-      // Improved word counting: filters out empty strings resulting from multiple spaces
-      return str.trim().split(/\s+/).filter(word => word.length > 0).length;
-    }
-    
-    briefDescription.addEventListener('input', () => {
-      const currentWords = countWords(briefDescription.value);
-      wordCountDisplay.textContent = currentWords;
-
-      if (currentWords > 50) {
-        // Simple limitation by word count, may cut mid-word but ensures limit compliance
-        const words = briefDescription.value.trim().split(/\s+/).slice(0, 50);
-        briefDescription.value = words.join(" ");
-        wordCountDisplay.textContent = 50;
-      }
-    });
-
-    const pageCountOptions = document.querySelectorAll('input[name="page_count"]');
-    const imageSection = document.getElementById('image-size-section');
-
-    pageCountOptions.forEach(option => {
-      option.addEventListener('change', () => {
-        imageSection.classList.remove('hidden');
-      });
-    });
-
-    /* Impact Field Counter */
-    const impactField = document.getElementById('impact-field');
-    const impactCount = document.getElementById('impact-count');
-
-    impactField.addEventListener('input', () => {
-      impactCount.textContent = countWords(impactField.value);
-    });
-
-    /* Lessons & Challenges Field Counter */
-    const lessonsField = document.getElementById('lessons-field');
-    const lessonsCount = document.getElementById('lessons-count');
-
-    lessonsField.addEventListener('input', () => {
-      lessonsCount.textContent = countWords(lessonsField.value);
-    });
-  </script>
-
-  <script>
-    /* --- Partnership Checkbox Toggle --- */
-    const toggles = document.querySelectorAll('.partnership-toggle');
-  
-    toggles.forEach(toggle => {
-      toggle.addEventListener('change', () => {
-        const targetId = toggle.getAttribute('data-target');
-        const target = document.getElementById(targetId);
-  
-        if (toggle.checked) {
-          target.classList.remove('hidden');
-        } else {
-          target.classList.add('hidden');
-          // Uncheck all nested checkboxes when collapsing
-          target.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) {
+                mobileMenu.classList.add('open');
+                menuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>'; // Change icon to X
+                document.body.style.overflow = 'hidden'; // Stop scrolling
+            } else {
+                mobileMenu.classList.remove('open');
+                menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>'; // Change icon back to Bars
+                document.body.style.overflow = 'auto'; // Resume scrolling
+            }
         }
-      });
-    });
-  </script>
 
-  <script>
-    /* --- Intervention Dropdown Toggle --- */
-    const dropdownButton = document.getElementById('dropdownButton');
-    const dropdownMenu = document.getElementById('dropdownMenu');
+        menuBtn.addEventListener('click', toggleMenu);
 
-    // Function to update the button text based on selected checkboxes
-    function updateDropdownButtonText() {
-        const checkboxes = dropdownMenu.querySelectorAll('input[type="checkbox"]:checked');
-        if (checkboxes.length === 0) {
-            dropdownButton.textContent = 'Select Areas of Intervention';
-        } else if (checkboxes.length === 1) {
-            // Display the label text of the single selected item
-            dropdownButton.textContent = checkboxes[0].parentNode.textContent.trim();
-        } else {
-            dropdownButton.textContent = `${checkboxes.length} Areas Selected`;
+        // Close menu when a link is clicked
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(isMenuOpen) toggleMenu();
+            });
+        });
+
+        // === 2. GSAP Animations ===
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const tl = gsap.timeline();
+            tl.to(".hero-reveal", { y: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.2 })
+              .to(".hero-img-reveal", { scale: 1, opacity: 1, duration: 1.5, ease: "elastic.out(1, 0.7)" }, "-=0.8");
+        });
+
+        // === 3. Form Switcher Logic ===
+        const btnOrg = document.getElementById('btn-org');
+        const btnInd = document.getElementById('btn-ind');
+        const switchBg = document.getElementById('switch-bg');
+        const formOrg = document.getElementById('form-org');
+        const formInd = document.getElementById('form-ind');
+
+        function switchForm(type) {
+            if (type === 'org') {
+                // UI Toggle
+                switchBg.style.left = '6px';
+                btnOrg.classList.add('text-white');
+                btnOrg.classList.remove('text-slate-500');
+                btnInd.classList.add('text-slate-500');
+                btnInd.classList.remove('text-white');
+
+                // Form Transition
+                formInd.style.opacity = '0';
+                formInd.style.transform = 'translateX(100%)';
+                formInd.style.pointerEvents = 'none'; // Disable clicks
+                
+                setTimeout(() => {
+                    formOrg.style.opacity = '1';
+                    formOrg.style.transform = 'translateX(0)';
+                    formOrg.style.pointerEvents = 'auto'; // Enable clicks
+                }, 100);
+
+            } else {
+                // UI Toggle
+                switchBg.style.left = `calc(50% + 2px)`; // Approx calc
+                
+                btnInd.classList.add('text-white');
+                btnInd.classList.remove('text-slate-500');
+                btnOrg.classList.add('text-slate-500');
+                btnOrg.classList.remove('text-white');
+
+                // Form Transition
+                formOrg.style.opacity = '0';
+                formOrg.style.transform = 'translateX(-100%)';
+                formOrg.style.pointerEvents = 'none';
+
+                setTimeout(() => {
+                    formInd.style.opacity = '1';
+                    formInd.style.transform = 'translateX(0)';
+                    formInd.style.pointerEvents = 'auto';
+                }, 100);
+            }
         }
-    }
-
-    // Toggle the visibility of the dropdown when the button is clicked
-    dropdownButton.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevents document click from immediately closing it
-      dropdownMenu.classList.toggle('hidden');
-    });
-
-    // Event listener for changes inside the dropdown (checkboxes)
-    dropdownMenu.addEventListener('change', updateDropdownButtonText);
-
-    // Initial check (in case of cached selections)
-    updateDropdownButtonText();
-
-    // Close the dropdown if clicked outside of it
-    document.addEventListener('click', (e) => {
-      if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
-        dropdownMenu.classList.add('hidden');
-      }
-    });
-  </script>
-  
+    </script>
 </body>
 </html>
