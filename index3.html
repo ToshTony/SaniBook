@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaniBook | The Sanitation Revolution</title>
+    <title>SaniBook Vol. 1 | Breaking The Chain</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
@@ -26,9 +25,9 @@
                             lime: '#b8ff3e', 
                             red: '#ff0f39',
                             dark: '#050a14', 
-                            light: '#f8fcff',
-                            earth: '#8D6E63', // Warm Earthy Brown (Lighter for visibility)
-                            deepEarth: '#3E2723' // Dark Earth for gradient
+                            light: '#f0f7ff', // Slightly cool off-white for vibrancy
+                            earth: '#8D6E63',
+                            deepEarth: '#3E2723'
                         }
                     },
                     fontFamily: {
@@ -38,12 +37,14 @@
                     backgroundImage: {
                         'water-gradient': "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)",
                         'impact-gradient': "linear-gradient(135deg, #ff0f39 0%, #ff6b00 100%)",
+                        'vibrant-light-gradient': "linear-gradient(to bottom right, #ffffff, #f0f7ff, #e0f2fe)",
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'spin-slow': 'spin 12s linear infinite',
                         'sway': 'sway 8s ease-in-out infinite',
                         'color-pulse': 'colorPulse 4s ease-in-out infinite',
+                        'pulse-fast': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         float: {
@@ -55,8 +56,8 @@
                             '50%': { transform: 'rotate(3deg) translateX(10px)' },
                         },
                         colorPulse: {
-                            '0%, 100%': { color: '#ff0f39' }, /* Red */
-                            '50%': { color: '#4facfe' }, /* Blue */
+                            '0%, 100%': { color: '#ff0f39' },
+                            '50%': { color: '#4facfe' },
                         }
                     }
                 }
@@ -67,7 +68,6 @@
     <style>
         body { background-color: #ffffff; color: #050a14; overflow-x: hidden; cursor: none; }
         
-        /* 1. Custom Liquid Cursor */
         .cursor-dot {
             position: fixed; top: 0; left: 0; width: 20px; height: 20px;
             background: rgba(0, 242, 254, 0.8); border-radius: 50%;
@@ -77,20 +77,12 @@
         }
         .cursor-dot.hovering { width: 50px; height: 50px; background: rgba(255, 15, 57, 0.5); filter: blur(5px); }
 
-        /* 2. Background Texture */
         .caustic-overlay {
             position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.4;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
             mix-blend-mode: overlay;
         }
         
-        .topo-overlay {
-            position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.03;
-            background-image: url('https://www.transparenttextures.com/patterns/felt.png'); 
-            mix-blend-mode: multiply;
-        }
-
-        /* 3. Glass Card Style */
         .glass-card {
             background: rgba(255, 255, 255, 0.65);
             backdrop-filter: blur(16px);
@@ -99,34 +91,10 @@
             box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
         }
 
-        /* 4. Text Gradients */
-        .earth-liquid-text {
-            /* Navy -> Earth Brown -> Lime Hint -> Navy */
-            background: linear-gradient(90deg, #050a14, #5d4037, #8ba848, #050a14);
-            background-size: 300% auto;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 8s linear infinite;
-        }
-        
-        .liquid-text-blue {
-            background: linear-gradient(90deg, #050a14, #00f2fe, #4facfe, #050a14);
-            background-size: 300% auto;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-        }
-
-        @keyframes shine { to { background-position: 200% center; } }
-
-        /* 5. Marquee */
         .marquee-container { overflow: hidden; white-space: nowrap; }
         .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* 6. Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050a14; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
@@ -147,15 +115,10 @@
             </a>
 
             <div class="hidden md:flex gap-8 font-sans font-bold uppercase text-xs tracking-widest text-sani-dark/70">
-                <a href="#reality" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">
-                    The Reality <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sani-aqua transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#solution" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">
-                    Solution <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sani-aqua transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#act" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">
-                    Impact <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sani-aqua transition-all group-hover:w-full"></span>
-                </a>
+                <a href="#mission" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">Mission</a>
+                <a href="#reality" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">The Reality</a>
+                <a href="#solution" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">Solution</a>
+                <a href="#act" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">Impact</a>
             </div>
 
             <button class="md:hidden text-2xl text-sani-dark"><i class="fa-solid fa-bars"></i></button>
@@ -170,73 +133,65 @@
     <header class="relative min-h-[100vh] lg:min-h-[110vh] flex items-center pt-24 pb-12 overflow-hidden bg-sani-light">
         
         <div class="absolute inset-0 pointer-events-none opacity-[0.03]" style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 40px 40px;"></div>
-        <div class="topo-overlay"></div>
         <div class="caustic-overlay"></div>
 
         <div class="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] bg-sani-aqua/20 rounded-full blur-[100px] animate-float pointer-events-none"></div>
         <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-sani-lime/20 rounded-full blur-[100px] animate-float pointer-events-none" style="animation-delay: -2s;"></div>
-        <div class="absolute top-[20%] right-[20%] w-[60vw] h-[60vw] bg-sani-earth/10 rounded-full blur-[120px] animate-float pointer-events-none" style="animation-delay: -4s;"></div>
 
         <div class="max-w-[1800px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
             
             <div class="flex flex-col justify-center order-2 lg:order-1 relative z-30">
                 
-                <div class="hero-reveal opacity-0 translate-y-10">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-sani-earth/20 shadow-sm mb-6 lg:mb-8">
-                        <span class="relative flex h-3 w-3">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sani-red opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-3 w-3 bg-sani-red"></span>
-                        </span>
-                        <span class="text-xs font-bold uppercase tracking-widest text-sani-deepEarth">Shaping Kenya's Future</span>
+                <div class="hero-reveal opacity-0 translate-y-10 mb-8 relative group cursor-default">
+                    <div class="absolute -top-12 -left-10 w-24 h-24 bg-sani-lime text-sani-dark font-black text-xs uppercase tracking-widest flex items-center justify-center rounded-full animate-spin-slow z-10 shadow-lg border-2 border-sani-dark hidden md:flex">
+                        <svg viewBox="0 0 100 100" width="100" height="100">
+                            <path id="curve" d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0" fill="transparent"/>
+                            <text width="100%">
+                                <textPath xlink:href="#curve" class="text-[10px] font-bold fill-current">
+                                    • NOW AVAILABLE • READ NOW •
+                                </textPath>
+                            </text>
+                        </svg>
+                        <i class="fa-solid fa-star absolute text-xl"></i>
                     </div>
-                </div>
 
-                <h1 class="hero-reveal opacity-0 translate-y-10 font-display font-black text-[8vw] lg:text-[2rem] xl:text-[2rem] 2xl:text-[3rem] leading-[0.9] tracking-tighter mb-6 whitespace-nowrap lg:whitespace-normal">
-                    <span class="earth-liquid-text">SANITATION</span>
-                    <div class="flex items-center flex-wrap gap-2 lg:gap-4 mt-2">
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sani-dark to-sani-earth">REV</span>
-                        
-                        <div class="relative w-[0.75em] h-[0.75em] inline-flex items-center justify-center">
-                            <svg viewBox="0 0 24 24" fill="none" class="w-full h-full animate-spin-slow animate-color-pulse drop-shadow-[0_0_15px_rgba(0,0,0,0.1)]">
-                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2.5"/>
-                                <path d="M2 12H22" stroke="currentColor" stroke-width="2.5"/>
-                                <path d="M12 2C14.5 4.7 16 8.3 16 12C16 15.7 14.5 19.3 12 22C9.5 19.3 8 15.7 8 12C8 8.3 9.5 4.7 12 2Z" stroke="currentColor" stroke-width="2.5"/>
-                            </svg>
+                    <div class="pl-0 md:pl-6 border-l-0 md:border-l-8 border-sani-red transition-all duration-300 hover:border-l-[12px]">
+                        <div class="inline-block bg-sani-red text-white px-4 py-1 text-3xl font-bold uppercase tracking-widest transform -rotate-1 shadow-md mb-2">
+                            Sanibook Volume One
                         </div>
                         
-                        <span class="earth-liquid-text">LUTIONIZED</span>
+                        <h2 class="font-display font-black text-3xl lg:text-4xl leading-[0.85] tracking-tighter text-sani-dark mb-3 drop-shadow-sm">
+                            BREAKING <br>
+                            THE <span class="text-transparent bg-clip-text bg-gradient-to-r from-sani-red to-orange-600">CHAIN.</span>
+                        </h2>
+                        
+                        <p class="font-display font-bold text-xl lg:text-2xl text-sani-deepEarth leading-tight mb-8">
+                            Unpacking the <br>
+                            <span class="bg-sani-aqua/30 px-2 text-sani-dark decoration-sani-red decoration-4 underline underline-offset-4">Seven Critical Sanitation Bottlenecks.</span>
+                        </p>
+
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#join" class="hover-trigger group relative px-10 py-4 lg:px-12 lg:py-5 bg-sani-dark text-white rounded-full overflow-hidden shadow-[0_15px_40px_rgba(5,10,20,0.4)] hover:shadow-[0_20px_60px_rgba(5,10,20,0.6)] transition-all transform hover:-translate-y-1">
+                                <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-sani-blue to-sani-aqua opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <span class="relative z-10 font-bold uppercase tracking-widest text-sm flex items-center gap-3">
+                                    Get Volume One <i class="fa-solid fa-book-open -rotate-12 group-hover:rotate-0 transition-transform duration-300"></i>
+                                </span>
+                            </a>
+                            <a href="#watch" class="hover-trigger px-10 py-4 lg:px-12 lg:py-5 bg-white text-sani-dark border border-sani-dark/10 rounded-full font-bold uppercase tracking-widest text-sm hover:border-sani-red hover:text-sani-red transition-colors flex items-center gap-3 shadow-lg">
+                                <i class="fa-solid fa-play"></i> Watch Vision
+                            </a>
+                        </div>
                     </div>
-                </h1>
-
-                <p class="hero-reveal opacity-0 translate-y-10 text-xl lg:text-2xl text-sani-deepEarth font-medium max-w-xl leading-relaxed mb-10 border-l-4 border-sani-lime pl-6">
-                    Fragmented data costs lives. <strong class="text-sani-dark">SaniBook</strong> is the unified authority converting chaos into <span class="bg-sani-aqua/20 px-1 font-bold text-sani-dark">National Excellence.</span>
-                </p>
-
-                <div class="hero-reveal opacity-0 translate-y-10 flex flex-wrap gap-4">
-                    <a href="#join" class="hover-trigger group relative px-10 py-4 lg:px-12 lg:py-5 bg-sani-red text-white rounded-full overflow-hidden shadow-[0_15px_40px_rgba(255,15,57,0.4)] hover:shadow-[0_20px_60px_rgba(255,15,57,0.6)] transition-all transform hover:-translate-y-1">
-                        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-500 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <span class="relative z-10 font-bold uppercase tracking-widest text-sm flex items-center gap-3">
-                            Join Sanitationists <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
-                        </span>
-                    </a>
-                    <a href="#watch" class="hover-trigger px-10 py-4 lg:px-12 lg:py-5 bg-white text-sani-dark border border-sani-dark/10 rounded-full font-bold uppercase tracking-widest text-sm hover:border-sani-aqua hover:text-sani-aqua transition-colors flex items-center gap-3 shadow-lg">
-                        <i class="fa-solid fa-play"></i> Watch Vision
-                    </a>
                 </div>
             </div>
 
             <div class="relative h-[50vh] lg:h-[80vh] flex items-center justify-center order-1 lg:order-2 hero-img-reveal scale-90 opacity-0 z-10">
-                
                 <div class="relative w-full h-full max-w-[650px] max-h-[750px] rounded-[3rem] md:rounded-[4rem] animate-sway overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,242,254,0.4)] border-[6px] md:border-[8px] border-white z-10 bg-white group">
-                    <img src="assets/imgs/new/syec.jpg" 
-                         alt="Happy Child Clean Water" 
-                         class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[2s]">
-                    
+                    <img src="assets/imgs/new/syec.jpg" alt="Happy Child Clean Water" class="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[2s]">
                     <div class="absolute inset-0 bg-gradient-to-t from-sani-dark/70 via-transparent to-transparent"></div>
-                    
                     <div class="absolute bottom-12 left-12 text-white hidden md:block">
-                        <p class="font-display font-bold text-4xl lg:text-5xl mb-2">Clean Water.</p>
-                        <p class="font-sans text-lg lg:text-xl opacity-90 tracking-wide">Dignified Lives.</p>
+                        <p class="font-display font-bold text-4xl lg:text-5xl mb-2">Unpack the Truth.</p>
+                        <p class="font-sans text-lg lg:text-xl opacity-90 tracking-wide">Volume One Out Now.</p>
                     </div>
                 </div>
 
@@ -265,10 +220,8 @@
         <div class="absolute bottom-0 w-full bg-sani-dark py-4 md:py-6 rotate-1 scale-105 border-y-4 border-sani-lime z-20">
             <div class="marquee-container">
                 <div class="marquee-content">
-                    <span class="text-2xl md:text-4xl font-display font-bold text-white uppercase mx-8">Mapping Actors <span class="text-sani-lime">•</span></span>
-                    <span class="text-2xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 uppercase mx-8">Innovation Market <span class="text-sani-lime">•</span></span>
-                    <span class="text-2xl md:text-4xl font-display font-bold text-white uppercase mx-8">Unified Authority <span class="text-sani-lime">•</span></span>
-                    <span class="text-2xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 uppercase mx-8">Future Proof <span class="text-sani-lime">•</span></span>
+                    <span class="text-2xl md:text-4xl font-display font-bold text-white uppercase mx-8">Volume One Out Now <span class="text-sani-lime">•</span></span>
+                    <span class="text-2xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 uppercase mx-8">Breaking The Chain <span class="text-sani-lime">•</span></span>
                     <span class="text-2xl md:text-4xl font-display font-bold text-white uppercase mx-8">Mapping Actors <span class="text-sani-lime">•</span></span>
                     <span class="text-2xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600 uppercase mx-8">Innovation Market <span class="text-sani-lime">•</span></span>
                 </div>
@@ -276,62 +229,126 @@
         </div>
     </header>
 
-    <section id="reality" class="py-32 bg-white relative z-10">
-        <div class="max-w-[1800px] mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <section id="mission" class="py-32 relative overflow-hidden flex items-center justify-center text-center bg-white">
+        
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] opacity-50"></div>
+        
+        <div class="absolute top-0 right-0 w-[60vw] h-[60vw] bg-sani-blue/20 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/3 animate-pulse-fast"></div>
+        <div class="absolute bottom-0 left-0 w-[60vw] h-[60vw] bg-sani-lime/30 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/3 animate-pulse-fast" style="animation-delay: 1s;"></div>
+        <div class="caustic-overlay opacity-40 mix-blend-overlay"></div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10 intro-card opacity-0 translate-y-10">
+            
+            <div class="inline-flex items-center justify-center gap-3 mb-10 border-2 border-sani-dark/10 bg-white/60 backdrop-blur-xl px-8 py-3 rounded-full shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] group hover:border-sani-red/50 hover:shadow-sani-red/20 transition-all duration-300 cursor-default">
+                <i class="fa-solid fa-bolt text-sani-red text-lg animate-bounce"></i>
+                <span class="text-sm font-bold uppercase tracking-[0.25em] text-sani-dark">Our Core Mission</span>
+            </div>
+
+            <h2 class="font-display font-black text-3xl md:text-4xl tracking-tighter text-sani-dark mb-8 leading-[0.85] drop-shadow-sm relative z-10">
+                SANITATION <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-sani-red via-sani-blue to-sani-red bg-[length:200%_auto] animate-[shine_3s_linear_infinite]">REVOLUTIONIZED.</span>
+            </h2>
+
+            <p class="text-xl md:text-2xl text-sani-deepEarth font-medium leading-relaxed mb-12 max-w-4xl mx-auto relative z-10">
+                Fragmented data costs lives. <strong class="text-sani-dark font-black">SaniBook</strong> is the unified authority converting chaos into
+                <span class="relative inline-block px-4 py-1 whitespace-nowrap group">
+                    <span class="absolute inset-0 bg-sani-lime transform -rotate-2 -skew-x-6 rounded-sm shadow-[5px_5px_0px_rgba(5,10,20,0.1)] group-hover:shadow-none group-hover:translate-x-1 group-hover:translate-y-1 transition-all"></span>
+                    <span class="relative z-10 font-black text-sani-dark">National Excellence.</span>
+                </span>
+            </p>
+
+            <div class="mb-14 relative z-20">
+                <a href="contribute.html" class="group relative inline-flex items-center justify-center px-10 py-4 bg-gray-900 text-white rounded-full overflow-hidden shadow-2xl hover:shadow-red-600/40 transition-all duration-300 hover:-translate-y-1">
+                    <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-sani-red to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    <span class="relative z-10 font-bold uppercase tracking-widest text-sm flex items-center gap-3">
+                        Access Contributors Portal <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div class="h-2 w-48 bg-gradient-to-r from-sani-red via-sani-aqua to-sani-lime mx-auto rounded-full shadow-sm relative z-10"></div>
+        </div>
+    </section>
+
+    <section id="reality" class="py-24 bg-gray-50 relative z-10 border-t border-gray-200">
+        
+        <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
+
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
                 
                 <div class="lg:col-span-4 relative">
                     <div class="lg:sticky lg:top-32">
-                        <span class="text-sani-red font-bold uppercase tracking-widest text-sm mb-4 block">The Context</span>
-                        <h2 class="text-4xl md:text-6xl font-display font-black text-sani-dark leading-[0.9] mb-8">
-                            THE HARD <br> <span class="text-transparent bg-clip-text bg-impact-gradient">TRUTH.</span>
+                        <div class="inline-flex items-center gap-2 mb-4 bg-red-50 border border-red-100 px-3 py-1 rounded-full">
+                            <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-red-700">Critical Context</span>
+                        </div>
+                        
+                        <h2 class="text-4xl md:text-5xl font-display font-black text-gray-900 leading-[1.1] mb-6">
+                            THE HARD <br> 
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">TRUTH.</span>
                         </h2>
-                        <p class="text-xl text-sani-deepEarth font-medium leading-relaxed mb-8 border-l-4 border-sani-red pl-6">
-                            The cost of inaction isn't just numbers. It's potential lost. This is why we exist.
+                        
+                        <p class="text-lg text-gray-600 font-medium leading-relaxed mb-8 border-l-4 border-red-600 pl-5">
+                            The cost of inaction isn't just numbers—it's potential lost. These metrics define why SaniBook exists.
                         </p>
-                        <a href="#solution" class="group inline-flex items-center gap-2 text-sani-dark font-bold hover:text-sani-red transition-colors hover-trigger">
-                            <span class="border-b-2 border-sani-dark group-hover:border-sani-red pb-1">Discover the Solution</span>
-                            <i class="fa-solid fa-arrow-down-long group-hover:translate-y-1 transition-transform"></i>
+                        
+                        <a href="#solution" class="group inline-flex items-center gap-3 text-gray-900 font-bold hover:text-red-600 transition-colors">
+                            <span class="border-b-2 border-gray-900 group-hover:border-red-600 pb-0.5">Discover the Solution</span>
+                            <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
                         </a>
                     </div>
                 </div>
 
-                <div class="lg:col-span-8 space-y-8">
+                <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                     
-                    <div class="group bg-sani-light p-8 md:p-12 rounded-[3rem] border border-sani-dark/5 hover:border-sani-red transition-all duration-500 hover:shadow-[0_20px_60px_rgba(255,15,57,0.15)] intro-card opacity-0 translate-y-10 flex flex-col md:flex-row gap-8 items-center hover-trigger">
-                        <div class="w-32 h-32 bg-white rounded-full flex-shrink-0 flex items-center justify-center text-5xl text-sani-red shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div class="group bg-white p-8 rounded-[2rem] border border-gray-200 shadow-lg hover:shadow-2xl hover:shadow-red-500/10 hover:border-red-200 transition-all duration-300 md:col-span-2 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-red-50 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                        
+                        <div class="w-20 h-20 bg-red-100 text-red-600 rounded-2xl flex-shrink-0 flex items-center justify-center text-3xl relative z-10">
+                            <i class="fa-solid fa-money-bill-wave"></i>
                         </div>
-                        <div>
-                            <h3 class="text-7xl lg:text-9xl font-display font-black text-sani-dark mb-2">$324M</h3>
-                            <p class="text-sani-red font-bold uppercase tracking-widest text-sm mb-2">Annual Economic Loss</p>
-                            <p class="text-sani-deepEarth font-medium text-lg max-w-lg">
+                        
+                        <div class="relative z-10 text-center md:text-left flex-1">
+                            <h3 class="text-5xl md:text-6xl font-display font-black text-gray-900 mb-2 tracking-tight">$324M</h3>
+                            <p class="text-red-600 font-bold uppercase tracking-widest text-xs mb-2">Annual Economic Loss</p>
+                            <p class="text-gray-600 text-sm leading-relaxed max-w-lg mx-auto md:mx-0">
                                 Money drained from the economy annually due to poor sanitation health costs. A national crisis requiring immediate intervention.
                             </p>
                         </div>
                     </div>
 
-                    <div class="relative h-[400px] rounded-[3rem] overflow-hidden group intro-card opacity-0 translate-y-10 hover-trigger">
-                        <div class="absolute top-6 right-6 bg-black/70 backdrop-blur text-sani-lime border border-sani-lime px-4 py-2 rounded-full text-xs font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                            IMG: Infrastructure / Construction
+                    <div class="group relative h-[320px] rounded-[2rem] overflow-hidden border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300">
+                        <div class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-gray-900 border border-gray-200">
+                            Opportunity
                         </div>
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-r from-sani-dark/90 to-transparent"></div>
-                        <div class="absolute bottom-12 left-12 max-w-md">
-                            <h3 class="text-5xl font-display font-bold text-white mb-2">$4.4 Billion Gap</h3>
-                            <p class="text-sani-light/80 text-lg">The funding gap is massive, but it represents an unprecedented investment opportunity.</p>
+                        
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+                        
+                        <div class="absolute bottom-6 left-6 right-6 text-white">
+                            <h3 class="text-4xl font-display font-bold mb-1">$4.4 Billion</h3>
+                            <p class="text-gray-300 text-sm font-medium">Infrastructure Funding Gap</p>
                         </div>
                     </div>
 
-                    <div class="group bg-sani-dark p-8 md:p-12 rounded-[3rem] border border-sani-lime/20 hover:border-sani-lime transition-all duration-500 hover:shadow-[0_20px_60px_rgba(184,255,62,0.15)] intro-card opacity-0 translate-y-10 flex flex-col md:flex-row gap-8 items-center hover-trigger">
-                        <div class="w-32 h-32 bg-white/10 rounded-full flex-shrink-0 flex items-center justify-center text-5xl text-sani-lime shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-brain"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-7xl lg:text-9xl font-display font-black text-white mb-2">80%</h3>
-                            <p class="text-sani-lime font-bold uppercase tracking-widest text-sm mb-2">Conceptual Myopia</p>
-                            <p class="text-white/70 font-medium text-lg max-w-lg">
-                                Lack of access is driven not just by infrastructure, but by outdated social behaviors and fragmentation.
+                    <div class="group bg-white p-8 rounded-[2rem] border border-gray-200 shadow-lg hover:shadow-2xl hover:shadow-lime-500/10 hover:border-lime-400 transition-all duration-300 flex flex-col justify-center relative overflow-hidden">
+                        <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-lime-50 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-5xl font-display font-black text-gray-900 tracking-tight">80%</h3>
+                                <div class="w-12 h-12 bg-lime-100 text-lime-700 rounded-full flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-brain"></i>
+                                </div>
+                            </div>
+                            
+                            <p class="text-lime-700 font-bold uppercase tracking-widest text-xs mb-2">Conceptual Myopia</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Lack of access is driven not just by infrastructure, but by outdated social behaviors.
                             </p>
                         </div>
                     </div>
@@ -341,79 +358,212 @@
         </div>
     </section>
 
-    <section id="solution" class="bg-sani-dark py-32 overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-[50vw] h-[50vw] bg-sani-aqua/5 rounded-full blur-[120px]"></div>
+    <section id="solution" class="py-32 bg-slate-50 relative overflow-hidden z-20">
+        
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none"></div>
+        
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-400/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-emerald-400/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
 
-        <div class="max-w-[1800px] mx-auto px-6 mb-20">
-            <span class="text-sani-aqua font-bold uppercase tracking-widest text-sm mb-4 block">The Paradigm Shift</span>
-            <h2 class="text-6xl md:text-8xl font-display font-black text-white leading-none">
-                UNIFIED <span class="text-transparent bg-clip-text bg-water-gradient">AUTHORITY.</span>
-            </h2>
-        </div>
-
-        <div class="horizontal-scroll-container flex gap-8 px-6 pb-12 overflow-x-auto snap-x snap-mandatory">
+        <div class="max-w-[1400px] mx-auto px-6 relative z-30">
             
-            <div class="snap-center shrink-0 w-[85vw] md:w-[600px] bg-sani-slate p-10 rounded-[3rem] border border-white/5 relative group hover:border-sani-aqua/50 transition-colors hover-trigger">
-                <div class="absolute top-10 right-10 text-8xl font-display font-black text-white/5 group-hover:text-sani-aqua/10 transition-colors">01</div>
-                <div class="w-20 h-20 bg-water-gradient rounded-2xl flex items-center justify-center text-3xl text-white mb-8 shadow-lg"><i class="fa-solid fa-map-location-dot"></i></div>
-                <h3 class="text-4xl font-display font-bold text-white mb-4">Mapping Actors</h3>
-                <p class="text-gray-400 text-lg mb-8 h-20">Identifying stakeholders across the nation. We convert fragmented efforts into a visible, connected network.</p>
-                <div class="h-[250px] w-full rounded-3xl overflow-hidden relative">
-                    <div class="absolute top-4 right-4 bg-black/70 backdrop-blur text-sani-aqua border border-sani-aqua px-3 py-1 rounded-full text-xs font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                        IMG: Data Map
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-white border border-gray-300 shadow-sm">
+                        <div class="w-3 h-3 rounded-full bg-blue-600"></div>
+                        <span class="text-xs font-black uppercase tracking-widest text-black">The Paradigm Shift</span>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <h2 class="text-3xl md:text-5xl font-display font-black text-black leading-[0.95]">
+                        UNIFIED <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-cyan-600">AUTHORITY.</span>
+                    </h2>
+                </div>
+                <div class="max-w-md pb-2 border-l-4 border-black pl-6">
+                    <p class="text-md text-black font-bold leading-relaxed">
+                        We replaced fragmented silence with a roaring engine of change. SaniBook rewrites the rules of engagement.
+                    </p>
                 </div>
             </div>
 
-            <div class="snap-center shrink-0 w-[85vw] md:w-[600px] bg-sani-slate p-10 rounded-[3rem] border border-white/5 relative group hover:border-sani-lime/50 transition-colors hover-trigger">
-                <div class="absolute top-10 right-10 text-8xl font-display font-black text-white/5 group-hover:text-sani-lime/10 transition-colors">02</div>
-                <div class="w-20 h-20 bg-sani-lime rounded-2xl flex items-center justify-center text-3xl text-sani-dark mb-8 shadow-lg"><i class="fa-solid fa-lightbulb"></i></div>
-                <h3 class="text-4xl font-display font-bold text-white mb-4">Innovation Market</h3>
-                <p class="text-gray-400 text-lg mb-8 h-20">A digital marketplace where cutting-edge sanitation technologies meet the communities that need them most.</p>
-                <div class="h-[250px] w-full rounded-3xl overflow-hidden relative">
-                    <div class="absolute top-4 right-4 bg-black/70 backdrop-blur text-sani-lime border border-sani-lime px-3 py-1 rounded-full text-xs font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                        IMG: Modern Toilet Tech
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="group relative bg-white rounded-[2rem] p-4 border border-gray-300 shadow-xl hover:shadow-2xl hover:border-cyan-500 transition-all duration-300 hover:-translate-y-1">
+                    <div class="h-56 w-full rounded-[1.5rem] overflow-hidden relative isolate bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-3 left-3 bg-white px-3 py-1 rounded-full z-20 shadow-md border border-gray-100">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-black">Step 01</span>
+                        </div>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                </div>
-            </div>
 
-            <div class="snap-center shrink-0 w-[85vw] md:w-[600px] bg-sani-slate p-10 rounded-[3rem] border border-white/5 relative group hover:border-sani-red/50 transition-colors hover-trigger">
-                <div class="absolute top-10 right-10 text-8xl font-display font-black text-white/5 group-hover:text-sani-red/10 transition-colors">03</div>
-                <div class="w-20 h-20 bg-impact-gradient rounded-2xl flex items-center justify-center text-3xl text-white mb-8 shadow-lg"><i class="fa-solid fa-handshake"></i></div>
-                <h3 class="text-4xl font-display font-bold text-white mb-4">Unified Action</h3>
-                <p class="text-gray-400 text-lg mb-8 h-20">One pipeline. Total accountability. Delivering SDG 6.2 through collective, data-driven action.</p>
-                <div class="h-[250px] w-full rounded-3xl overflow-hidden relative">
-                    <div class="absolute top-4 right-4 bg-black/70 backdrop-blur text-sani-red border border-sani-red px-3 py-1 rounded-full text-xs font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                        IMG: Leadership
+                    <div class="relative -mt-6 ml-4 z-20 inline-flex items-center gap-3 bg-white p-1.5 pr-5 rounded-full shadow-lg border border-gray-200">
+                        <div class="w-10 h-10 rounded-full bg-cyan-100 text-cyan-700 border border-cyan-200 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <span class="text-xs font-black uppercase tracking-widest text-gray-600">Visibility</span>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                </div>
-            </div>
 
+                    <div class="px-2 pt-4 pb-2">
+                        <h3 class="text-2xl font-display font-black text-black mb-2 group-hover:text-cyan-600 transition-colors">Mapping Actors</h3>
+                        <p class="text-slate-800 text-sm leading-relaxed mb-6 font-semibold">
+                            We identify invisible stakeholders across 47 counties, converting fragmented efforts into a visible, connected digital network.
+                        </p>
+                        
+                        <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                            <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Data Visualization</span>
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-black group-hover:bg-cyan-500 group-hover:text-white transition-all">
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white rounded-[2rem] p-4 border border-gray-300 shadow-xl hover:shadow-2xl hover:border-lime-500 transition-all duration-300 hover:-translate-y-1">
+                    <div class="h-56 w-full rounded-[1.5rem] overflow-hidden relative isolate bg-gray-200">
+                        <img src="assets/imgs/new/new image page.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-3 left-3 bg-white px-3 py-1 rounded-full z-20 shadow-md border border-gray-100">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-black">Step 02</span>
+                        </div>
+                    </div>
+
+                    <div class="relative -mt-6 ml-4 z-20 inline-flex items-center gap-3 bg-white p-1.5 pr-5 rounded-full shadow-lg border border-gray-200">
+                        <div class="w-10 h-10 rounded-full bg-lime-100 text-lime-700 border border-lime-200 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <span class="text-xs font-black uppercase tracking-widest text-gray-600">Technology</span>
+                    </div>
+
+                    <div class="px-2 pt-4 pb-2">
+                        <h3 class="text-2xl font-display font-black text-black mb-2 group-hover:text-lime-600 transition-colors">Innovation Market</h3>
+                        <p class="text-slate-800 text-sm leading-relaxed mb-6 font-semibold">
+                            A dynamic digital marketplace connecting cutting-edge sanitation technologies directly with the communities that need them most.
+                        </p>
+                        
+                        <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                            <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">R&D Acceleration</span>
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-black group-hover:bg-lime-500 group-hover:text-white transition-all">
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative bg-white rounded-[2rem] p-4 border border-gray-300 shadow-xl hover:shadow-2xl hover:border-red-500 transition-all duration-300 hover:-translate-y-1">
+                    <div class="h-56 w-full rounded-[1.5rem] overflow-hidden relative isolate bg-gray-200">
+                        <img src="assets/imgs/new/sanispace.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-3 left-3 bg-white px-3 py-1 rounded-full z-20 shadow-md border border-gray-100">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-black">Step 03</span>
+                        </div>
+                    </div>
+
+                    <div class="relative -mt-6 ml-4 z-20 inline-flex items-center gap-3 bg-white p-1.5 pr-5 rounded-full shadow-lg border border-gray-200">
+                        <div class="w-10 h-10 rounded-full bg-red-100 text-red-700 border border-red-200 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <span class="text-xs font-black uppercase tracking-widest text-gray-600">Execution</span>
+                    </div>
+
+                    <div class="px-2 pt-4 pb-2">
+                        <h3 class="text-2xl font-display font-black text-black mb-2 group-hover:text-red-600 transition-colors">Unified Action</h3>
+                        <p class="text-slate-800 text-sm leading-relaxed mb-6 font-semibold">
+                            Creating one pipeline for funding and accountability. Delivering SDG 6.2 through collective, transparent, data-driven action.
+                        </p>
+                        
+                        <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                            <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">SDG 6.2 Target</span>
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-black group-hover:bg-red-600 group-hover:text-white transition-all">
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </section>
+    </section>  
 
-    <section id="act" class="py-40 relative overflow-hidden bg-white flex items-center justify-center">
-        <div class="absolute inset-0 bg-gradient-to-br from-sani-aqua/20 via-white to-sani-lime/20 animate-pulse"></div>
-        <div class="caustic-overlay opacity-50"></div>
+    <section id="act" class="py-24 bg-white relative overflow-hidden border-t border-gray-100">
+        
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-r from-red-100/40 via-blue-50/40 to-lime-100/40 blur-[100px] rounded-full pointer-events-none"></div>
 
-        <div class="relative z-10 text-center max-w-5xl px-6">
-            <h2 class="text-[10vw] leading-[0.8] font-display font-black text-sani-dark mb-10 mix-blend-multiply">
-                FUTURE PROOF <br> YOUR IMPACT.
-            </h2>
-            <p class="text-2xl md:text-3xl text-sani-deepEarth font-medium mb-12 max-w-3xl mx-auto">
-                Don't just watch the conversation. <span class="bg-sani-dark text-white px-3 py-1 font-bold transform -rotate-1 inline-block">Own the revolution.</span>
-            </p>
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
             
-            <div class="flex flex-col md:flex-row gap-6 justify-center">
-                <a href="#" class="hover-trigger px-12 py-6 bg-sani-red text-white font-bold text-xl uppercase tracking-widest rounded-full hover:scale-105 transition-transform shadow-[0_20px_50px_rgba(255,15,57,0.4)] flex items-center justify-center gap-3">
-                    Tell Your Story <i class="fa-solid fa-bullhorn"></i>
-                </a>
-                <a href="#" class="hover-trigger px-12 py-6 border-4 border-sani-dark text-sani-dark font-bold text-xl uppercase tracking-widest rounded-full hover:bg-sani-dark hover:text-white transition-colors flex items-center justify-center gap-3">
-                    Sponsor SaniBook <i class="fa-solid fa-rocket"></i>
-                </a>
+            <div class="bg-white/80 backdrop-blur-xl rounded-[3rem] border border-gray-200 p-8 md:p-12 shadow-2xl shadow-gray-200/50 overflow-hidden relative group">
+                
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-gray-900 to-red-500"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <div class="relative z-10">
+                        <div class="inline-flex items-center gap-2 mb-6 bg-gray-100 px-3 py-1 rounded-md border border-gray-200">
+                            <span class="relative flex h-2 w-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                            </span>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-gray-600">Final Call</span>
+                        </div>
+
+                        <h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-black text-gray-900 mb-4 leading-[0.95] tracking-tight">
+                            FUTURE PROOF <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600">YOUR IMPACT.</span>
+                        </h2>
+                        
+                        <p class="text-lg text-gray-600 font-medium mb-8 max-w-md leading-relaxed">
+                            Don't just watch. <span class="text-gray-900 font-bold border-b-2 border-red-200">Own the revolution.</span> Join the coalition defining Kenya's sanitation future.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="contributors.html" class="flex-1 group relative px-6 py-4 bg-gray-900 text-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 text-center">
+                                <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-gray-800 to-gray-900 opacity-100 group-hover:opacity-90 transition-opacity"></div>
+                                <span class="relative z-10 font-bold text-sm uppercase tracking-widest flex items-center justify-center gap-2">
+                                    Tell Your Story <i class="fa-solid fa-bullhorn text-red-500 group-hover:rotate-12 transition-transform"></i>
+                                </span>
+                            </a>
+                            
+                            <a href="#" class="flex-1 px-6 py-4 bg-white border border-gray-200 text-gray-900 rounded-xl font-bold text-sm uppercase tracking-widest hover:border-gray-400 hover:bg-gray-50 transition-all text-center flex items-center justify-center gap-2">
+                                Sponsor <i class="fa-solid fa-star text-yellow-500"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="relative h-[350px] w-full flex items-center justify-center perspective-1000">
+                        
+                        <div class="absolute w-64 h-64 bg-gradient-to-br from-red-500/10 to-blue-500/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
+
+                        <div class="relative w-[280px] h-[360px] bg-gray-900 rounded-[1.5rem] shadow-2xl transform rotate-3 transition-transform duration-500 group-hover:rotate-0 group-hover:scale-105 overflow-hidden border-4 border-white ring-1 ring-gray-200">
+                            <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=2070&auto=format&fit=crop" 
+                                 class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay group-hover:scale-110 transition-transform duration-1000">
+                            
+                            <div class="absolute inset-0 p-6 flex flex-col justify-between z-10">
+                                <div class="flex justify-between items-start">
+                                    <div class="w-8 h-8 rounded-full bg-white/10 backdrop-blur flex items-center justify-center">
+                                        <i class="fa-solid fa-book-open text-white text-xs"></i>
+                                    </div>
+                                    <span class="text-[10px] font-mono text-lime-400 border border-lime-400/30 px-2 py-0.5 rounded-full bg-lime-400/10">VOL. 01</span>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-white font-display font-bold text-2xl leading-none mb-1">Breaking<br>The Chain</h3>
+                                    <p class="text-gray-400 text-xs font-mono">Kenya Sanitation Report</p>
+                                </div>
+                            </div>
+
+                            <div class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000"></div>
+                        </div>
+
+                        <div class="absolute -bottom-4 -left-4 bg-white p-3 rounded-xl shadow-xl border border-gray-100 flex items-center gap-3 animate-float">
+                            <div class="w-10 h-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold">
+                                47
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase font-bold text-gray-400">Counties</p>
+                                <p class="text-sm font-bold text-gray-900">Mapped</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
