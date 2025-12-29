@@ -1,281 +1,421 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Why The SaniBook | SaniBook Initiative</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why The SaniBook | The Knowledge Nexus</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sani: {
+                            aqua: '#00f2fe',
+                            blue: '#4facfe',
+                            lime: '#b8ff3e', 
+                            red: '#ff0f39',
+                            dark: '#050a14', 
+                            light: '#f8fafc',
+                            deepEarth: '#3E2723'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)",
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* Custom Colors for Sanitation Theme */
-        .sani-navy { background-color: #0A346C; } /* Deep Navy/Blue */
-        .sani-teal { background-color: #00A79D; } /* Vibrant Teal */
-        .text-sani-teal { color: #00A79D; }
-        .border-sani-teal { border-color: #00A79D; }
+        body { background-color: #f8fafc; color: #050a14; overflow-x: hidden; }
         
-        /* Subtle Scroll Animation Styles */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        /* Glass Effect */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
         }
-        .scroll-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        /* Animated Gradient Text */
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
+
+        .animated-gradient-text {
+            background: linear-gradient(270deg, #ff0f39, #a855f7, #4facfe, #ff0f39);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-flow 6s ease infinite;
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.2));
+        }
+
+        /* Menu Styles */
+        .popover-menu {
+            transform-origin: top right;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .popover-menu.closed { opacity: 0; transform: scale(0.9) translateY(-20px); pointer-events: none; }
+        .popover-menu.open { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased pt-20 md:pt-24">
+<body class="antialiased">
 
-    <nav class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm shadow-md z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-            <a href="index.html" class="text-2xl font-bold text-blue-700">
-                <h1>SaniBook</h1>
+    <nav class="fixed w-full z-50 top-0 px-4 pt-4 transition-all duration-300">
+        <div class="glass-panel rounded-full max-w-[1600px] mx-auto px-4 md:px-6 py-3 flex justify-between items-center shadow-lg relative z-50">
+            <a href="index.html" class="font-display font-black text-xl md:text-2xl tracking-tighter text-sani-dark flex items-center gap-2 group hover-trigger">
+                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-sani-aqua flex items-center justify-center text-white group-hover:rotate-12 transition-transform">
+                    <i class="fa-solid fa-droplet text-sm md:text-base"></i>
+                </div>
+                <span>SaniBook<span class="text-sani-red">.ke</span></span>
             </a>
 
-            <div class="md:hidden">
-                <button id="navbar-toggle" class="text-blue-700 p-2 rounded-md hover:bg-gray-100 transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                            d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
+            <div class="hidden lg:flex gap-8 font-sans font-bold uppercase text-xs tracking-widest text-sani-dark/70">
+                <a href="index.html" class="hover:text-sani-aqua transition-colors py-2">Home</a>
+                <a href="#" class="text-sani-blue py-2 border-b-2 border-sani-blue">Why SaniBook</a>
+                <a href="sanitationreality.html" class="hover:text-sani-aqua transition-colors py-2">Reality</a>
+                <a href="tellstory.html" class="hover:text-sani-aqua transition-colors py-2">Tell Story</a>
             </div>
 
-            <ul id="navbar-links" class="hidden md:flex space-x-8 text-sm font-medium">
-                <li><a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a></li>
-                <li><a href="whythesanibook.html" class="text-blue-700 font-semibold border-b-2 border-blue-700">Why the SaniBook</a></li>
-                <li><a href="sanitationreality.html" class="text-gray-700 hover:text-blue-600 transition-colors">Sanitation Reality</a></li>
-                <li><a href="tellstory.html" class="text-gray-700 hover:text-blue-600 transition-colors">Tell Your Story</a></li>
-                <li><a href="joinsani.html" class="text-gray-700 hover:text-blue-600 transition-colors">Join Sanitationists</a></li>
-                <li><a href="contactus.html" class="text-gray-700 hover:text-blue-600 transition-colors">Contact Us</a></li>
-                <li><a href="#login" class="text-blue-700 font-semibold bg-blue-50 px-3 py-1 rounded-full hover:bg-blue-100 transition-colors">Login</a></li>
-            </ul>
+            <button id="mobile-toggle" class="lg:hidden text-2xl text-sani-dark hover:text-sani-red transition-colors focus:outline-none z-50 p-2">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <button id="desktop-toggle" class="hidden lg:flex items-center gap-3 px-6 py-2.5 rounded-full bg-sani-dark text-white font-bold text-xs uppercase tracking-widest hover:bg-sani-red transition-all group hover-trigger z-50">
+                <span class="menu-text relative z-10">Menu</span>
+                <div class="w-6 h-6 flex items-center justify-center bg-white/10 rounded-full group-hover:bg-white/20 transition-colors">
+                    <i class="menu-icon fa-solid fa-bars text-[10px]"></i>
+                </div>
+            </button>
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white bg-opacity-95 z-40 hidden transition-opacity duration-300 ease-in-out">
-        <div class="flex justify-end p-4">
-            <button id="close-mobile-menu" class="text-gray-800 text-3xl p-2 rounded-md hover:bg-gray-100">&times;</button>
-        </div>
-        <div class="flex flex-col justify-start items-center h-full pt-10">
-            <ul class="space-y-6 text-xl font-medium text-center">
-                <li><a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors" onclick="closeMobileMenu()">Home</a></li>
-                <li><a href="whythesanibook.html" class="text-blue-700 font-semibold" onclick="closeMobileMenu()">Why the SaniBook</a></li>
-                <li><a href="sanitationreality.html" class="text-gray-700 hover:text-blue-600 transition-colors" onclick="closeMobileMenu()">Sanitation Reality</a></li>
-                <li><a href="tellstory.html" class="text-gray-700 hover:text-blue-600 transition-colors" onclick="closeMobileMenu()">Tell Your Story</a></li>
-                <li><a href="joinsani.html" class="text-gray-700 hover:text-blue-600 transition-colors" onclick="closeMobileMenu()">Join Sanitationists</a></li>
-                <li><a href="contactus.html" class="text-gray-700 hover:text-blue-600 transition-colors" onclick="closeMobileMenu()">Contact Us</a></li>
-                <li><a href="#login" class="text-blue-700 mt-4 inline-block font-semibold bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-100 transition-colors" onclick="closeMobileMenu()">Login</a></li>
-            </ul>
+    <div id="main-menu" class="popover-menu closed fixed top-24 right-4 md:right-8 z-[60] w-[300px] bg-white/95 backdrop-blur-2xl rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] border border-white/50 overflow-hidden ring-1 ring-black/5">
+        <div class="relative z-10 p-2">
+            <div class="flex flex-col gap-1">
+                <a href="index.html" class="menu-item flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 group transition-all">
+                    <span class="font-display font-bold text-lg text-sani-dark group-hover:text-sani-blue">Home</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-300 group-hover:text-sani-blue -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all"></i>
+                </a>
+                <a href="sanitationreality.html" class="menu-item flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 group transition-all">
+                    <span class="font-display font-bold text-lg text-sani-dark group-hover:text-sani-red">Reality</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-300 group-hover:text-sani-red -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all"></i>
+                </a>
+                <a href="tellstory.html" class="menu-item flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 group transition-all">
+                    <span class="font-display font-bold text-lg text-sani-dark group-hover:text-sani-lime">Tell Story</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-300 group-hover:text-sani-lime -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all"></i>
+                </a>
+                <a href="joinsani.html" class="menu-item flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 group transition-all">
+                    <span class="font-display font-bold text-lg text-sani-dark group-hover:text-purple-500">Join Us</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-300 group-hover:text-purple-500 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all"></i>
+                </a>
+                <a href="contactus.html" class="menu-item flex items-center justify-between p-3 rounded-2xl hover:bg-slate-50 group transition-all">
+                    <span class="font-display font-bold text-lg text-sani-dark group-hover:text-gray-600">Contact</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-300 group-hover:text-gray-600 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all"></i>
+                </a>
+            </div>
+            <div class="h-px w-full bg-slate-100 my-2"></div>
+            <a href="tellstory.html" class="block bg-sani-dark text-white text-center rounded-xl py-3 font-bold text-xs uppercase tracking-widest hover:bg-sani-red hover:shadow-lg transition-all group">Contributors Portal</a>
         </div>
     </div>
 
+    <header class="relative pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern [background-size:40px_40px] opacity-30 pointer-events-none"></div>
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-sani-blue/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-sani-lime/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
 
-    <section class="relative sani-navy text-white py-20 overflow-hidden shadow-xl">
-        <div class="absolute inset-0 opacity-50 bg-cover bg-center" style="background-image: url('assets/imgs/new/Participate.jpg');"></div>
-        <div class="max-w-7xl mx-auto text-center px-6 relative z-10 scroll-reveal">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
-                Why The SaniBook?
-            </h1>
-            <p class="text-lg md:text-xl text-teal-300 max-w-3xl mx-auto">
-                Revolutionize sanitation information: Turning every intervention into a documented success story for a healthier, cleaner Kenya.
-            </p>
-        </div>
-    </section>
-
-    <section class="py-16 px-6 bg-white">
-        <div class="max-w-5xl mx-auto">
-            <div class="bg-white rounded-lg shadow-xl p-8 border-t-8 border-sani-teal scroll-reveal">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
-                    The Critical Need: Unifying Invisible Solutions
-                </h2>
-                <h5 class="text-xl text-gray-700 mb-6">
-                    Kenya's sanitation solutions are working, but they're invisible. Despite countless successful interventions, fragmented data and poor documentation prevent learning and coordination.
-                </h5>
-                <p class="text-gray-600 text-lg leading-relaxed">
-                    The **SaniBook Initiative** changes this by compiling these fragmented efforts into a unified, accessible **knowledge nexus**. This amplifies success and drives collective progress, ensuring that valuable, hard-won expertise informs national policy and future interventions.
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10 text-center">
+            <div class="reveal-elem opacity-0 translate-y-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-50 border border-blue-100 text-sani-blue font-bold text-xs uppercase tracking-widest mb-6">Mission Critical</span>
+                
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-black text-sani-dark mb-6 tracking-tight leading-[0.9]">
+                    WHY THE <br class="md:hidden"> 
+                    <span class="animated-gradient-text cursor-default">SANIBOOK?</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-slate-600 font-medium max-w-3xl mx-auto leading-relaxed mb-12">
+                    Revolutionizing sanitation information by turning fragmented interventions into a documented <span class="text-sani-dark font-black underline decoration-sani-lime decoration-4 underline-offset-4">national blueprint.</span>
                 </p>
             </div>
+        </div>
+    </header>
+
+    <section class="py-12 px-4 md:px-6 relative z-20">
+        <div class="max-w-[1400px] mx-auto">
             
-            <div class="grid md:grid-cols-3 gap-8 mt-12 text-center">
-                <div class="p-6 bg-blue-50 rounded-lg shadow-md scroll-reveal" data-delay="100">
-                    <h3 class="text-2xl font-bold text-blue-800">Information Sharing Platform</h3>
-                    <p class="text-gray-600 mt-3">A central digital hub for sharing validated success stories and best practices.</p>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                
+                <div class="md:col-span-12 lg:col-span-7 reveal-elem opacity-0 translate-y-10">
+                    <div class="h-full bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-slate-100 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-sani-red/5 rounded-full blur-3xl group-hover:bg-sani-red/10 transition-colors duration-500"></div>
+                        
+                        <h3 class="text-2xl md:text-3xl font-display font-black text-sani-dark mb-6">
+                            THE PROBLEM: <span class="animated-gradient-text">INVISIBLE SUCCESS.</span>
+                        </h3>
+                        <p class="text-slate-600 text-lg leading-relaxed mb-8">
+                            Kenya's sanitation solutions are working, but they remain isolated. Despite countless interventions, <strong class="text-sani-dark">fragmented data</strong> prevents learning. We are compiling these efforts into a unified knowledge nexus to inform national policy.
+                        </p>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="h-px flex-1 bg-slate-200"></div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Bridging the Gap</span>
+                            <div class="h-px flex-1 bg-slate-200"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-6 bg-blue-50 rounded-lg shadow-md scroll-reveal" data-delay="200">
-                    <h3 class="text-2xl font-bold text-blue-800">Shared National Work-plan</h3>
-                    <p class="text-gray-600 mt-3">Facilitates coordination by identifying successful models for replication and scale.</p>
+
+                <div class="md:col-span-6 lg:col-span-5 reveal-elem opacity-0 translate-y-10" data-delay="0.1">
+                    <div class="h-full rounded-[2.5rem] shadow-xl relative overflow-hidden group min-h-[300px]">
+                        <img src="assets/imgs/new/Participate.jpg" alt="Community Participation" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-sani-dark/90 via-sani-dark/30 to-transparent"></div>
+                        
+                        <div class="absolute bottom-8 left-8 right-8 z-10">
+                            <i class="fa-solid fa-layer-group text-3xl text-sani-lime mb-4 animate-bounce"></i>
+                            <h4 class="text-white font-display font-bold text-2xl mb-1">Unifying Data</h4>
+                            <p class="text-slate-300 text-sm">From isolated silos to a collective national authority.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-6 bg-blue-50 rounded-lg shadow-md scroll-reveal" data-delay="300">
-                    <h3 class="text-2xl font-bold text-blue-800">Delivering Maximum Impact</h3>
-                    <p class="text-gray-600 mt-3">Focuses resources on proven, effective hygiene and sanitation strategies.</p>
+
+                <div class="md:col-span-6 lg:col-span-4 reveal-elem opacity-0 translate-y-10" data-delay="0.2">
+                    <div class="h-full bg-white rounded-[2rem] p-8 shadow-lg border border-slate-100 hover:border-sani-blue transition-colors duration-300 group">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-50 text-sani-blue flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h4 class="font-bold text-xl text-sani-dark mb-3">Digital Nexus</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">A central digital hub for sharing validated success stories and best practices instantly.</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-6 lg:col-span-4 reveal-elem opacity-0 translate-y-10" data-delay="0.3">
+                    <div class="h-full bg-white rounded-[2rem] p-8 shadow-lg border border-slate-100 hover:border-purple-500 transition-colors duration-300 group">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <h4 class="font-bold text-xl text-sani-dark mb-3">National Coordination</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">Identifying successful models for replication, creating a shared roadmap for scale.</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-6 lg:col-span-4 reveal-elem opacity-0 translate-y-10" data-delay="0.4">
+                    <div class="h-full bg-white rounded-[2rem] p-8 shadow-lg border border-slate-100 hover:border-sani-lime transition-colors duration-300 group">
+                        <div class="w-12 h-12 rounded-2xl bg-lime-50 text-lime-600 flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h4 class="font-bold text-xl text-sani-dark mb-3">Maximum Impact</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">Focusing financial and human resources strictly on proven, effective strategies.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white relative overflow-hidden mt-12">
+        <div class="absolute inset-0 bg-slate-50 -skew-y-2 transform origin-top-left -z-10"></div>
+
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                
+                <div class="reveal-elem opacity-0 translate-x-[-20px]">
+                    <h2 class="text-3xl md:text-5xl font-display font-black text-sani-dark mb-6">
+                        THE PARTNERSHIP <br> <span class="animated-gradient-text">ADVANTAGE.</span>
+                    </h2>
+                    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                        By partnering with us, your organization achieves significant and tangible benefits, investing directly in public health and future sustainability.
+                    </p>
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 group">
+                        <img src="assets/imgs/new/ps.jpg" alt="Partners" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-sani-dark/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <span class="bg-white text-sani-dark text-[10px] font-bold uppercase px-3 py-1 rounded-full shadow-lg">Strategic Value</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 reveal-elem opacity-0 translate-x-[20px]">
+                    
+                    <div class="bg-white p-6 rounded-2xl flex gap-5 shadow-sm border border-slate-100 hover:shadow-lg hover:border-blue-200 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-hand-holding-heart text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sani-dark font-bold text-lg mb-1 group-hover:text-blue-600 transition-colors">Enhanced CSR</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed">Recognized as a champion of public health, aligning your brand with global well-being goals.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl flex gap-5 shadow-sm border border-slate-100 hover:shadow-lg hover:border-purple-200 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-eye text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sani-dark font-bold text-lg mb-1 group-hover:text-purple-600 transition-colors">Extensive Visibility</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed">Prominently featured in all SaniBook copies, reaching thousands of families, schools, and leaders.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl flex gap-5 shadow-sm border border-slate-100 hover:shadow-lg hover:border-lime-200 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-lime-50 text-lime-600 flex items-center justify-center shrink-0 group-hover:bg-lime-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-chart-line text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sani-dark font-bold text-lg mb-1 group-hover:text-lime-600 transition-colors">Demonstrable Impact</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed">We provide detailed impact reports allowing you to quantify your contribution to disease reduction.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl flex gap-5 shadow-sm border border-slate-100 hover:shadow-lg hover:border-red-200 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-lightbulb text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-sani-dark font-bold text-lg mb-1 group-hover:text-red-600 transition-colors">Thought Leadership</h4>
+                            <p class="text-slate-500 text-sm leading-relaxed">Position your organization as an innovator dedicated to evidence-based solutions.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 px-6 sani-navy text-white">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12 scroll-reveal">
-                <h2 class="text-4xl font-bold mb-4 text-teal-400">
-                    The Partnership Advantage
-                </h2>
-                <p class="text-lg text-blue-100 max-w-3xl mx-auto">
-                    By partnering with us, your organization achieves significant and tangible benefits, investing directly in public health and future sustainability.
-                </p>
-                <img src="assets/imgs/new/ps.jpg" alt="Partners working together" class="rounded-xl shadow-2xl mt-8 mx-auto w-full md:w-3/5" loading="lazy">
-            </div>
-
-            <div class="bg-white rounded-xl shadow-2xl overflow-hidden scroll-reveal" data-delay="400">
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-blue-800 text-white">
-                            <tr>
-                                <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider w-1/3">Sponsor Benefit</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider w-2/3">Description of Impact</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            <tr class="hover:bg-gray-50 transition duration-150">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Enhanced Corporate Social Responsibility (CSR)</td>
-                                <td class="px-6 py-4 text-sm text-gray-600">Your brand will be recognized as a champion of public health and sustainable development, directly aligning your values with global well-being goals.</td>
-                            </tr>
-                            <tr class="bg-gray-50 hover:bg-gray-100 transition duration-150">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Extensive Brand Visibility &amp; Reach</td>
-                                <td class="px-6 py-4 text-sm text-gray-600">Your organization's logo and acknowledgement will be prominently featured in all sponsored copies of SaniBook, reaching thousands of families, schools, and local leaders in key demographics.</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50 transition duration-150">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Demonstrable Social Impact</td>
-                                <td class="px-6 py-4 text-sm text-gray-600">We provide detailed impact reports, allowing you to quantify your contribution to disease reduction, improved school retention, and community productivity.</td>
-                            </tr>
-                            <tr class="bg-gray-50 hover:bg-gray-100 transition duration-150">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Positive Stakeholder Perception</td>
-                                <td class="px-6 py-4 text-sm text-gray-600">Strengthen your relationship with consumers, employees, and investors who increasingly prioritize businesses with a genuine commitment to social good.</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50 transition duration-150">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Thought Leadership in Health</td>
-                                <td class="px-6 py-4 text-sm text-gray-600">Position your organization as an innovator and leader dedicated to evidence-based solutions in the critical sectors of health and hygiene.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 px-6 bg-white text-center">
-        <div class="max-w-4xl mx-auto scroll-reveal">
-            <h3 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
-                Invest in Health, Impact the Future
+    <section class="py-24 bg-white text-center relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-blue-50 rounded-full blur-3xl opacity-50 -z-10"></div>
+        <div class="max-w-4xl mx-auto px-6 reveal-elem opacity-0 translate-y-10">
+            <h3 class="text-3xl md:text-5xl font-display font-black text-sani-dark mb-6">
+                INVEST IN HEALTH, <br> <span class="animated-gradient-text">IMPACT THE FUTURE.</span>
             </h3>
-            <p class="text-xl text-gray-700 mb-8">
+            <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
                 Download the Synopsis or contact our partnership team to discuss how your investment can drive national change.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="synopsis.html" class="inline-block px-8 py-3 bg-red-600 text-white font-semibold rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
-                    Read The SaniBook Synopsis
-                    <em class="fa-solid fa-arrow-right-long ml-2"></em>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="synopsis.html" class="inline-flex items-center justify-center px-8 py-4 bg-sani-red text-white font-bold rounded-full shadow-xl shadow-red-200 hover:shadow-red-300 hover:-translate-y-1 transition-all">
+                    Read Synopsis <i class="fa-solid fa-file-pdf ml-2"></i>
                 </a>
-                <a href="#" class="inline-block px-8 py-3 sani-teal text-white font-semibold rounded-full shadow-lg hover:bg-teal-600 transition duration-300 transform hover:scale-105">
+                <a href="contactus.html" class="inline-flex items-center justify-center px-8 py-4 bg-white border-2 border-slate-200 text-sani-dark font-bold rounded-full hover:border-sani-dark transition-colors">
                     Contact Partnerships
                 </a>
             </div>
         </div>
     </section>
 
-
-    <footer class="sani-navy text-white pt-12 pb-6">
-        <div class="auto-container max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                
-                <div>
-                    <h2 class="text-2xl font-bold mb-4">#SaniBook</h2>
-                    <a href="#" class="inline-block px-4 py-2 text-sm bg-red-600 text-white font-semibold rounded-full hover:bg-red-700 transition duration-300">
-                        Sign up for newsletter
-                    </a>
-                    <div class="flex space-x-4 mt-6">
-                        <a href="#" target="_blank" class="text-white hover:text-teal-400 transition-colors"><span class="fab fa-facebook-f"></span></a>
-                        <a href="#" target="_blank" class="text-white hover:text-teal-400 transition-colors"><svg class="twitter w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" version="1.1"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
-                        <a href="#" target="_blank" class="text-white hover:text-teal-400 transition-colors"><span class="fab fa-linkedin-in"></span></a>
-                    </div>
-                </div>
-
-                <div class="text-sm">
-                    <h2 class="text-lg font-semibold mb-4">Let’s Talk</h2>
-                    <p class="mb-2"><strong>Sales Inquiry</strong><br><a href="mailto:sales@sanibook.ke" class="text-teal-300 hover:text-teal-400">sales@sanibook.ke</a></p>
-                    <p class="mb-2"><strong>Partnership Inquiry</strong><br><a href="mailto:patnership@sanibook.ke" class="text-teal-300 hover:text-teal-400">patnership@sanibook.ke</a></p>
-                </div>
-                
-                <div class="text-sm">
-                    <h2 class="text-lg font-semibold mb-4">Get Involved</h2>
-                    <ul>
-                        <li class="mb-1"><a href="whythesanibook.html" class="hover:text-teal-400">Why SaniBook</a></li>
-                        <li class="mb-1"><a href="tellstory.html" class="hover:text-teal-400">Tell Your Story</a></li>
-                        <li class="mb-1"><a href="joinsani.html" class="hover:text-teal-400">Join Sanitationists</a></li>
-                    </ul>
-                </div>
-                
-                <div class="text-sm">
-                    <h2 class="text-lg font-semibold mb-4">Legal & Support</h2>
-                    <ul>
-                        <li class="mb-1"><a href="#" class="hover:text-teal-400">Privacy Policy</a></li>
-                        <li class="mb-1"><a href="#" class="hover:text-teal-400">Terms & Conditions</a></li>
-                        <li class="mb-1"><a href="#" class="hover:text-teal-400">Manage Cookie Preferences</a></li>
-                    </ul>
-                </div>
+    <footer class="bg-sani-dark text-white pt-24 pb-12 border-t border-white/10">
+        <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div class="col-span-1 md:col-span-2">
+                <a href="index.html" class="font-display font-black text-3xl mb-6 block">SaniBook<span class="text-sani-red">.ke</span></a>
+                <p class="text-slate-400 text-sm max-w-md leading-relaxed">The definitive platform unlocking synergy and maximizing impact by transforming fragmented data into unified action.</p>
             </div>
-
-            <div class="border-t border-gray-700 mt-8 pt-4 text-center text-xs">
-                &copy; Copyright 2025 SaniBook Initiative. Website By: SaniBook
+            <div>
+                <h4 class="font-bold uppercase text-sani-lime tracking-widest text-xs mb-6">Explore</h4>
+                <ul class="space-y-3 text-slate-400 text-sm">
+                    <li><a href="#" class="hover:text-white transition-colors">The Reality</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Our Solution</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Tell Your Story</a></li>
+                </ul>
             </div>
+            <div>
+                <h4 class="font-bold uppercase text-sani-lime tracking-widest text-xs mb-6">Contact</h4>
+                <ul class="space-y-3 text-slate-400 text-sm">
+                    <li><a href="mailto:sales@sanibook.ke" class="hover:text-white transition-colors">sales@sanibook.ke</a></li>
+                    <li><a href="mailto:partnership@sanibook.ke" class="hover:text-white transition-colors">partnership@sanibook.ke</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-[1400px] mx-auto px-6 pt-8 border-t border-white/10 text-center text-slate-500 text-xs">
+            <p>&copy; 2025 SaniBook Kenya. All rights reserved.</p>
         </div>
     </footer>
 
-
     <script>
-        // --- Navigation Script ---
-        const toggleButton = document.getElementById('navbar-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeButton = document.getElementById('close-mobile-menu');
+        // --- Pop-over Menu Logic ---
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const desktopToggle = document.getElementById('desktop-toggle');
+        const mainMenu = document.getElementById('main-menu');
+        const desktopText = desktopToggle ? desktopToggle.querySelector('.menu-text') : null;
+        const desktopIcon = desktopToggle ? desktopToggle.querySelector('.menu-icon') : null;
 
-        function closeMobileMenu() {
-            mobileMenu.classList.add('hidden');
-            document.body.style.overflow = 'auto';
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mainMenu.classList.remove('closed');
+                mainMenu.classList.add('open');
+                
+                if (mobileToggle) mobileToggle.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                if (desktopToggle) {
+                    desktopText.textContent = "Close";
+                    desktopIcon.classList.remove('fa-bars');
+                    desktopIcon.classList.add('fa-xmark');
+                }
+            } else {
+                mainMenu.classList.remove('open');
+                mainMenu.classList.add('closed');
+                
+                if (mobileToggle) mobileToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                if (desktopToggle) {
+                    desktopText.textContent = "Menu";
+                    desktopIcon.classList.remove('fa-xmark');
+                    desktopIcon.classList.add('fa-bars');
+                }
+            }
         }
 
-        toggleButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            document.body.style.overflow = mobileMenu.classList.contains('hidden') ? 'auto' : 'hidden';
+        if(mobileToggle) mobileToggle.addEventListener('click', toggleMenu);
+        if(desktopToggle) desktopToggle.addEventListener('click', toggleMenu);
+
+        // Close on click outside
+        document.addEventListener('click', (e) => {
+            if (isMenuOpen && 
+                !mainMenu.contains(e.target) && 
+                !desktopToggle.contains(e.target) && 
+                !mobileToggle.contains(e.target)) {
+                toggleMenu();
+            }
         });
 
-        closeButton.addEventListener('click', closeMobileMenu);
-        
-        // --- Scroll Reveal Animation Script ---
-        const scrollReveal = () => {
-            const elements = document.querySelectorAll('.scroll-reveal');
+        // --- Animations (GSAP) ---
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const elements = document.querySelectorAll('.reveal-elem');
             elements.forEach((el, index) => {
-                // Delay based on data-delay attribute
-                const delay = parseInt(el.getAttribute('data-delay')) || 0;
-                
-                // Get element position relative to the viewport
-                const rect = el.getBoundingClientRect();
-                const viewHeight = window.innerHeight;
-
-                // Check if the element is visible (starts animation when 80% of element is visible)
-                if (rect.top <= viewHeight * 0.8) {
-                    setTimeout(() => {
-                        el.classList.add('visible');
-                    }, delay);
-                } else {
-                    // Optional: remove 'visible' class if element moves out of view (for repeated animations)
-                    // el.classList.remove('visible');
-                }
+                const delay = el.getAttribute('data-delay') || 0;
+                gsap.to(el, {
+                    scrollTrigger: { trigger: el, start: "top 85%" },
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    delay: parseFloat(delay),
+                    ease: "power2.out"
+                });
             });
-        };
-
-        // Run animation on load and scroll
-        window.addEventListener('scroll', scrollReveal);
-        window.addEventListener('load', scrollReveal);
+        });
     </script>
 </body>
 </html>
