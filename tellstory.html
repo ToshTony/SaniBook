@@ -180,12 +180,12 @@
                     <h1 class="text-xl md:text-xl lg:text-xl font-display font-black text-sani-dark leading-[0.95] mb-4 lg:mb-6 tracking-tight">
                       ELEVATE <br>
                       ANECDOTE TO <br>
-                      <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-blue-200 to-cyan-400 drop-shadow-sm animated-gradient-text cursor-pointer">
+                      <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-yellow-200 to-red-400 drop-shadow-sm animated-gradient-text cursor-pointer">
                           BLUEPRINT.
                       </span>
                     </h1>
                     
-                    <p class="text-base md:text-lg lg:text-xl text-slate-600 font-medium mb-6 lg:mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0 lg:border-l-4 lg:border-sani-lime lg:pl-6">
+                    <p class="text-base md:text-lg lg:text-xl text-black-600 font-medium mb-6 lg:mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0 lg:border-l-4 lg:border-sani-lime lg:pl-6">
                         Your victories are not just stories—they are the blueprints for national transformation. Join the unified intelligence hub de-risking Kenya’s sanitation future.
                     </p>
 
@@ -196,10 +196,14 @@
                         <div class="flex items-center gap-4 px-6 justify-center">
                             <div class="flex -space-x-3">
                                 <div class="w-10 h-10 rounded-full bg-slate-200 border-2 border-white"></div>
-                                <div class="w-10 h-10 rounded-full bg-slate-300 border-2 border-white"></div>
-                                <div class="w-10 h-10 rounded-full bg-sani-aqua text-white flex items-center justify-center font-bold text-xs border-2 border-white">+40</div>
+                                <a href="#whysani">
+                                    <div class="w-10 h-10 rounded-full bg-slate-300 border-2 border-white flex items-center justify-center transition-transform hover:scale-110"> 
+                                        <i class="fa-solid fa-arrow-down text-2xl text-slate-700"></i> 
+                                    </div>
+                                </a>
+                                <div class="w-10 h-10 rounded-full bg-sani-aqua text-black flex items-center justify-center font-bold text-xs border-2 border-white">+40</div>
                             </div>
-                            <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Partners Joined</span>
+                            <span class="text-xs font-bold text-dark-500 uppercase tracking-wide">Partners Joined</span>
                         </div>
                     </div>
                 </div>
@@ -220,7 +224,7 @@
         </div>
     </header>
 
-    <section class="py-16 lg:py-20 bg-white border-y border-slate-200 relative">
+    <section class="py-16 lg:py-20 bg-white border-y border-slate-200 relative" id="whysani">
         <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
             <div class="relative h-[300px] lg:h-[400px] rounded-[3rem] overflow-hidden group">
@@ -247,28 +251,32 @@
                     <div class="flex gap-4">
                         <div class="w-12 h-12 rounded-xl bg-sani-light text-sani-blue flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-layer-group"></i></div>
                         <div>
-                            <h4 class="font-bold text-sani-dark text-lg">De-risk and Scale</h4>
-                            <p class="text-slate-500 text-sm">Reduce sector risk while amplifying adoption of proven models.</p>
+                            <h4 class="font-bold text-sani-blue text-lg">De-risk and Scale</h4>
+                            <p class="text-dark-500 text-sm">Reduce sector risk while amplifying adoption of proven models.</p>
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-sani-light text-sani-red flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-gavel"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-sani-light text-purple-600 flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-gavel"></i></div>
                         <div>
-                            <h4 class="font-bold text-sani-dark text-lg">Influence Policy</h4>
-                            <p class="text-slate-500 text-sm">Provide evidence to secure sustained government investment.</p>
+                            <h4 class="font-bold text-purple-600 text-lg">Influence Policy</h4>
+                            <p class="text-dark-500 text-sm">Provide evidence to secure sustained government investment.</p>
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-sani-light text-sani-lime flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-globe"></i></div>
+                        <div class="w-12 h-12 rounded-xl bg-sani-light text-green-600 flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-globe"></i></div>
                         <div>
-                            <h4 class="font-bold text-sani-dark text-lg">Elevate Visibility</h4>
-                            <p class="text-slate-500 text-sm">Gain leadership exposure to donors and global networks.</p>
+                            <h4 class="font-bold text-green-600 text-lg">Elevate Visibility</h4>
+                            <p class="text-dark-500 text-sm">Gain leadership exposure to donors and global networks.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
+
+        <a href="#portal-switch" class="flex w-fit mx-auto px-8 py-4 mt-5 bg-sani-dark text-white rounded-full font-bold uppercase tracking-widest hover:bg-sani-red transition-colors shadow-xl items-center justify-center gap-3">
+            Start Submission <i class="fa-solid fa-arrow-down"></i>
+        </a>
     </section>
 
     <section id="portal-switch" class="py-16 lg:py-24 bg-slate-50 relative overflow-hidden">
