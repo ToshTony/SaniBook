@@ -1,294 +1,150 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launch Event Registration | SaniBook Initiative</title>
+    <title>Register - Volume 01 Launch | SaniBook</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        sani: {
-                            aqua: '#00f2fe', blue: '#4facfe', lime: '#b8ff3e', 
-                            red: '#ff0f39', dark: '#050a14', light: '#f8fafc',
-                            deepEarth: '#3E2723', gold: '#FFD700'
-                        }
+                        sani: { aqua: '#00f2fe', blue: '#4facfe', red: '#ff0f39', dark: '#050a14' }
                     },
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        display: ['Syne', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'], display: ['Syne', 'sans-serif'] },
                     backgroundImage: {
                         'grid-pattern': "linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)",
-                    },
-                    animation: {
-                        'spin-slow': 'spin 12s linear infinite'
                     }
                 }
             }
         }
     </script>
-
-    <style>
-        body { background-color: #f8fafc; color: #050a14; overflow-x: hidden; }
-        
-        /* Glass Panel that works on all sizes */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 20px -5px rgba(0,0,0,0.1);
-        }
-
-        /* Gradient Animation */
-        @keyframes gradient-flow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .animated-gradient-text {
-            background: linear-gradient(270deg, #ff0f39, #a855f7, #4facfe, #ff0f39);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradient-flow 6s ease infinite;
-        }
-        
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #4facfe;
-            box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.1);
-        }
-    </style>
 </head>
-<body class="antialiased bg-slate-50">
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4 md:p-6 relative">
 
-    <nav class="fixed w-full z-50 top-0 px-2 pt-2 md:px-4 md:pt-4 transition-all duration-300">
-        <div class="glass-panel rounded-full w-[96%] max-w-[1600px] mx-auto px-3 py-2 md:px-6 md:py-3 flex justify-between items-center shadow-lg relative z-50">
-            
-            <a href="index.html" class="font-display font-black text-base md:text-2xl tracking-tighter text-sani-dark flex items-center gap-2 group shrink-0">
-                <div class="w-7 h-7 md:w-10 md:h-10 rounded-full bg-sani-aqua flex items-center justify-center text-white group-hover:rotate-12 transition-transform">
-                    <i class="fa-solid fa-droplet text-[10px] md:text-base"></i>
-                </div>
-                <span>SaniBook<span class="text-sani-red">.ke</span></span>
-            </a>
+    <div class="absolute inset-0 bg-grid-pattern [background-size:32px_32px] opacity-40 pointer-events-none"></div>
 
-            <div class="hidden lg:flex gap-6 font-sans font-bold uppercase text-xs tracking-widest text-sani-dark/70">
-                <a href="index.html" class="hover:text-sani-aqua transition-colors py-2">Home</a>
-                <a href="whythesanibook.html" class="hover:text-sani-aqua transition-colors py-2">Why SaniBook</a>
-                <a href="#" class="text-sani-red py-2 border-b-2 border-sani-red">Event RSVP</a>
-            </div>
-
-            <a href="#register" class="px-4 py-2 md:px-6 md:py-2.5 rounded-full bg-sani-dark text-white font-bold text-[10px] md:text-xs uppercase tracking-widest hover:bg-sani-red transition-all shadow-lg shrink-0 flex items-center gap-2">
-                <i class="fa-solid fa-ticket md:hidden"></i>
-                <span class="md:hidden">RSVP</span>
-                <span class="hidden md:inline">Secure Seat <i class="fa-solid fa-arrow-right ml-1"></i></span>
-            </a>
-        </div>
-    </nav>
-
-    <header class="relative pt-24 pb-12 md:pt-36 md:pb-20 lg:pt-48 lg:pb-24 overflow-hidden">
+    <div class="w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden relative z-10 border border-slate-100">
         
-        <div class="absolute inset-0 bg-grid-pattern [background-size:40px_40px] opacity-30 pointer-events-none"></div>
-        <div class="absolute top-0 right-0 w-[250px] lg:w-[600px] h-[250px] lg:h-[600px] bg-sani-red/5 rounded-full blur-[60px] lg:blur-[120px] -z-10 pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-[250px] lg:w-[600px] h-[250px] lg:h-[600px] bg-sani-blue/5 rounded-full blur-[60px] lg:blur-[120px] -z-10 pointer-events-none"></div>
-
-        <div class="max-w-[1400px] mx-auto px-4 md:px-6 relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div class="bg-sani-dark text-white p-8 md:p-10 text-center relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-40 h-40 bg-sani-blue/20 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-40 h-40 bg-sani-red/20 rounded-full blur-3xl"></div>
             
-            <div class="text-center lg:text-left order-1 reveal-elem opacity-0 translate-y-10">
-                <div class="inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-sani-dark text-white text-[10px] font-bold uppercase tracking-widest mb-4 md:mb-6 shadow-xl border border-sani-lime/30">
-                    <i class="fa-solid fa-star text-sani-lime animate-spin-slow"></i> Official Launch Event
-                </div>
+            <div class="relative z-10">
+                <a href="index.html" class="inline-flex items-center gap-2 mb-4 group opacity-80 hover:opacity-100 transition-opacity">
+                    <div class="w-6 h-6 rounded-full bg-sani-aqua flex items-center justify-center text-white">
+                        <i class="fa-solid fa-droplet text-[10px]"></i>
+                    </div>
+                    <span class="font-display font-bold">SaniBook<span class="text-sani-red">.ke</span></span>
+                </a>
                 
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-black text-sani-dark mb-4 md:mb-6 tracking-tight leading-[1.1] lg:leading-[0.9]">
-                    WITNESS THE <br>
-                    <span class="animated-gradient-text">UNVEILING.</span>
+                <h1 class="text-3xl md:text-4xl font-display font-black leading-tight mb-2">
+                    Event Registration
                 </h1>
+                <p class="text-slate-400 text-sm md:text-base">Launch of SaniBook Volume 01</p>
+            </div>
+        </div>
+
+        <div class="p-6 md:p-10">
+            <form id="registration-form" class="space-y-5">
                 
-                <p class="text-sm md:text-xl text-slate-600 font-medium max-w-[90%] md:max-w-md mx-auto lg:mx-0 leading-relaxed mb-6 md:mb-8">
-                    Be part of history as we launch <strong class="text-sani-dark">Volume 01</strong>. Join policymakers and changemakers in defining Kenya's sanitation future.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start">
-                    <a href="#register" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 md:px-8 md:py-4 bg-sani-red text-white rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-sani-dark transition-colors shadow-xl hover:shadow-red-200">
-                        RSVP Now <i class="fa-solid fa-ticket ml-2"></i>
-                    </a>
-                    <a href="#details" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 md:px-8 md:py-4 bg-white border border-slate-200 text-sani-dark rounded-full font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-slate-50 transition-colors">
-                        Event Details
-                    </a>
-                </div>
-            </div>
-
-            <div class="relative order-2 mt-6 lg:mt-0 flex justify-center lg:block reveal-elem opacity-0 translate-x-10" data-delay="0.2">
-                <div class="relative w-full max-w-[320px] sm:max-w-md lg:max-w-full bg-sani-dark text-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-10 shadow-2xl lg:rotate-2 lg:hover:rotate-0 transition-transform duration-500 border border-white/10 overflow-hidden group mx-auto">
-                    
-                    <div class="absolute top-0 right-0 w-32 md:w-64 h-32 md:h-64 bg-sani-blue/20 rounded-full blur-3xl group-hover:bg-sani-blue/30 transition-colors"></div>
-                    <div class="absolute bottom-0 left-0 w-32 md:w-64 h-32 md:h-64 bg-sani-red/20 rounded-full blur-3xl group-hover:bg-sani-red/30 transition-colors"></div>
-                    
-                    <div class="relative z-10 flex flex-col h-full justify-between min-h-[200px] md:min-h-[300px]">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <p class="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-sani-lime mb-1 md:mb-2">Volume 01 Launch</p>
-                                <h3 class="text-2xl md:text-3xl font-display font-black">Nairobi, KE</h3>
-                            </div>
-                            <i class="fa-solid fa-qrcode text-3xl md:text-4xl text-white/20"></i>
-                        </div>
-
-                        <div class="border-t border-dashed border-white/20 my-5 md:my-8"></div>
-
-                        <div class="grid grid-cols-2 gap-4 md:gap-6">
-                            <div>
-                                <p class="text-[8px] md:text-[10px] uppercase text-slate-400 font-bold mb-0.5">Date</p>
-                                <p class="text-sm md:text-xl font-bold">Feb 24, 2026</p>
-                            </div>
-                            <div>
-                                <p class="text-[8px] md:text-[10px] uppercase text-slate-400 font-bold mb-0.5">Time</p>
-                                <p class="text-sm md:text-xl font-bold">09:00 AM</p>
-                            </div>
-                            <div class="col-span-2">
-                                <p class="text-[8px] md:text-[10px] uppercase text-slate-400 font-bold mb-0.5">Venue</p>
-                                <p class="text-sm md:text-lg font-bold truncate">Radisson Blu Hotel, Upper Hill</p>
-                            </div>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Full Name</label>
+                        <input type="text" name="name" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue focus:ring-4 focus:ring-blue-50 transition-all placeholder-slate-400" placeholder="John Doe">
                     </div>
-                </div>
-            </div>
-
-        </div>
-    </header>
-
-    <section id="details" class="py-16 md:py-20 px-4 md:px-6 bg-white relative z-20">
-        <div class="max-w-[1200px] mx-auto">
-            <h2 class="text-center text-2xl md:text-3xl font-display font-black text-sani-dark mb-8 md:mb-12">EVENT <span class="text-sani-blue">ESSENTIALS.</span></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="md:col-span-2 bg-slate-50 rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-slate-100 reveal-elem">
-                    <h3 class="text-lg md:text-xl font-bold text-sani-dark mb-6 flex items-center gap-3"><i class="fa-regular fa-clock text-sani-blue"></i> The Agenda</h3>
-                    <div class="space-y-6 relative">
-                        <div class="absolute left-[7px] top-2 bottom-2 w-0.5 bg-slate-200"></div>
-                        <div class="flex gap-4 md:gap-6 relative z-10">
-                            <div class="w-4 h-4 rounded-full bg-sani-blue border-4 border-white shadow-sm mt-1 shrink-0"></div>
-                            <div>
-                                <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase">09:00 AM - 10:00 AM</p>
-                                <h4 class="text-sm md:text-base font-bold text-sani-dark">Arrival & Networking Breakfast</h4>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 md:gap-6 relative z-10">
-                            <div class="w-4 h-4 rounded-full bg-sani-red border-4 border-white shadow-sm mt-1 shrink-0"></div>
-                            <div>
-                                <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase">10:00 AM - 11:30 AM</p>
-                                <h4 class="text-sm md:text-base font-bold text-sani-dark">Keynote: The Cost of Inaction</h4>
-                            </div>
-                        </div>
-                        <div class="flex gap-4 md:gap-6 relative z-10">
-                            <div class="w-4 h-4 rounded-full bg-sani-lime border-4 border-white shadow-sm mt-1 shrink-0"></div>
-                            <div>
-                                <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase">11:30 AM - 12:30 PM</p>
-                                <h4 class="text-sm md:text-base font-bold text-sani-dark">Panel: Breaking the Cycle</h4>
-                            </div>
-                        </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Email Address</label>
+                        <input type="email" name="email" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue focus:ring-4 focus:ring-blue-50 transition-all placeholder-slate-400" placeholder="john@example.com">
                     </div>
                 </div>
 
-                <div class="bg-sani-dark text-white rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border border-white/10 relative overflow-hidden reveal-elem min-h-[250px]" data-delay="0.2">
-                    <div class="absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/Nairobi_Skyline.jpg')] bg-cover bg-center opacity-20"></div>
-                    <div class="relative z-10 h-full flex flex-col justify-between">
-                        <div>
-                            <h3 class="text-lg md:text-xl font-bold mb-2">Radisson Blu</h3>
-                            <p class="text-xs md:text-sm text-slate-400">Elgon Road, Upper Hill<br>Nairobi, Kenya</p>
-                        </div>
-                        <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 text-sani-lime text-xs md:text-sm font-bold hover:underline mt-6">
-                            Get Directions <i class="fa-solid fa-location-arrow"></i>
-                        </a>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Phone Number</label>
+                        <input type="tel" name="phone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue focus:ring-4 focus:ring-blue-50 transition-all placeholder-slate-400" placeholder="+254 7...">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Organization</label>
+                        <input type="text" name="organization" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue focus:ring-4 focus:ring-blue-50 transition-all placeholder-slate-400" placeholder="Company / NGO Name">
                     </div>
                 </div>
-            </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Job Title / Position</label>
+                    <input type="text" name="position" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue focus:ring-4 focus:ring-blue-50 transition-all placeholder-slate-400" placeholder="e.g. Program Manager">
+                </div>
+
+                <div class="pt-2">
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-3">Attendance Mode</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="attendance" value="physical" class="peer sr-only" checked>
+                            <div class="text-center py-3 border border-slate-200 rounded-xl peer-checked:bg-sani-dark peer-checked:text-white peer-checked:border-sani-dark hover:bg-slate-50 transition-all">
+                                <span class="text-sm font-bold">In-Person</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="attendance" value="virtual" class="peer sr-only">
+                            <div class="text-center py-3 border border-slate-200 rounded-xl peer-checked:bg-sani-dark peer-checked:text-white peer-checked:border-sani-dark hover:bg-slate-50 transition-all">
+                                <span class="text-sm font-bold">Virtual</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <button type="submit" class="w-full bg-sani-red text-white font-bold uppercase tracking-widest py-4 rounded-xl shadow-lg hover:bg-red-600 hover:shadow-red-200 hover:-translate-y-1 transition-all duration-300 flex justify-center items-center gap-2">
+                        <span>Complete Registration</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <p class="text-center text-xs text-slate-400 mt-4">
+                        <i class="fa-solid fa-lock mr-1"></i> Your details are securely stored.
+                    </p>
+                </div>
+            </form>
         </div>
-    </section>
-
-    <section id="register" class="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white relative">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[500px] bg-blue-100/50 rounded-full blur-[100px] pointer-events-none"></div>
-
-        <div class="max-w-4xl mx-auto px-4 md:px-6 relative z-10">
-            <div class="text-center mb-8 md:mb-10 reveal-elem">
-                <h2 class="text-3xl md:text-5xl font-display font-black text-sani-dark mb-4">SECURE YOUR <span class="text-sani-red">SEAT.</span></h2>
-                <p class="text-sm md:text-base text-slate-600">Spaces are limited. Please register below.</p>
-            </div>
-
-            <div class="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-2xl border border-slate-100 p-6 md:p-12 reveal-elem" data-delay="0.2">
-                <form id="rsvp-form" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                    <input type="hidden" name="form_type" value="rsvp_event">
-
-                    <div class="md:col-span-2 mb-2">
-                        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-100 pb-2 mb-2 md:mb-4">Attendee Info</h4>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs md:text-sm font-bold text-sani-dark mb-2">Full Name</label>
-                        <input type="text" name="full_name" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:bg-white transition-colors">
-                    </div>
-                    <div>
-                        <label class="block text-xs md:text-sm font-bold text-sani-dark mb-2">Email</label>
-                        <input type="email" name="email" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:bg-white transition-colors">
-                    </div>
-                    <div>
-                        <label class="block text-xs md:text-sm font-bold text-sani-dark mb-2">Phone</label>
-                        <input type="tel" name="phone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:bg-white transition-colors">
-                    </div>
-                    <div>
-                        <label class="block text-xs md:text-sm font-bold text-sani-dark mb-2">Organization</label>
-                        <input type="text" name="organization" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:bg-white transition-colors">
-                    </div>
-
-                    <div class="md:col-span-2 pt-4">
-                        <button type="submit" class="w-full py-4 bg-sani-dark text-white rounded-xl font-bold uppercase tracking-widest hover:bg-sani-red transition-all shadow-xl hover:shadow-red-200 transform hover:-translate-y-1 flex justify-center items-center gap-3 text-sm">
-                            Confirm Registration <i class="fa-solid fa-check-circle"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-sani-dark text-white pt-16 md:pt-24 pb-8 md:pb-12 border-t border-white/10">
-        <div class="max-w-[1400px] mx-auto px-6 text-center text-slate-500 text-xs">
-            <p>© 2025 SaniBook Kenya. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            gsap.registerPlugin(ScrollTrigger);
-            const elements = document.querySelectorAll('.reveal-elem');
-            elements.forEach((el) => {
-                const delay = el.getAttribute('data-delay') || 0;
-                gsap.to(el, { scrollTrigger: { trigger: el, start: "top 85%" }, y: 0, opacity: 1, duration: 0.8, delay: parseFloat(delay), ease: "power2.out" });
-            });
-        });
-        
-        const rsvpForm = document.getElementById('rsvp-form');
-        rsvpForm.addEventListener('submit', (e) => {
+        const form = document.getElementById('registration-form');
+        const btn = form.querySelector('button');
+        const btnText = btn.querySelector('span');
+        const btnIcon = btn.querySelector('i');
+
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const btn = rsvpForm.querySelector('button[type="submit"]');
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+            
+            // Loading State
+            btn.disabled = true;
+            btnText.textContent = "Processing...";
+            btnIcon.className = "fa-solid fa-circle-notch fa-spin";
+            btn.classList.add('opacity-75');
+
+            // Simulate Network Request
             setTimeout(() => {
-                btn.innerHTML = 'Registration Confirmed!';
-                btn.classList.add('bg-green-600');
-                rsvpForm.reset();
+                // Success State
+                btn.classList.replace('bg-sani-red', 'bg-green-600');
+                btn.classList.remove('hover:bg-red-600', 'hover:shadow-red-200');
+                btnText.textContent = "Registration Successful!";
+                btnIcon.className = "fa-solid fa-check";
+                
+                alert("You have successfully registered for the launch event.");
+                form.reset();
+
+                // Reset Button after 3 seconds
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.classList.replace('bg-green-600', 'bg-sani-red');
+                    btn.classList.remove('opacity-75');
+                    btnText.textContent = "Complete Registration";
+                    btnIcon.className = "fa-solid fa-arrow-right";
+                }, 3000);
             }, 1500);
         });
     </script>
