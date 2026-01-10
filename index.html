@@ -27,7 +27,9 @@
                             dark: '#050a14', 
                             light: '#f0f7ff',
                             earth: '#8D6E63',
-                            deepEarth: '#3E2723'
+                            deepEarth: '#3E2723',
+                            darkblue: '#05004e',
+
                         }
                     },
                     fontFamily: {
@@ -60,7 +62,7 @@
     </script>
 
     <style>
-        body { background-color: #ffffff; color: #050a14; overflow-x: hidden; cursor: none; }
+        body { background-color: #ffffff; color: #060514; overflow-x: hidden; cursor: none; }
         
         /* Custom Cursor */
         @media (hover: hover) and (pointer: fine) {
@@ -128,6 +130,22 @@
 
     .animated-gradient-text:hover {
         animation-duration: 1.5s;
+    }
+</style>
+
+<!-- styles for the sanibookk volume one div  -->
+<style>
+    @keyframes blue-shimmer {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    .bg-blue-shimmer {
+        /* Gradient: Deep Navy -> Royal Blue -> Electric Blue -> Royal Blue -> Deep Navy */
+        background: linear-gradient(90deg, #0f172a, #1e3a8a, #3b82f6, #1e3a8a, #0f172a);
+        background-size: 200% auto;
+        animation: blue-shimmer 4s linear infinite;
     }
 </style>
 </head>
@@ -216,8 +234,9 @@
             <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-sani-lime/20 rounded-full blur-[100px] animate-float pointer-events-none" style="animation-delay: -2s;"></div>
     
             <div class="max-w-[1800px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start relative z-10 h-full">
-                <div class="flex flex-col justify-center lg:justify-start h-full order-2 lg:order-1 relative z-30 pt-0 lg:pt-32">
-                    <div class="hero-reveal opacity-0 translate-y-10 mb-10 lg:mb-32 relative group cursor-default w-full">
+                <!-- to move the whole saniboook vol one and rotating thing, check padding here -->
+                <div class="flex flex-col justify-center lg:justify-start h-full order-2 lg:order-1 relative z-30 pt-0 lg:pt-24">
+                    <div class="hero-reveal opacity-0 translate-y-10 mt-0 mb-10 lg:mb-32 relative group cursor-default w-full">
                         <div class="absolute left-8 top-16 h-[150%] w-0.5 bg-gradient-to-b from-sani-red via-sani-red/20 to-transparent hidden lg:block opacity-30"></div>
                         <div class="flex items-start gap-4 lg:gap-6">
                             <div class="w-12 h-12 lg:w-20 lg:h-20 bg-sani-lime text-sani-dark font-black text-[8px] lg:text-[10px] uppercase tracking-widest flex items-center justify-center rounded-full animate-spin-slow shadow-lg border-2 border-sani-dark flex-shrink-0 z-10 relative mt-1">
@@ -230,25 +249,36 @@
                                 <i class="fa-solid fa-star absolute text-sm lg:text-lg"></i>
                             </div>
                             <div class="pt-1 lg:pt-2">
-                                <div class="inline-block bg-sani-red text-white px-4 py-2 lg:px-5 text-lg lg:text-2xl font-black uppercase tracking-widest transform -rotate-0 shadow-md hover:rotate-1 transition-transform duration-300">Sanibook Volume One</div>
-                                <p class="text-xs lg:text-base font-bold text-sani-red mt-2 lg:mt-3 uppercase tracking-wider leading-relaxed max-w-md ml-1">Unpacking the Seven Critical <br class="hidden lg:block"> Sanitation Bottlenecks</p>
+                                <div class="inline-block bg-blue-shimmer text-white px-4 py-2 lg:px-5 text-lg lg:text-2xl font-black uppercase tracking-widest transform -rotate-0 shadow-lg hover:rotate-1 transition-all duration-300 border border-blue-400/30 mb-4">
+                                    Sanibook Volume One
+                                </div>
+                                
+                                <div class="border-l-4 border-sani-blue pl-4 ml-1">
+                                    <p class="text-sm lg:text-base text-slate-600 font-medium leading-relaxed max-w-lg">
+                                        <span class="text-sani-dark font-bold">SaniBook</span> is a vital knowledge hub that captures and scales proven sanitation technologies across the devolved landscape. 
+                                        By showcasing context-specific successes, we empower the sector to move beyond local stories and achieve <span class="text-sani-blue font-bold">widespread, transformative impact.</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="hero-reveal opacity-0 translate-y-10 pl-0 lg:pl-10 border-l-0 lg:border-l-8 border-transparent lg:border-sani-dark/5 transition-all duration-300 hover:border-sani-red">
-                        <h2 class="font-display font-black text-xl md:text-2xl lg:text-[1.5rem] xl:text-[2rem] leading-[0.9] tracking-tighter text-sani-dark mb-6 drop-shadow-sm whitespace-nowrap">
+                        <h2 class="font-display font-black text-xl md:text-2xl lg:text-[0.5rem] xl:text-[1.5rem] leading-[0.9] tracking-tighter text-sani-dark mb-6 drop-shadow-sm whitespace-nowrap">
                             BREAKING THE 
                             <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-orange-500 to-red-600 animated-gradient-text cursor-pointer">
                                 CHAIN.
                             </span>
                         </h2>
-                        <p class="text-base md:text-lg lg:text-xl font-bold text-lime-700 uppercase tracking-wide mb-8 flex items-center gap-3"><span class="w-8 h-0.5 bg-sani-red hidden md:block"></span>Meet frontline organizations driving change</p>
+                        <p class="text-base md:text-lg lg:text-sm font-bold text-lime-700 uppercase tracking-wide mb-8 flex items-center gap-3"><span class="w-8 h-0.5 bg-sani-red hidden md:block"></span>Be a frontline organization driving change</p>
                         <div class="flex flex-col sm:flex-row gap-4">
                             <a href="tellstory.html" class="hover-trigger group relative mb-10 lg:mb-20 px-10 py-4 lg:px-12 lg:py-5 bg-sani-dark text-white rounded-full overflow-hidden shadow-lg transition-all transform hover:-translate-y-1 text-center">
                                 <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-sani-blue to-sani-aqua opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 <span class="relative z-10 font-bold uppercase tracking-widest text-sm flex justify-center items-center gap-3">Get Involved <i class="fa-solid fa-book-open -rotate-12 group-hover:rotate-0 transition-transform duration-300"></i></span>
                             </a>
-                            <a href="whythesanibook.html" class="hover-trigger mb-10 lg:mb-20 px-10 py-4 lg:px-12 lg:py-5 bg-sani-red text-white border border-sani-dark/10 rounded-full font-bold uppercase tracking-widest text-sm hover:border-white hover:text-black transition-colors flex justify-center items-center gap-3 shadow-lg"><i class="fa-solid fa-book"></i> Why The SaniBook</a>
+                            <a href="whythesanibook.html" class="hover-trigger mb-10 lg:mb-20 px-10 py-4 lg:px-12 lg:py-5 bg-sani-lime text-black border border-sani-dark/10 rounded-full font-bold uppercase tracking-widest text-sm hover:border-white hover:text-black transition-colors flex justify-center items-center gap-3 shadow-lg">
+                                <i class="fa-solid fa-book"></i> 
+                                Why The SaniBook
+                            </a>
                         </div>
                     </div>
                 </div>
