@@ -4,108 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Volume 01 Launch | SaniBook</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        sani: { aqua: '#00f2fe', blue: '#4facfe', red: '#ff0f39', dark: '#050a14' }
-                    },
-                    fontFamily: { sans: ['Outfit', 'sans-serif'], display: ['Syne', 'sans-serif'] },
-                    backgroundImage: {
-                        'grid-pattern': "linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)",
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { colors: { sani: { aqua: '#00f2fe', blue: '#4facfe', red: '#ff0f39', dark: '#050a14' } }, fontFamily: { sans: ['Outfit', 'sans-serif'], display: ['Syne', 'sans-serif'] } } } }
     </script>
 </head>
 <body class="bg-slate-50 min-h-screen flex items-center justify-center p-4 md:p-6 relative">
 
-    <div class="absolute inset-0 bg-grid-pattern [background-size:32px_32px] opacity-40 pointer-events-none"></div>
-
     <div class="w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden relative z-10 border border-slate-100">
-        
-        <div class="bg-sani-dark text-white p-8 md:p-10 text-center relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-40 h-40 bg-sani-blue/20 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-40 h-40 bg-sani-red/20 rounded-full blur-3xl"></div>
-            
-            <div class="relative z-10">
-                <a href="index.html" class="inline-flex items-center gap-2 mb-4 group opacity-80 hover:opacity-100 transition-opacity">
-                    <div class="w-6 h-6 rounded-full bg-sani-aqua flex items-center justify-center text-white">
-                        <i class="fa-solid fa-droplet text-[10px]"></i>
-                    </div>
-                    <span class="font-display font-bold">SaniBook<span class="text-sani-red">.ke</span></span>
-                </a>
-                
-                <h1 class="text-3xl md:text-4xl font-display font-black leading-tight mb-2">
-                    Event Registration
-                </h1>
-                <p class="text-slate-400 text-sm md:text-base">Launch of SaniBook Volume 01</p>
-            </div>
+        <div class="bg-sani-dark text-white p-8 md:p-10 text-center relative">
+            <h1 class="text-3xl md:text-4xl font-display font-black leading-tight mb-2">Event Registration</h1>
+            <p class="text-slate-400 text-sm md:text-base">Launch of SaniBook Volume 01</p>
         </div>
 
         <div class="p-6 md:p-10">
             <form id="registration-form" class="space-y-5">
-                
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Full Name</label>
-                        <input type="text" name="name" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue focus:ring-4 focus:ring-blue-50 transition-all placeholder-slate-400" placeholder="John Doe">
+                        <input type="text" name="name" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue transition-all">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Email Address</label>
-                        <input type="email" name="email" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue focus:ring-4 focus:ring-blue-50 transition-all placeholder-slate-400" placeholder="john@example.com">
+                        <input type="email" name="email" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue transition-all">
                     </div>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Phone Number</label>
-                        <input type="tel" name="phone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue focus:ring-4 focus:ring-blue-50 transition-all placeholder-slate-400" placeholder="+254 7...">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Phone</label>
+                        <input type="tel" name="phone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue transition-all">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Organization</label>
-                        <input type="text" name="organization" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue focus:ring-4 focus:ring-blue-50 transition-all placeholder-slate-400" placeholder="Company / NGO Name">
+                        <input type="text" name="organization" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue transition-all">
                     </div>
                 </div>
-
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Job Title / Position</label>
-                    <input type="text" name="position" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue focus:ring-4 focus:ring-blue-50 transition-all placeholder-slate-400" placeholder="e.g. Program Manager">
-                </div>
-
-                <div class="pt-2">
-                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-3">Attendance Mode</label>
-                    <div class="grid grid-cols-2 gap-4">
-                        <label class="cursor-pointer">
-                            <input type="radio" name="attendance" value="physical" class="peer sr-only" checked>
-                            <div class="text-center py-3 border border-slate-200 rounded-xl peer-checked:bg-sani-dark peer-checked:text-white peer-checked:border-sani-dark hover:bg-slate-50 transition-all">
-                                <span class="text-sm font-bold">In-Person</span>
-                            </div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="attendance" value="virtual" class="peer sr-only">
-                            <div class="text-center py-3 border border-slate-200 rounded-xl peer-checked:bg-sani-dark peer-checked:text-white peer-checked:border-sani-dark hover:bg-slate-50 transition-all">
-                                <span class="text-sm font-bold">Virtual</span>
-                            </div>
-                        </label>
-                    </div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">Position</label>
+                    <input type="text" name="position" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-sani-blue transition-all">
                 </div>
 
                 <div class="pt-6">
-                    <button type="submit" class="w-full bg-sani-red text-white font-bold uppercase tracking-widest py-4 rounded-xl shadow-lg hover:bg-red-600 hover:shadow-red-200 hover:-translate-y-1 transition-all duration-300 flex justify-center items-center gap-2">
+                    <button type="submit" class="w-full bg-sani-red text-white font-bold uppercase tracking-widest py-4 rounded-xl shadow-lg hover:bg-red-600 transition-all flex justify-center items-center gap-2">
                         <span>Complete Registration</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </button>
-                    <p class="text-center text-xs text-slate-400 mt-4">
-                        <i class="fa-solid fa-lock mr-1"></i> Your details are securely stored.
-                    </p>
                 </div>
             </form>
         </div>
@@ -117,35 +62,53 @@
         const btnText = btn.querySelector('span');
         const btnIcon = btn.querySelector('i');
 
-        form.addEventListener('submit', (e) => {
+        // REPLACE WITH YOUR ACTUAL DJANGO URL
+        const API_URL = "https://hms.cosikenya.org/api/submit/"; 
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Loading State
+            // UI Loading
             btn.disabled = true;
             btnText.textContent = "Processing...";
             btnIcon.className = "fa-solid fa-circle-notch fa-spin";
             btn.classList.add('opacity-75');
 
-            // Simulate Network Request
-            setTimeout(() => {
-                // Success State
-                btn.classList.replace('bg-sani-red', 'bg-green-600');
-                btn.classList.remove('hover:bg-red-600', 'hover:shadow-red-200');
-                btnText.textContent = "Registration Successful!";
-                btnIcon.className = "fa-solid fa-check";
-                
-                alert("You have successfully registered for the launch event.");
-                form.reset();
+            const formData = new FormData(form);
+            const payload = Object.fromEntries(formData.entries());
 
-                // Reset Button after 3 seconds
-                setTimeout(() => {
-                    btn.disabled = false;
-                    btn.classList.replace('bg-green-600', 'bg-sani-red');
-                    btn.classList.remove('opacity-75');
-                    btnText.textContent = "Complete Registration";
-                    btnIcon.className = "fa-solid fa-arrow-right";
-                }, 3000);
-            }, 1500);
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    btn.classList.replace('bg-sani-red', 'bg-green-600');
+                    btnText.textContent = "Registration Successful!";
+                    btnIcon.className = "fa-solid fa-check";
+                    alert("Registration Confirmed!");
+                    form.reset();
+                    
+                    setTimeout(() => {
+                        btn.disabled = false;
+                        btn.classList.replace('bg-green-600', 'bg-sani-red');
+                        btn.classList.remove('opacity-75');
+                        btnText.textContent = "Complete Registration";
+                        btnIcon.className = "fa-solid fa-arrow-right";
+                    }, 3000);
+                } else {
+                    throw new Error('Server error');
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Connection Failed. Check console.");
+                btn.disabled = false;
+                btnText.textContent = "Try Again";
+                btnIcon.className = "fa-solid fa-rotate-right";
+                btn.classList.remove('opacity-75');
+            }
         });
     </script>
 </body>

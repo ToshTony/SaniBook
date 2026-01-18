@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaniBook Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script>
+        tailwind.config = { theme: { extend: { colors: { sani: { dark: '#050a14', blue: '#4facfe' } } } } }
+    </script>
+</head>
+<body class="bg-slate-100 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-3xl font-black text-sani-dark tracking-tight">Launch Dashboard</h1>
+                <p class="text-slate-500 text-sm mt-1">Real-time attendee list</p>
+            </div>
+            <button onclick="fetchData()" class="bg-white px-4 py-2 rounded-lg font-bold text-slate-700 shadow-sm hover:text-sani-blue transition-all border border-slate-200">
+                <i class="fa-solid fa-rotate mr-2"></i> Refresh Data
+            </button>
+        </div>
+
+        <div class="mb-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-sani-dark inline-block min-w-[250px]">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-sani-dark">
+                        <i class="fa-solid fa-users text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Registered</p>
+                        <p class="text-4xl font-black text-slate-800 mt-1" id="stat-total">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-500 font-bold">
+                            <th class="px-6 py-4">Participant Name</th>
+                            <th class="px-6 py-4">Organization & Role</th>
+                            <th class="px-6 py-4">Contact Details</th>
+                            <th class="px-6 py-4 text-right">Registration Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body" class="text-sm text-slate-600 divide-y divide-slate-100">
+                        <tr><td colspan="4" class="p-8 text-center text-slate-400">Loading data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // REPLACE WITH YOUR ACTUAL DJANGO URL
+        const API_URL = "https://hms.cosikenya.org/api/attendees/"; 
+
+        async function fetchData() {
+            try {
+                const response = await fetch(API_URL);
+                const result = await response.json();
+
+                if(result.status === 'success') {
+                    const data = result.data;
+                    
+                    // 1. Update Total Count
+                    document.getElementById('stat-total').innerText = data.length;
+
+                    // 2. Update Table
+                    const tbody = document.getElementById('table-body');
+                    tbody.innerHTML = '';
+
+                    if(data.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-slate-400 font-medium">No registrations found yet.</td></tr>`;
+                    }
+                    
+                    data.forEach(p => {
+                        // Format Date
+                        const dateObj = new Date(p.created_at);
+                        const dateStr = dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                        const timeStr = dateObj.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+                        tbody.innerHTML += `
+                            <tr class="hover:bg-slate-50 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="font-bold text-slate-900 text-base">${p.full_name}</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="font-bold text-sani-dark">${p.organization}</div>
+                                    <div class="text-xs text-slate-500 mt-0.5 font-medium bg-slate-100 inline-block px-2 py-0.5 rounded">${p.position || 'N/A'}</div>
+                                </td>
+                                <td class="px-6 py-4 text-xs">
+                                    <div class="mb-1.5 flex items-center gap-2">
+                                        <i class="fa-solid fa-envelope w-4 text-slate-400"></i> 
+                                        <span class="text-slate-700">${p.email}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-phone w-4 text-slate-400"></i> 
+                                        <span class="text-slate-700">${p.phone}</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="text-xs font-mono text-slate-500">${dateStr}</div>
+                                    <div class="text-[10px] text-slate-400">${timeStr}</div>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+                document.getElementById('table-body').innerHTML = `
+                    <tr>
+                        <td colspan="4" class="p-8 text-center">
+                            <div class="text-red-500 font-bold mb-2"><i class="fa-solid fa-triangle-exclamation"></i> Connection Failed</div>
+                            <p class="text-xs text-slate-400">Ensure the Django server is running.</p>
+                        </td>
+                    </tr>`;
+            }
+        }
+
+        // Auto-load on page start
+        window.addEventListener('DOMContentLoaded', fetchData);
+    </script>
+</body>
+</html>
