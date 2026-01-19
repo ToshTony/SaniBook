@@ -1,172 +1,195 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaniBook Vol. 1 | Breaking The Chain</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>SaniBook Kenya | Volume 01: Breaking The Chain | Sanitation Intelligence Hub</title>
+        <meta name="description" content="SaniBook is Kenya's definitive sanitation intelligence hub. Volume 01 'Breaking The Chain' maps stakeholders, showcases innovations, and tracks SDG 6.2 progress. Join the revolution.">
+        <meta name="keywords" content="SaniBook, SaniBook Kenya, Sanitation Kenya, SDG 6.2, WASH Sector Kenya, Sanitation Innovation, Public Health Kenya, Open Defecation Free">
+        <meta name="author" content="SaniBook Initiative">
+        <meta name="robots" content="index, follow">
+        <link rel="canonical" href="https://sanibook.ke/"> <meta property="og:type" content="website">
+        <meta property="og:url" content="https://sanibook.ke/">
+        <meta property="og:title" content="SaniBook Vol. 1 | Breaking The Chain">
+        <meta property="og:description" content="Witness the unveiling of Kenya's first Unified Sanitation Intelligence Hub. Register for the launch now.">
+        <meta property="og:image" content="https://sanibook.ke/assets/imgs/new/syec.jpg"> <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="SaniBook Kenya | Breaking The Chain">
+        <meta name="twitter:description" content="Accelerating the next wave of sanitation excellence in Kenya.">
+        <meta name="twitter:image" content="https://sanibook.ke/assets/imgs/new/syec.jpg">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        sani: {
-                            aqua: '#00f2fe',
-                            blue: '#4facfe',
-                            lime: '#b8ff3e', 
-                            red: '#ff0f39',
-                            dark: '#050a14', 
-                            light: '#f0f7ff',
-                            earth: '#8D6E63',
-                            deepEarth: '#3E2723',
-                            darkblue: '#05004e',
-
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        display: ['Syne', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'water-gradient': "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)",
-                        'impact-gradient': "linear-gradient(135deg, #ff0f39 0%, #ff6b00 100%)",
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'spin-slow': 'spin 12s linear infinite',
-                        'sway': 'sway 8s ease-in-out infinite',
-                        'pulse-fast': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            sani: {
+                                aqua: '#00f2fe',
+                                blue: '#4facfe',
+                                lime: '#b8ff3e', 
+                                red: '#ff0f39',
+                                dark: '#050a14', 
+                                light: '#f0f7ff',
+                                earth: '#8D6E63',
+                                deepEarth: '#3E2723',
+                                darkblue: '#05004e',
+                            }
                         },
-                        sway: {
-                            '0%, 100%': { transform: 'rotate(-3deg) translateX(-10px)' },
-                            '50%': { transform: 'rotate(3deg) translateX(10px)' },
+                        fontFamily: {
+                            sans: ['Outfit', 'sans-serif'],
+                            display: ['Syne', 'sans-serif'],
+                        },
+                        backgroundImage: {
+                            'water-gradient': "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)",
+                            'impact-gradient': "linear-gradient(135deg, #ff0f39 0%, #ff6b00 100%)",
+                        },
+                        animation: {
+                            'float': 'float 6s ease-in-out infinite',
+                            'spin-slow': 'spin 12s linear infinite',
+                            'sway': 'sway 8s ease-in-out infinite',
+                            'pulse-fast': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        },
+                        keyframes: {
+                            float: {
+                                '0%, 100%': { transform: 'translateY(0)' },
+                                '50%': { transform: 'translateY(-20px)' },
+                            },
+                            sway: {
+                                '0%, 100%': { transform: 'rotate(-3deg) translateX(-10px)' },
+                                '50%': { transform: 'rotate(3deg) translateX(10px)' },
+                            }
                         }
                     }
                 }
             }
-        }
-    </script>
-
-    <style>
-       body { background-color: #ffffff; color: #060514; overflow-x: hidden; }
-        
-        /* Custom Cursor */
-        /* Updated Custom Cursor - Now a follower with better visibility */
-        @media (hover: hover) and (pointer: fine) {
-            .cursor-dot {
-                position: fixed; top: 0; left: 0; width: 15px; height: 15px;
-                background: white; border-radius: 50%;
-                pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
-                transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.2s;
-                mix-blend-mode: difference; /* Makes it visible on dark AND light backgrounds */
-            }
-            .cursor-dot.hovering { 
-                width: 40px; height: 40px; 
-                background: #fff; 
-                opacity: 0.5;
-            }
-        }
-
-        .caustic-overlay {
-            position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.4;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
-            mix-blend-mode: overlay;
-        }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05);
-        }
-
-        /* Menu Styles */
-        .popover-menu {
-            transform-origin: top right;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .popover-menu.closed {
-            opacity: 0;
-            transform: scale(0.9) translateY(-20px);
-            pointer-events: none;
-        }
-        .popover-menu.open {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            pointer-events: auto;
-        }
-
-        .marquee-container { overflow: hidden; white-space: nowrap; }
-        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        @keyframes spinMap { from { background-position: 0% 0%; } to { background-position: 200% 0%; } }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #050a14; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-    </style>
-    <style>
-    @keyframes gradient-flow {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    .animated-gradient-text {
-        background-size: 220% auto;
-        animation: gradient-flow 3s ease infinite;
-        transition: animation-duration 0.3s ease;
-    }
-
-    .animated-gradient-text:hover {
-        animation-duration: 1.5s;
-    }
-</style>
-
-<!-- styles for the sanibookk volume one div  -->
-<style>
-    @keyframes blue-shimmer {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
+        </script>
     
-    .bg-blue-shimmer {
-        /* Gradient: Deep Navy -> Royal Blue -> Electric Blue -> Royal Blue -> Deep Navy */
-        background: linear-gradient(90deg, #0f172a, #1e3a8a, #3b82f6, #1e3a8a, #0f172a);
-        background-size: 200% auto;
-        animation: blue-shimmer 4s linear infinite;
-    }
-</style>
-</head>
+        <style>
+           body { background-color: #ffffff; color: #060514; overflow-x: hidden; }
+            
+            /* Custom Cursor */
+            @media (hover: hover) and (pointer: fine) {
+                .cursor-dot {
+                    position: fixed; top: 0; left: 0; width: 15px; height: 15px;
+                    background: white; border-radius: 50%;
+                    pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
+                    transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.2s;
+                    mix-blend-mode: difference;
+                }
+                .cursor-dot.hovering { 
+                    width: 40px; height: 40px; 
+                    background: #fff; 
+                    opacity: 0.5;
+                }
+            }
+    
+            .caustic-overlay {
+                position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.4;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+                mix-blend-mode: overlay;
+            }
+            
+            .glass-card {
+                background: rgba(255, 255, 255, 0.75);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(255, 255, 255, 0.8);
+                box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05);
+            }
+    
+            .popover-menu {
+                transform-origin: top right;
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .popover-menu.closed {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+                pointer-events: none;
+            }
+            .popover-menu.open {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                pointer-events: auto;
+            }
+    
+            .marquee-container { overflow: hidden; white-space: nowrap; }
+            .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+            @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+            @keyframes spinMap { from { background-position: 0% 0%; } to { background-position: 200% 0%; } }
+            @keyframes gradient-flow {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+            @keyframes blue-shimmer {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+    
+            ::-webkit-scrollbar { width: 6px; }
+            ::-webkit-scrollbar-track { background: #050a14; }
+            ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    
+            .animated-gradient-text {
+                background-size: 220% auto;
+                animation: gradient-flow 3s ease infinite;
+                transition: animation-duration 0.3s ease;
+            }
+            .animated-gradient-text:hover { animation-duration: 1.5s; }
+            
+            .bg-blue-shimmer {
+                background: linear-gradient(90deg, #0f172a, #1e3a8a, #3b82f6, #1e3a8a, #0f172a);
+                background-size: 200% auto;
+                animation: blue-shimmer 4s linear infinite;
+            }
+        </style>
+    
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "SaniBook Kenya",
+          "url": "https://sanibook.ke",
+          "logo": "https://sanibook.ke/assets/imgs/sanilogo.jpeg",
+          "description": "The definitive sanitation intelligence hub for Kenya, mapping stakeholders and scaling solutions for SDG 6.2.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nairobi",
+            "addressCountry": "KE"
+          },
+          "sameAs": [
+            "https://twitter.com/sanibookke",
+            "https://linkedin.com/company/sanibookke"
+          ]
+        }
+        </script>
+    </head>
 <body class="antialiased">
 
     <div class="cursor-dot hidden md:block"></div>
 
     <nav class="fixed w-full z-50 top-0 px-4 pt-4 transition-all duration-300">
         <div class="glass-card rounded-full max-w-[1600px] mx-auto px-4 md:px-6 py-3 flex justify-between items-center shadow-lg relative z-50">
-            <a href="index.html" class="font-display font-black text-xl md:text-2xl tracking-tighter text-sani-dark flex items-center gap-2 group hover-trigger">
-                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-sani-aqua flex items-center justify-center text-white group-hover:rotate-12 transition-transform">
-                    <i class="fa-solid fa-droplet text-sm md:text-base"></i>
-                </div>
+            
+            <a href="index.html" class="font-display font-black text-xl md:text-2xl tracking-tighter text-sani-dark flex items-center gap-3 group hover-trigger">
+                
+                <img src="assets/imgs/sanilogo.jpeg" 
+                     alt="SaniBook Kenya Logo" 
+                     class="h-8 w-8 md:h-10 md:w-10 object-contain group-hover:rotate-6 transition-transform duration-300">
+    
                 <span>SaniBook<span class="text-sani-red">.ke</span></span>
             </a>
-
+    
             <div class="hidden lg:flex gap-8 font-sans font-bold uppercase text-xs tracking-widest text-sani-dark/70">
                 <a href="index.html" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">Home</a>
                 <a href="#mission" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">Mission</a>
@@ -174,11 +197,11 @@
                 <a href="#sanipulse" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">Sanipulse</a>
                 <a href="#impact" class="hover:text-sani-aqua transition-colors py-2 relative group hover-trigger">Impact</a>
             </div>
-
+    
             <button id="mobile-toggle" class="lg:hidden text-2xl text-sani-dark hover:text-sani-red transition-colors focus:outline-none z-50 p-2 hover-trigger">
                 <i class="fa-solid fa-bars"></i>
             </button>
-
+    
             <button id="desktop-toggle" class="hidden lg:flex items-center gap-3 px-6 py-2.5 rounded-full bg-sani-dark text-white font-bold text-xs uppercase tracking-widest hover:bg-sani-red transition-all group hover-trigger z-50">
                 <span class="menu-text relative z-10">Menu</span>
                 <div class="w-6 h-6 flex items-center justify-center bg-white/10 rounded-full group-hover:bg-white/20 transition-colors">
