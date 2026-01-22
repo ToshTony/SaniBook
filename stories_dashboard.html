@@ -6,6 +6,14 @@
     <title>SaniBook Master Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <script>
+        const token = localStorage.getItem('sani_auth_token');
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+    </script>
+
     <script>
         tailwind.config = { 
             theme: { 
@@ -18,79 +26,91 @@
         }
     </script>
 </head>
-<body class="bg-slate-100 min-h-screen p-4 md:p-8">
+<body class="bg-slate-100 min-h-screen p-3 md:p-8 font-sans">
 
     <div class="max-w-[1920px] mx-auto">
         
-        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4 bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
             <div>
-                <h1 class="text-3xl font-black text-sani-dark tracking-tight">SaniBook Master Dashboard</h1>
-                <p class="text-slate-500 text-sm mt-1">Unified view of all portal submissions & inquiries</p>
+                <h1 class="text-xl md:text-2xl font-black text-sani-dark tracking-tight flex items-center gap-3">
+                    <img src="assets/imgs/sanilogo.jpeg" class="h-8 w-8 object-contain"> SaniBook Command Center
+                </h1>
+                <p class="text-slate-500 text-xs mt-1 ml-11">Unified Admin Portal • <span id="last-updated" class="font-mono text-sani-blue">Syncing...</span></p>
             </div>
             
-            <button onclick="fetchData()" class="bg-white px-5 py-2.5 rounded-lg font-bold text-slate-700 shadow-sm hover:text-sani-blue transition-all border border-slate-200 flex items-center gap-2 group">
-                <i class="fa-solid fa-rotate group-hover:rotate-180 transition-transform duration-500"></i> Refresh Data
-            </button>
-        </div>
+            <div class="flex flex-wrap gap-2 w-full lg:w-auto">
+                <a href="index.html" target="_blank" class="flex-1 lg:flex-none justify-center bg-indigo-50 text-indigo-700 px-4 py-2.5 rounded-xl font-bold hover:bg-indigo-100 transition-colors flex items-center gap-2 text-sm border border-indigo-100">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Website
+                </a>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-sani-blue flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Org Stories</p>
-                    <p class="text-4xl font-black text-slate-800 mt-1" id="stat-org">0</p>
-                </div>
-                <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-sani-blue text-xl"><i class="fa-solid fa-building"></i></div>
-            </div>
-            
-            <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-lime-500 flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Contributors</p>
-                    <p class="text-4xl font-black text-slate-800 mt-1" id="stat-ind">0</p>
-                </div>
-                <div class="w-12 h-12 bg-lime-50 rounded-full flex items-center justify-center text-lime-600 text-xl"><i class="fa-solid fa-user-astronaut"></i></div>
-            </div>
-
-            <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-sani-teal flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Sanitationists</p>
-                    <p class="text-4xl font-black text-slate-800 mt-1" id="stat-sani">0</p>
-                </div>
-                <div class="w-12 h-12 bg-teal-50 rounded-full flex items-center justify-center text-sani-teal text-xl"><i class="fa-solid fa-users-gear"></i></div>
-            </div>
-
-            <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Inquiries</p>
-                    <p class="text-4xl font-black text-slate-800 mt-1" id="stat-msg">0</p>
-                </div>
-                <div class="w-12 h-12 bg-orange-50 rounded-full flex items-center justify-center text-orange-500 text-xl"><i class="fa-solid fa-envelope"></i></div>
+                <button onclick="fetchData()" class="flex-1 lg:flex-none justify-center bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl font-bold text-slate-600 hover:bg-slate-100 transition-colors flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-rotate"></i> Refresh
+                </button>
+                
+                <button onclick="logout()" class="flex-1 lg:flex-none justify-center bg-red-50 text-red-600 px-4 py-2.5 rounded-xl font-bold hover:bg-red-100 transition-colors flex items-center gap-2 text-sm border border-red-100">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
             </div>
         </div>
 
-        <div class="mb-6 flex space-x-2 border-b border-slate-200 overflow-x-auto">
-            <button onclick="switchTab('org')" id="tab-org" class="pb-3 px-6 text-sm font-bold uppercase tracking-wide border-b-2 border-sani-blue text-sani-blue transition-colors whitespace-nowrap">
-                Organization Stories
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 mb-8">
+            <div class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border-l-4 border-sani-blue flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Org Stories</p>
+                    <p class="text-3xl md:text-4xl font-black text-slate-800 mt-1" id="stat-org">...</p>
+                </div>
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-blue-50 rounded-full flex items-center justify-center text-sani-blue text-lg md:text-xl"><i class="fa-solid fa-building"></i></div>
+            </div>
+            
+            <div class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border-l-4 border-lime-500 flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Contributors</p>
+                    <p class="text-3xl md:text-4xl font-black text-slate-800 mt-1" id="stat-ind">...</p>
+                </div>
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-lime-50 rounded-full flex items-center justify-center text-lime-600 text-lg md:text-xl"><i class="fa-solid fa-user-astronaut"></i></div>
+            </div>
+
+            <div class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border-l-4 border-sani-teal flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Sanitationists</p>
+                    <p class="text-3xl md:text-4xl font-black text-slate-800 mt-1" id="stat-sani">...</p>
+                </div>
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-teal-50 rounded-full flex items-center justify-center text-sani-teal text-lg md:text-xl"><i class="fa-solid fa-users-gear"></i></div>
+            </div>
+
+            <div class="bg-white p-5 md:p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Inquiries</p>
+                    <p class="text-3xl md:text-4xl font-black text-slate-800 mt-1" id="stat-msg">...</p>
+                </div>
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-orange-50 rounded-full flex items-center justify-center text-orange-500 text-lg md:text-xl"><i class="fa-solid fa-envelope"></i></div>
+            </div>
+        </div>
+
+        <div class="bg-white p-2 rounded-xl shadow-sm border border-slate-200 mb-6 flex overflow-x-auto max-w-full space-x-2 no-scrollbar">
+            <button onclick="switchTab('org')" id="tab-org" class="flex-shrink-0 px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide transition-all text-white bg-sani-blue shadow-md">
+                Stories
             </button>
-            <button onclick="switchTab('ind')" id="tab-ind" class="pb-3 px-6 text-sm font-bold uppercase tracking-wide border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors whitespace-nowrap">
-                Individual Contributors
+            <button onclick="switchTab('ind')" id="tab-ind" class="flex-shrink-0 px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide text-slate-500 hover:bg-slate-100 transition-all">
+                Contributors
             </button>
-            <button onclick="switchTab('sani')" id="tab-sani" class="pb-3 px-6 text-sm font-bold uppercase tracking-wide border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors whitespace-nowrap">
-                Sanitationists Network
+            <button onclick="switchTab('sani')" id="tab-sani" class="flex-shrink-0 px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide text-slate-500 hover:bg-slate-100 transition-all">
+                Sanitationists
             </button>
-            <button onclick="switchTab('msg')" id="tab-msg" class="pb-3 px-6 text-sm font-bold uppercase tracking-wide border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors whitespace-nowrap">
-                Inquiries / Messages
+            <button onclick="switchTab('msg')" id="tab-msg" class="flex-shrink-0 px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide text-slate-500 hover:bg-slate-100 transition-all">
+                Inquiries
             </button>
         </div>
 
         <div id="view-org" class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
             <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
+                <table class="w-full text-left border-collapse min-w-[800px]">
                     <thead>
                         <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-500 font-bold">
                             <th class="px-6 py-4">Organization & Contact</th>
                             <th class="px-6 py-4">Challenge Area</th>
                             <th class="px-6 py-4">Interventions</th>
-                            <th class="px-6 py-4">Submission Size</th>
+                            <th class="px-6 py-4">Size</th>
                             <th class="px-6 py-4 text-right">Date</th>
                         </tr>
                     </thead>
@@ -103,7 +123,7 @@
 
         <div id="view-ind" class="hidden bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
             <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
+                <table class="w-full text-left border-collapse min-w-[800px]">
                     <thead>
                         <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-500 font-bold">
                             <th class="px-6 py-4">Contributor Profile</th>
@@ -113,16 +133,14 @@
                             <th class="px-6 py-4 text-right">Date</th>
                         </tr>
                     </thead>
-                    <tbody id="tbody-ind" class="text-sm text-slate-600 divide-y divide-slate-100">
-                        <tr><td colspan="5" class="p-8 text-center text-slate-400">Loading...</td></tr>
-                    </tbody>
+                    <tbody id="tbody-ind" class="text-sm text-slate-600 divide-y divide-slate-100"></tbody>
                 </table>
             </div>
         </div>
 
         <div id="view-sani" class="hidden bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
             <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
+                <table class="w-full text-left border-collapse min-w-[900px]">
                     <thead>
                         <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-500 font-bold">
                             <th class="px-6 py-4">Name & Org</th>
@@ -132,16 +150,14 @@
                             <th class="px-6 py-4 text-right">Registered</th>
                         </tr>
                     </thead>
-                    <tbody id="tbody-sani" class="text-sm text-slate-600 divide-y divide-slate-100">
-                        <tr><td colspan="5" class="p-8 text-center text-slate-400">Loading...</td></tr>
-                    </tbody>
+                    <tbody id="tbody-sani" class="text-sm text-slate-600 divide-y divide-slate-100"></tbody>
                 </table>
             </div>
         </div>
 
         <div id="view-msg" class="hidden bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
             <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
+                <table class="w-full text-left border-collapse min-w-[800px]">
                     <thead>
                         <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-500 font-bold">
                             <th class="px-6 py-4">Sender Details</th>
@@ -150,9 +166,7 @@
                             <th class="px-6 py-4 text-right">Received</th>
                         </tr>
                     </thead>
-                    <tbody id="tbody-msg" class="text-sm text-slate-600 divide-y divide-slate-100">
-                        <tr><td colspan="4" class="p-8 text-center text-slate-400">Loading...</td></tr>
-                    </tbody>
+                    <tbody id="tbody-msg" class="text-sm text-slate-600 divide-y divide-slate-100"></tbody>
                 </table>
             </div>
         </div>
@@ -168,27 +182,39 @@
         let msgData = [];
 
         async function fetchData() {
-            // UI Loading
+            const token = localStorage.getItem('sani_auth_token');
+            // Re-check token here just in case local storage was cleared
+            if (!token) { window.location.href = 'login.html'; return; }
+
+            document.getElementById('last-updated').innerText = "Syncing...";
             document.querySelectorAll('[id^="stat-"]').forEach(el => el.innerText = '...');
 
             try {
-                const response = await fetch(API_URL);
+                const response = await fetch(API_URL, {
+                    method: 'GET',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.status === 403 || response.status === 401) {
+                    logout(); 
+                    return;
+                }
+
                 const result = await response.json();
                 
                 if(result.status === 'success') {
-                    // 1. Store Data
                     orgData = result.data.organizations || [];
                     indData = result.data.individuals || [];
                     saniData = result.data.sanitationists || [];
-                    msgData = result.data.messages || []; // <--- New
+                    msgData = result.data.messages || [];
 
-                    // 2. Update Stats
                     document.getElementById('stat-org').innerText = orgData.length;
                     document.getElementById('stat-ind').innerText = indData.length;
                     document.getElementById('stat-sani').innerText = saniData.length;
                     document.getElementById('stat-msg').innerText = msgData.length;
                     
-                    // 3. Render Tables
+                    document.getElementById('last-updated').innerText = new Date().toLocaleTimeString();
+
                     renderOrgTable();
                     renderIndTable();
                     renderSaniTable();
@@ -200,8 +226,7 @@
             }
         }
 
-        // --- RENDER FUNCTIONS ---
-
+        // --- RENDERERS ---
         function renderOrgTable() {
             const tbody = document.getElementById('tbody-org');
             tbody.innerHTML = '';
@@ -214,10 +239,10 @@
                             <div class="font-bold text-sani-dark text-base">${item.organization}</div>
                             <div class="text-xs text-slate-500 mt-1 font-medium"><i class="fa-solid fa-user mr-1"></i> ${item.contact_name}</div>
                         </td>
-                        <td class="px-6 py-4"><span class="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs font-bold border border-blue-100">${item.challenge_area}</span></td>
+                        <td class="px-6 py-4"><span class="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs font-bold border border-blue-100 whitespace-nowrap">${item.challenge_area}</span></td>
                         <td class="px-6 py-4 text-xs text-slate-600 max-w-xs truncate" title="${item.intervention_areas}">${item.intervention_areas}</td>
                         <td class="px-6 py-4 font-mono text-xs font-bold text-slate-700">${item.page_size} Page(s)</td>
-                        <td class="px-6 py-4 text-right text-xs text-slate-400 font-mono">${new Date(item.submitted_at).toLocaleDateString()}</td>
+                        <td class="px-6 py-4 text-right text-xs text-slate-400 font-mono whitespace-nowrap">${new Date(item.submitted_at).toLocaleDateString()}</td>
                     </tr>`;
             });
         }
@@ -240,7 +265,7 @@
                         </td>
                         <td class="px-6 py-4 text-xs font-bold text-lime-700">${item.contribution_types}</td>
                         <td class="px-6 py-4 text-xs italic text-slate-500 max-w-xs truncate" title="${item.motivation}">"${item.motivation}"</td>
-                        <td class="px-6 py-4 text-right text-xs text-slate-400 font-mono">${new Date(item.submitted_at).toLocaleDateString()}</td>
+                        <td class="px-6 py-4 text-right text-xs text-slate-400 font-mono whitespace-nowrap">${new Date(item.submitted_at).toLocaleDateString()}</td>
                     </tr>`;
             });
         }
@@ -257,13 +282,13 @@
                             <div class="font-bold text-sani-dark">${item.first_name} ${item.last_name}</div>
                             <div class="text-xs text-slate-500 font-medium mt-1"><i class="fa-solid fa-building mr-1"></i> ${item.organisation}</div>
                         </td>
-                        <td class="px-6 py-4"><span class="bg-teal-50 text-teal-700 border border-teal-100 px-2 py-1 rounded text-xs font-bold uppercase tracking-wide">${item.kpa_area}</span></td>
-                        <td class="px-6 py-4 text-sm text-slate-700 font-medium"><i class="fa-solid fa-location-dot text-sani-red mr-1 text-xs"></i> ${item.county}</td>
+                        <td class="px-6 py-4"><span class="bg-teal-50 text-teal-700 border border-teal-100 px-2 py-1 rounded text-xs font-bold uppercase tracking-wide whitespace-nowrap">${item.kpa_area}</span></td>
+                        <td class="px-6 py-4 text-sm text-slate-700 font-medium whitespace-nowrap"><i class="fa-solid fa-location-dot text-sani-red mr-1 text-xs"></i> ${item.county}</td>
                         <td class="px-6 py-4 text-xs">
                             <div class="mb-1 text-slate-600">${item.email}</div>
                             <div class="text-slate-400">${item.phone || '-'}</div>
                         </td>
-                        <td class="px-6 py-4 text-right text-xs text-slate-400 font-mono">${new Date(item.submitted_at).toLocaleDateString()}</td>
+                        <td class="px-6 py-4 text-right text-xs text-slate-400 font-mono whitespace-nowrap">${new Date(item.submitted_at).toLocaleDateString()}</td>
                     </tr>`;
             });
         }
@@ -282,36 +307,37 @@
                             <div class="text-xs text-slate-400 mt-1">${item.email}</div>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs font-bold">${item.inquiry_type}</span>
+                            <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs font-bold whitespace-nowrap">${item.inquiry_type}</span>
                         </td>
                         <td class="px-6 py-4 text-sm text-slate-600 leading-relaxed whitespace-pre-wrap max-w-lg">${item.message}</td>
-                        <td class="px-6 py-4 text-right text-xs text-slate-400 font-mono">${new Date(item.submitted_at).toLocaleDateString()}</td>
+                        <td class="px-6 py-4 text-right text-xs text-slate-400 font-mono whitespace-nowrap">${new Date(item.submitted_at).toLocaleDateString()}</td>
                     </tr>`;
             });
         }
 
-        // --- TAB SWITCHER ---
+        // --- TABS & UTILS ---
         function switchTab(tabName) {
-            const tabs = ['org', 'ind', 'sani', 'msg'];
-            
-            // Hide all views & reset buttons
-            tabs.forEach(t => {
+            ['org', 'ind', 'sani', 'msg'].forEach(t => {
                 document.getElementById(`view-${t}`).classList.add('hidden');
-                const btn = document.getElementById(`tab-${t}`);
-                btn.className = "pb-3 px-6 text-sm font-bold uppercase tracking-wide border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors whitespace-nowrap";
+                document.getElementById(`tab-${t}`).className = "flex-shrink-0 px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide text-slate-500 hover:bg-slate-100 transition-all";
             });
 
-            // Show active view
             document.getElementById(`view-${tabName}`).classList.remove('hidden');
-
-            // Highlight active button
+            
             const activeBtn = document.getElementById(`tab-${tabName}`);
-            let colorClass = "text-sani-blue border-sani-blue"; // Default Blue
-            if(tabName === 'ind') colorClass = "text-lime-600 border-lime-500";
-            if(tabName === 'sani') colorClass = "text-sani-teal border-sani-teal";
-            if(tabName === 'msg') colorClass = "text-orange-600 border-orange-500";
+            let bgClass = "bg-sani-blue";
+            if(tabName === 'ind') bgClass = "bg-lime-600";
+            if(tabName === 'sani') bgClass = "bg-sani-teal";
+            if(tabName === 'msg') bgClass = "bg-orange-500";
+            
+            activeBtn.className = `flex-shrink-0 px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide text-white shadow-md transition-all ${bgClass}`;
+        }
 
-            activeBtn.className = `pb-3 px-6 text-sm font-bold uppercase tracking-wide border-b-2 transition-colors whitespace-nowrap ${colorClass}`;
+        function logout() {
+            if(confirm("Are you sure you want to log out?")) {
+                localStorage.removeItem('sani_auth_token');
+                window.location.href = 'login.html';
+            }
         }
 
         window.addEventListener('DOMContentLoaded', fetchData);

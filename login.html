@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | SaniBook Initiative</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sani: { dark: '#050a14', blue: '#4facfe', navy: '#0A346C' }
+                    },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'], display: ['Syne', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-teal-100/50 rounded-full blur-[100px]"></div>
+    </div>
+
+    <a href="index.html" class="absolute top-6 left-6 z-20 flex items-center gap-2 text-slate-500 hover:text-sani-navy transition-colors font-bold text-sm bg-white px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:shadow-md">
+        <i class="fa-solid fa-arrow-left"></i> Back to Website
+    </a>
+
+    <div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl w-full max-w-md text-center relative z-10 border border-slate-100">
+        
+        <div class="flex justify-center mb-6">
+            <div class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center shadow-inner">
+                <img src="assets/imgs/sanilogo.jpeg" alt="SaniBook Logo" class="w-12 h-12 object-contain">
+            </div>
+        </div>
+        
+        <h1 class="text-3xl font-display font-bold text-sani-navy mb-1">SaniBook Admin</h1>
+        <p class="text-slate-500 text-sm mb-8 font-medium">Unified Intelligence Command Center</p>
+
+        <form id="login-form" class="space-y-5 text-left">
+            
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 ml-1">Secure Access Key</label>
+                <div class="relative">
+                    <input type="password" id="password" 
+                        class="w-full border border-slate-200 bg-slate-50 rounded-xl px-5 py-4 focus:ring-2 focus:ring-sani-blue focus:bg-white outline-none transition-all pl-12 text-sani-dark font-bold placeholder:font-normal" 
+                        placeholder="Enter your password" required>
+                    <i class="fa-solid fa-key absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                </div>
+            </div>
+            
+            <button type="submit" class="w-full bg-sani-navy text-white font-bold py-4 rounded-xl hover:bg-blue-800 transition-all shadow-lg hover:shadow-blue-900/20 transform hover:-translate-y-0.5 active:translate-y-0 flex justify-center items-center gap-2">
+                <span>Access Dashboard</span> <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </form>
+        
+        <div id="feedback-area" class="mt-6 min-h-[20px]">
+            <p id="error-msg" class="text-red-500 text-xs font-bold hidden bg-red-50 py-2 px-4 rounded-lg inline-flex items-center gap-2">
+                <i class="fa-solid fa-circle-exclamation"></i> Incorrect Access Key
+            </p>
+        </div>
+
+        <p class="text-xs text-slate-400 mt-4">Authorized Personnel Only • &copy; 2025</p>
+    </div>
+
+    <script>
+        const API_URL = "https://hms.cosikenya.org/api/admin-login/";
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            const btn = e.target.querySelector('button');
+            const btnText = btn.querySelector('span');
+            const btnIcon = btn.querySelector('i');
+            const errorMsg = document.getElementById('error-msg');
+
+            // UI Loading State
+            btn.disabled = true;
+            btnText.innerText = "Verifying Credentials...";
+            btnIcon.className = "fa-solid fa-circle-notch fa-spin";
+            btn.classList.add('opacity-75');
+            errorMsg.classList.add('hidden');
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ password: password })
+                });
+                const result = await res.json();
+
+                if (result.status === 'success') {
+                    // Success Animation
+                    btn.classList.remove('bg-sani-navy');
+                    btn.classList.add('bg-green-600');
+                    btnText.innerText = "Access Granted";
+                    btnIcon.className = "fa-solid fa-check";
+                    
+                    // Save & Redirect
+                    localStorage.setItem('sani_auth_token', result.token);
+                    setTimeout(() => {
+                        window.location.href = 'stories_dashboard.html'; 
+                    }, 800);
+                } else {
+                    throw new Error('Invalid Credentials');
+                }
+            } catch (err) {
+                // Error State
+                errorMsg.classList.remove('hidden');
+                
+                // Reset Button
+                btn.disabled = false;
+                btn.classList.remove('opacity-75');
+                btn.classList.add('bg-sani-navy');
+                btnText.innerText = "Access Dashboard";
+                btnIcon.className = "fa-solid fa-arrow-right";
+                
+                // Shake Animation
+                const card = document.querySelector('.bg-white');
+                card.classList.add('animate-[bounce_0.5s]');
+                setTimeout(() => card.classList.remove('animate-[bounce_0.5s]'), 500);
+            }
+        });
+    </script>
+</body>
+</html>
